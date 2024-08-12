@@ -32,16 +32,161 @@ const StyledTableRow = withStyles((theme) => ({
 }))(TableRow);
 
 // Example data
-function createData(name, metric1, metric2, metric3, metric4) {
-  return { name, metric1, metric2, metric3, metric4 };
+function createData(data) {
+  return data
 }
 
 const rows = [
-  createData('Item 1', 200, 150, 77.5, 1000),
-  createData('Item 2', 300, 120, 65.2, 1200),
-  createData('Item 3', 250, 170, 80.3, 1100),
-  createData('Item 4', 275, 160, 75.4, 1050),
-  createData('Item 5', 225, 180, 85.5, 1300),
+  createData([
+    {
+      name: 'Item 1',
+      metric1: 200,
+      metric2: 100,
+      metric3: 70.9,
+      metric4: 1000,
+    },
+    {
+      name: 'Item 1',
+      metric1: 200,
+      metric2: 100,
+      metric3: 70.9,
+      metric4: 1000,
+    },
+    {
+      name: 'Item 1',
+      metric1: 200,
+      metric2: 100,
+      metric3: 70.9,
+      metric4: 1000,
+    },
+    {
+      name: 'Item 1',
+      metric1: 200,
+      metric2: 100,
+      metric3: 70.9,
+      metric4: 1000,
+    }
+  ]),
+  createData([
+    {
+      name: 'Item 1',
+      metric1: 200,
+      metric2: 100,
+      metric3: 70.9,
+      metric4: 1000,
+    },
+    {
+      name: 'Item 1',
+      metric1: 200,
+      metric2: 100,
+      metric3: 70.9,
+      metric4: 1000,
+    },
+    {
+      name: 'Item 1',
+      metric1: 200,
+      metric2: 100,
+      metric3: 70.9,
+      metric4: 1000,
+    },
+    {
+      name: 'Item 1',
+      metric1: 200,
+      metric2: 100,
+      metric3: 70.9,
+      metric4: 1000,
+    }
+  ]),
+  createData([
+    {
+      name: 'Item 1',
+      metric1: 200,
+      metric2: 100,
+      metric3: 70.9,
+      metric4: 1000,
+    },
+    {
+      name: 'Item 1',
+      metric1: 200,
+      metric2: 100,
+      metric3: 70.9,
+      metric4: 1000,
+    },
+    {
+      name: 'Item 1',
+      metric1: 200,
+      metric2: 100,
+      metric3: 70.9,
+      metric4: 1000,
+    },
+    {
+      name: 'Item 1',
+      metric1: 200,
+      metric2: 100,
+      metric3: 70.9,
+      metric4: 1000,
+    }
+  ]),
+  createData([
+    {
+      name: 'Item 1',
+      metric1: 200,
+      metric2: 100,
+      metric3: 70.9,
+      metric4: 1000,
+    },
+    {
+      name: 'Item 1',
+      metric1: 200,
+      metric2: 100,
+      metric3: 70.9,
+      metric4: 1000,
+    },
+    {
+      name: 'Item 1',
+      metric1: 200,
+      metric2: 100,
+      metric3: 70.9,
+      metric4: 1000,
+    },
+    {
+      name: 'Item 1',
+      metric1: 200,
+      metric2: 100,
+      metric3: 70.9,
+      metric4: 1000,
+    }
+  ]),
+  createData([
+    {
+      name: 'Item 1',
+      metric1: 200,
+      metric2: 100,
+      metric3: 70.9,
+      metric4: 1000,
+    },
+    {
+      name: 'Item 1',
+      metric1: 200,
+      metric2: 100,
+      metric3: 70.9,
+      metric4: 1000,
+    },
+    {
+      name: 'Item 1',
+      metric1: 200,
+      metric2: 100,
+      metric3: 70.9,
+      metric4: 1000,
+    },
+    {
+      name: 'Item 1',
+      metric1: 200,
+      metric2: 100,
+      metric3: 70.9,
+      metric4: 1000,
+    }
+  ])
 ];
 
 const useStyles = makeStyles({
@@ -66,17 +211,23 @@ export default function CustomTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <StyledTableRow key={row.name}>
-              <StyledTableCell component="th" scope="row">
-                {row.name}
-              </StyledTableCell>
-              <StyledTableCell align="center">{row.metric1}</StyledTableCell>
-              <StyledTableCell align="center">{row.metric2}</StyledTableCell>
-              <StyledTableCell align="center">{row.metric3}</StyledTableCell>
-              <StyledTableCell align="center">{row.metric4}</StyledTableCell>
-            </StyledTableRow>
-          ))}
+          {rows.map((rows) => {
+            console.log(rows)
+            return rows.map((data) => {
+              console.log(data)
+              return  (
+                <StyledTableRow key={data.name}>
+                  <StyledTableCell component="th" scope="row">
+                    {data.name}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">{data.metric1}</StyledTableCell>
+                  <StyledTableCell align="center">{data.metric2}</StyledTableCell>
+                  <StyledTableCell align="center">{data.metric3}</StyledTableCell>
+                  <StyledTableCell align="center">{data.metric4}</StyledTableCell>
+                </StyledTableRow>
+              )
+            })
+          })}
         </TableBody>
       </Table>
     </TableContainer>
