@@ -8,6 +8,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
+// Customizing table cell styles
 const StyledTableCell = withStyles((theme) => ({
   head: {
     backgroundColor: "#929291",
@@ -15,27 +16,32 @@ const StyledTableCell = withStyles((theme) => ({
   },
   body: {
     fontSize: 14,
+    border: "1px solid #E0E0E0", // Border for cells
+    padding: "10px 16px",
+    backgroundColor: "#fff",
+    borderBottom: "1px solid #636363",
   },
 }))(TableCell);
 
 const StyledTableRow = withStyles((theme) => ({
   root: {
     '&:nth-of-type(odd)': {
-      backgroundColor: theme.palette.action.hover,
+      backgroundColor: theme.palette.action.hover
     },
   },
 }))(TableRow);
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
+// Example data
+function createData(name, metric1, metric2, metric3, metric4) {
+  return { name, metric1, metric2, metric3, metric4 };
 }
 
 const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
+  createData('Item 1', 200, 150, 77.5, 1000),
+  createData('Item 2', 300, 120, 65.2, 1200),
+  createData('Item 3', 250, 170, 80.3, 1100),
+  createData('Item 4', 275, 160, 75.4, 1050),
+  createData('Item 5', 225, 180, 85.5, 1300),
 ];
 
 const useStyles = makeStyles({
@@ -44,19 +50,19 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Skill() {
+export default function CustomTable() {
   const classes = useStyles();
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} className={classes.container}>
       <Table className={classes.table} aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell>Dessert (100g serving)</StyledTableCell>
-            <StyledTableCell align="right">Calories</StyledTableCell>
-            <StyledTableCell align="right">Fat&nbsp;(g)</StyledTableCell>
-            <StyledTableCell align="right">Carbs&nbsp;(g)</StyledTableCell>
-            <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell>
+            <StyledTableCell>Category</StyledTableCell>
+            <StyledTableCell align="center">Metric 1</StyledTableCell>
+            <StyledTableCell align="center">Metric 2</StyledTableCell>
+            <StyledTableCell align="center">Metric 3</StyledTableCell>
+            <StyledTableCell align="center">Metric 4</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -65,10 +71,10 @@ export default function Skill() {
               <StyledTableCell component="th" scope="row">
                 {row.name}
               </StyledTableCell>
-              <StyledTableCell align="right">{row.calories}</StyledTableCell>
-              <StyledTableCell align="right">{row.fat}</StyledTableCell>
-              <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-              <StyledTableCell align="right">{row.protein}</StyledTableCell>
+              <StyledTableCell align="center">{row.metric1}</StyledTableCell>
+              <StyledTableCell align="center">{row.metric2}</StyledTableCell>
+              <StyledTableCell align="center">{row.metric3}</StyledTableCell>
+              <StyledTableCell align="center">{row.metric4}</StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

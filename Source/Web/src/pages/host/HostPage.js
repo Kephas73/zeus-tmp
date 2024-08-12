@@ -11,12 +11,12 @@ const HostPage = ({setOpen}) => {
       <div className="host-page">
         <Header setOpen={setOpen}/>
         <div className="container">
-          <div className="container-operator-overall">
-            <Operator />
+          <div className="container-operator-skill">
             <Overall />
-          </div>
-          <div className="container-skill">
             <Skill />
+          </div>
+          <div className="container-operator">
+            <Operator />
           </div>
         </div>
       </div>

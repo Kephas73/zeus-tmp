@@ -13,7 +13,7 @@
   width: 95%;
   padding: 30px;
 }
-.container-operator-overall {
+.container-operator-skill {
   display: grid;
   grid-template-columns: 35% auto;
   gap: 10px;
@@ -21,7 +21,7 @@
   height: 40vh;
 }
 
-.container-skill {
+.container-operator {
   display: grid;
   overflow: hidden;
   grid-template-columns: 35% auto;
