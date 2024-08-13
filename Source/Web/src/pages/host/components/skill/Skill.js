@@ -63,27 +63,6 @@ const rows = [
       metric3: 70.9,
       metric4: 1000,
     },
-    {
-      name: 'Item 1',
-      metric1: 200,
-      metric2: 100,
-      metric3: 70.9,
-      metric4: 1000,
-    },
-    {
-      name: 'Item 1',
-      metric1: 200,
-      metric2: 100,
-      metric3: 70.9,
-      metric4: 1000,
-    },
-    {
-      name: 'Item 1',
-      metric1: 200,
-      metric2: 100,
-      metric3: 70.9,
-      metric4: 1000,
-    },
 
     {
       name: 'Item 1',
@@ -92,13 +71,6 @@ const rows = [
       metric3: 70.9,
       metric4: 1000,
     },
-    {
-      name: 'Item 1',
-      metric1: 200,
-      metric2: 100,
-      metric3: 70.9,
-      metric4: 1000,
-    },
   ]),
   createData([
     {
@@ -143,20 +115,6 @@ const rows = [
       metric1: 200,
       metric2: 100,
       metric3: 70.9,
-      metric4: 1000,
-    },
-    {
-      name: 'Item 3',
-      metric1: 200,
-      metric2: 100,
-      metric3: 70.9,
-      metric4: 1000,
-    },
-    {
-      name: 'Item 3',
-      metric1: 200,
-      metric2: 100,
-      metric3: 70.9,
     }
   ]),
   createData([
@@ -186,7 +144,16 @@ const rows = [
       metric1: 200,
       metric2: 100,
       metric3: 70.9,
-    }
+      metric4: 1000,
+    },
+    {
+      name: 'Item 4',
+      metric1: 200,
+      metric2: 100,
+      metric3: 70.9,
+      metric4: 1000,
+    },
+  
   ])
 ];
 
