@@ -9,6 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import './skill.css';
 import constants from '../../../../constants';
+import DatePickerDayMonthYear from '../overall/DatePickerDayMonthYear';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -171,10 +172,11 @@ export default function CustomTable() {
           <div className="performance-text">スキル別パフォーマンス</div>
           <button className="button-csv">CSV 出力</button>
         </div>
-        {/* <div>
+        <div className="container-dateTime">
           <div>期間指定</div>
-          <div></div>
-        </div> */}
+          <div><DatePickerDayMonthYear/></div>
+          <div><DatePickerDayMonthYear/></div>
+        </div>
         <Table className={classes.table} aria-label="customized table">
           <TableHead >
             <TableRow >
