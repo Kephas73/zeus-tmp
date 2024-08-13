@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useMemo } from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -43,7 +44,6 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
-
 const useStyles = makeStyles({
   ...constants.tableRowStyles,
   table: {
@@ -63,6 +63,22 @@ const useStyles = makeStyles({
 
 export default function Overall() {
   const classes = useStyles();
+  const [dataOverall, setDataOverall] = useState({
+    numberOfIncomingCalls: 0,
+    numberOfCallsReceived: 0,
+    callReceivedRate: 0,
+    numberOfActiveSeats: 0,
+    upTime: 0,
+    totalTalktime: 0,
+    averageTalkTime: 0,
+    numberOfmissedCalls: 0,
+    numberOfBreaks: 0,
+    numberOfCallsWaiting: 0,
+    callWaitingRate: 0,
+    callWaitingAverageWaitingTime: 0,
+    callWaitingNumberOfSuccessfulConnections: 0,
+    callWaitingNumberOfExits: 0,
+  });
 
   const [dataOverallYearMonth, setDataOverallYearMonth] = useState({
     numberOfIncomingCalls: 0,
