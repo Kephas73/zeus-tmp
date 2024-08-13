@@ -1,16 +1,45 @@
 import 'date-fns';
 import React from 'react';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
 import {
   MuiPickersUtilsProvider,
-  KeyboardTimePicker,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& .MuiInputBase-root': {
+      color: '#fff',
+      fontSize: '16px',
+      borderRadius: '50px',
+      border: '1px solid #fff',
+      padding: '5px 15px',
+      width: "60%",
+    },
+  },
+}));
+
+const CustomKeyboardDatePicker = withStyles({
+  root: {
+    '& .MuiInputBase-input': {
+      color: '#000', // Màu chữ bên trong input
+    },
+    '& .MuiInput-underline:before': {
+      color: '#fff',
+      borderBottom: 'none', // Loại bỏ viền dưới mặc định
+    },
+    '& .MuiInput-underline:after': {
+      color: '#fff',
+      borderBottom: 'none', // Loại bỏ viền dưới mặc định
+    },
+  },
+})(KeyboardDatePicker);
+
 export default function DatePickerYearMonth() {
-  // The first commit of Material-UI
   const [selectedDate, setSelectedDate] = React.useState(new Date());
+  const classes = useStyles();
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -19,14 +48,15 @@ export default function DatePickerYearMonth() {
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <Grid container justifyContent="space-around">
-        <KeyboardDatePicker
-          views={['year', 'month']} 
+        <CustomKeyboardDatePicker
+          className={classes.root}
+          views={['year', 'month']}
           disableToolbar
           variant="inline"
           format="yyyy/MM"
           margin="normal"
           id="date-picker-inline"
-          label="Date picker inline"
+          label="Custom Date Picker"
           value={selectedDate}
           onChange={handleDateChange}
           KeyboardButtonProps={{
@@ -37,38 +67,3 @@ export default function DatePickerYearMonth() {
     </MuiPickersUtilsProvider>
   );
 }
-
-
-
-// import React from 'react';
-// import Grid from '@material-ui/core/Grid';
-// import DateFnsUtils from '@date-io/date-fns';
-// import { MuiPickersUtilsProvider, DatePicker } from '@material-ui/pickers';
-
-// export default function DatePickerYearMonth() {
-//   const [selectedDate, setSelectedDate] = React.useState(new Date());
-
-//   const handleDateChange = (date) => {
-//     setSelectedDate(date);
-//   };
-
-//   return (
-//     <MuiPickersUtilsProvider utils={DateFnsUtils}>
-//       <Grid container justifyContent="space-around">
-//         <DatePicker
-//           views={['year', 'month']} // Chỉ định chỉ chọn năm và tháng
-//           label="Chọn tháng"
-//           helperText="Chọn năm và tháng"
-//           value={selectedDate}
-//           onChange={handleDateChange}
-//           format="yyyy/MM" // Định dạng hiển thị
-//           margin="normal"
-//           id="month-picker-dialog"
-//           KeyboardButtonProps={{
-//             'aria-label': 'change date',
-//           }}
-//         />
-//       </Grid>
-//     </MuiPickersUtilsProvider>
-//   );
-// }

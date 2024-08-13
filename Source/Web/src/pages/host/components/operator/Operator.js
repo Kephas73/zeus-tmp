@@ -9,6 +9,8 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import '../skill/skill.css';
 import constants from '../../../../constants';
+import DatePickerMonthDay from '../overall/DatePickerMonthDay';
+import DatePickerYearMonth from '../overall/DatePickerYearMonth';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -76,30 +78,6 @@ const rows = [
       metric4: 1000,
       metric5: 1000,
     },
-    {
-      name: 'Item 2',
-      metric1: 200,
-      metric2: 100,
-      metric3: 70.9,
-      metric4: 1000,
-      metric5: 1000,
-    },
-    {
-      name: 'Item 2',
-      metric1: 200,
-      metric2: 100,
-      metric3: 70.9,
-      metric4: 1000,
-      metric5: 1000,
-    },
-    {
-      name: 'Item 2',
-      metric1: 200,
-      metric2: 100,
-      metric3: 70.9,
-      metric4: 1000,
-      metric5: 1000,
-    },
   ]),
   createData([
     {
@@ -118,30 +96,6 @@ const rows = [
     },
   ]),
   createData([
-    {
-      name: 'Item 4',
-      metric1: 200,
-      metric2: 100,
-      metric3: 70.9,
-      metric4: 1000,
-      metric5: 1000,
-    },
-    {
-      name: 'Item 4',
-      metric1: 200,
-      metric2: 100,
-      metric3: 70.9,
-      metric4: 1000,
-      metric5: 1000,
-    },
-    {
-      name: 'Item 4',
-      metric1: 200,
-      metric2: 100,
-      metric3: 70.9,
-      metric4: 1000,
-      metric5: 1000,
-    },
     {
       name: 'Item 4',
       metric1: 200,
@@ -180,34 +134,10 @@ export default function CustomTable() {
             <TableRow >
               <StyledTableCell>項目</StyledTableCell>
               <StyledTableCell align="center">
-                <div>
-                  <span className="languages">EN</span>
-                  <span>英語</span>
-                </div>
+              <DatePickerYearMonth/>
               </StyledTableCell>
               <StyledTableCell align="center">
-                <div>
-                  <span className="languages">CN</span>
-                  <span>中国語</span>
-                </div>
-              </StyledTableCell>
-              <StyledTableCell align="center">
-                <div>
-                  <span className="languages">KR</span>
-                  <span>韓国語</span>
-                </div>
-              </StyledTableCell>
-              <StyledTableCell align="center">
-                <div>
-                  <span className="languages">ES</span>
-                  <span>スペイン語</span>
-                </div>
-              </StyledTableCell>
-              <StyledTableCell align="center">
-                <div>
-                  <span className="languages">PT</span>
-                  <span>ポルトガル語</span>
-                </div>
+                <DatePickerMonthDay/>
               </StyledTableCell>
             </TableRow>
           </TableHead>
@@ -226,9 +156,7 @@ export default function CustomTable() {
                     </StyledTableCell>
                     <StyledTableCell align="center">{data.metric1}</StyledTableCell>
                     <StyledTableCell align="center">{data.metric2}</StyledTableCell>
-                    <StyledTableCell align="center">{data.metric3}</StyledTableCell>
-                    <StyledTableCell align="center">{data.metric4}</StyledTableCell>
-                    <StyledTableCell align="center">{data.metric5}</StyledTableCell>
+
                   </StyledTableRow>
                 );
               })
