@@ -9,7 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import './skill.css';
 import constants from '../../../../constants';
-import DatePickerDayMonthYear from '../overall/DatePickerDayMonthYear';
+import DatePickerDayMonthYear from './DatePickerDayMonthYear';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {

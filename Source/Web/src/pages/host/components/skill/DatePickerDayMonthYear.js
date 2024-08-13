@@ -12,8 +12,8 @@ import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 const useStyles = makeStyles((theme) => ({
   root: {
     '& .MuiFormControl-marginNormal': {
-      display: 'flex',
-      alignItem: 'center'
+      marginTop: 0,
+      marginBottom: 0,
     },
     '& .MuiInputBase-root': {
       color: '#666',
@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
       border: '1px solid #ccc',
       padding: '8px 10px',
       backgroundColor: 'transparent',
-      width: '50%',
+      width: '80%',
     },
     '& .MuiInputLabel-root': {
       color: '#666',
@@ -59,6 +59,10 @@ const CustomKeyboardDatePicker = withStyles({
     '& .MuiButtonBase-root': {
       color: '#fff',
     },
+    '& .MuiFormControl-marginNormal': {
+      marginTop: 0,
+      marginBottom: 0,
+    }
   },
 })(KeyboardDatePicker);
 
@@ -79,7 +83,7 @@ export default function DatePickerDayMonthYear() {
           disableToolbar
           variant="inline"
           format="yyyy/MM/dd"
-          margin="normal"
+          margin="none"
           id="date-picker-inline"
           label="年 / 月 / 日"
           value={selectedDate}
