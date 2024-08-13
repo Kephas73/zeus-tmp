@@ -68,12 +68,12 @@ const CustomKeyboardDatePicker = withStyles({
   },
 })(KeyboardDatePicker);
 
-export default function DatePickerMonthDay() {
-  const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
+export default function DatePickerMonthDay({ dateMonthDay, setDateMonthDay}) {
+  
   const classes = useStyles();
 
   const handleDateChange = (date) => {
-    setSelectedDate(date);
+    setDateMonthDay(date);
   };
 
   return (
@@ -88,7 +88,7 @@ export default function DatePickerMonthDay() {
           margin="normal"
           id="date-picker-inline"
           label="月 / 日"
-          value={selectedDate}
+          value={dateMonthDay}
           onChange={handleDateChange}
           keyboardIcon={<ArrowDropDownIcon />}
         />
