@@ -68,12 +68,11 @@ const CustomKeyboardDatePicker = withStyles({
   },
 })(KeyboardDatePicker);
 
-export default function DatePickerYearMonth() {
-  const [selectedDate, setSelectedDate] = React.useState(new Date());
+export default function DatePickerYearMonth({ dateYearMonth, setDateYearMonth}) {
   const classes = useStyles();
 
   const handleDateChange = (date) => {
-    setSelectedDate(date);
+    setDateYearMonth(date);
   };
 
   return (
@@ -88,7 +87,7 @@ export default function DatePickerYearMonth() {
           margin="normal"
           id="date-picker-inline"
           label="年 / 月"
-          value={selectedDate}
+          value={dateYearMonth}
           onChange={handleDateChange}
           KeyboardButtonProps={{
             'aria-label': 'change date',
