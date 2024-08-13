@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
       border: '1px solid #ccc',
       padding: '8px 10px',
       backgroundColor: 'transparent',
-      width: '50%',
+      width: '100%',
     },
     '& .MuiInputLabel-root': {
       color: '#fff',
@@ -39,6 +39,12 @@ const useStyles = makeStyles((theme) => ({
     '& .MuiInputAdornment-root .MuiButtonBase-root': {
       marginLeft: '-12px',
     },
+    '& .MuiInputBase-inputAdornedEnd': {
+      width: '50%'
+    },
+    '& .MuiInputBase-adornedEnd': {
+      justifyContent: 'center'
+    }
   },
 }));
 
