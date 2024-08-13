@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useMemo } from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -13,8 +14,9 @@ import constants from '../../../../constants';
 import './style.css';
 import dayjs from 'dayjs';
 import { getMonthDay, getYearMonth, getYearMonthDay } from '../../../../utils/formatDate';
-import { calls } from '../../../../data/calls';
+import { calls } from '../../../../data/calls'
 import useRow from './useRow';
+import { CALL_STATUS_CATCH, CALL_STATUS_STOP } from '../../../../constants/data';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -117,7 +119,7 @@ export default function Overall() {
       if (getYearMonth(dateYearMonth) === date) {
         let sum = 0;
         item.calls.forEach((i) => {
-          if(i.status === 0 || i.status === 1) sum++;
+          if(i.status === CALL_STATUS_CATCH || i.status === CALL_STATUS_STOP) sum++;
         })
         accumulator = accumulator + sum;
       }
@@ -157,7 +159,7 @@ export default function Overall() {
       if (getMonthDay(dateMonthDay) === date) {
         let sum = 0;
         item.calls.forEach((i) => {
-          if(i.status === 0 || i.status === 1) sum++;
+          if(i.status === CALL_STATUS_CATCH || i.status === CALL_STATUS_STOP) sum++;
         })
         accumulator = accumulator + sum;
       }
