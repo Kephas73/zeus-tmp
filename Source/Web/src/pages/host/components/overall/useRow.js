@@ -2,8 +2,6 @@ import React from 'react';
 
 const useRow = (dataOverallYearMonth, dataOverallMonthDay) => {
 
-    console.log('dataOverallYearMonth ', dataOverallYearMonth)
-
   const createData = (data) => data
 
   const rows = [
@@ -37,8 +35,8 @@ const useRow = (dataOverallYearMonth, dataOverallMonthDay) => {
       },
       {
         name: '合計通話時間',
-        metric1: dataOverallYearMonth.totalTalktime,
-        metric2: dataOverallMonthDay.totalTalktime,
+        metric1: dataOverallYearMonth.totalTalkTime,
+        metric2: dataOverallMonthDay.totalTalkTime,
       },
       {
         name: '平均通話時間',
@@ -49,8 +47,8 @@ const useRow = (dataOverallYearMonth, dataOverallMonthDay) => {
     createData([
       {
         name: '不在数',
-        metric1: dataOverallYearMonth.numberOfmissedCalls,
-        metric2: dataOverallMonthDay.numberOfmissedCalls,
+        metric1: dataOverallYearMonth.numberOfMissedCalls,
+        metric2: dataOverallMonthDay.numberOfMissedCalls,
       },
       {
         name: '切断数',

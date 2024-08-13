@@ -13,7 +13,7 @@ import constants from '../../../../constants';
 import './style.css';
 import dayjs from 'dayjs';
 import { getMonthDay, getYearMonth, getYearMonthDay } from '../../../../utils/formatDate';
-import { calls } from '../../../../data/calls'
+import { calls } from '../../../../data/calls';
 import useRow from './useRow';
 
 const StyledTableCell = withStyles((theme) => ({
@@ -43,7 +43,6 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
-
 const useStyles = makeStyles({
   ...constants.tableRowStyles,
   table: {
@@ -70,9 +69,9 @@ export default function Overall() {
     callReceivedRate: 0,
     numberOfActiveSeats: 0,
     upTime: 0,
-    totalTalktime: 0,
+    totalTalkTime: 0,
     averageTalkTime: 0,
-    numberOfmissedCalls: 0,
+    numberOfMissedCalls: 0,
     numberOfBreaks: 0,
     numberOfCallsWaiting: 0,
     callWaitingRate: 0,
@@ -82,14 +81,14 @@ export default function Overall() {
   });
 
   const [dataOverallMonthDay, setDataOverallMonthDay] = useState({
-    numberOfIncomingCalls: 20,
+    numberOfIncomingCalls: 0,
     numberOfCallsReceived: 0,
-    callReceivedRate:  0,
+    callReceivedRate: 0,
     numberOfActiveSeats: 0,
     upTime: 0,
-    totalTalktime: 0,
+    totalTalkTime: 0,
     averageTalkTime: 0,
-    numberOfmissedCalls: 0,
+    numberOfMissedCalls: 0,
     numberOfBreaks: 0,
     numberOfCallsWaiting: 0,
     callWaitingRate: 0,
@@ -103,16 +102,86 @@ export default function Overall() {
   const rows = useRow(dataOverallYearMonth, dataOverallMonthDay);
 
   // const sum = calls.reduce((accumulator, currentValue) => accumulator + currentValue.calls.length, 0)
-  
+
   useEffect(() => {
-    setDateYearMonth(prev => ({
+    const numberOfIncomingCalls = calls.reduce((accumulator, item) => {
+      const date = getYearMonth(item.timestamp);
+      if (getYearMonth(dateYearMonth) === date) {
+        accumulator = accumulator + item.calls.length;
+      }
+      return accumulator;
+    }, 0);
+
+    const numberOfCallsReceived = calls.reduce((accumulator, item) => {
+      const date = getYearMonth(item.timestamp);
+      if (getYearMonth(dateYearMonth) === date) {
+        let sum = 0;
+        item.calls.forEach((i) => {
+          if(i.status === 0 || i.status === 1) sum++;
+        })
+        accumulator = accumulator + sum;
+      }
+      return accumulator;
+    }, 0);
+
+    let callReceivedRate = 0;
+    if(numberOfIncomingCalls > 0) {
+      const resultRate = (numberOfCallsReceived/numberOfIncomingCalls) * 100
+      const roundedResultRate  = resultRate.toFixed(2)
+      if (roundedResultRate.indexOf('.') !== -1 && parseFloat(roundedResultRate) % 1 === 0) {
+        callReceivedRate = parseInt(roundedResultRate, 10);
+      } else {
+        callReceivedRate = parseFloat(roundedResultRate);
+      }
+    } 
+
+    setDataOverallYearMonth((prev) => ({
       ...prev,
-      numberOfIncomingCalls: 50
-    }))
-  }, [])
+      numberOfIncomingCalls,
+      numberOfCallsReceived,
+      callReceivedRate
+    }));
+  }, [dateYearMonth]);
 
+  useEffect(() => {
+    const numberOfIncomingCalls = calls.reduce((accumulator, item) => {
+      const date = getMonthDay(item.timestamp);
+      if (getMonthDay(dateMonthDay) === date) {
+        accumulator = accumulator + item.calls.length;
+      }
+      return accumulator;
+    }, 0);
 
-  console.log('rows ', rows)
+    const numberOfCallsReceived = calls.reduce((accumulator, item) => {
+      const date = getMonthDay(item.timestamp);
+      if (getMonthDay(dateMonthDay) === date) {
+        let sum = 0;
+        item.calls.forEach((i) => {
+          if(i.status === 0 || i.status === 1) sum++;
+        })
+        accumulator = accumulator + sum;
+      }
+      return accumulator;
+    }, 0);
+
+    let callReceivedRate = 0;
+    if(numberOfIncomingCalls > 0) {
+      const resultRate = (numberOfCallsReceived/numberOfIncomingCalls) * 100
+      const roundedResultRate  = resultRate.toFixed(2)
+      if (roundedResultRate.indexOf('.') !== -1 && parseFloat(roundedResultRate) % 1 === 0) {
+        callReceivedRate = parseInt(roundedResultRate, 10);
+      } else {
+        callReceivedRate = parseFloat(roundedResultRate);
+      }
+    } 
+
+    setDataOverallMonthDay((prev) => ({
+        ...prev,
+        numberOfIncomingCalls,
+        numberOfCallsReceived,
+        callReceivedRate,
+    }));
+  }, [dateMonthDay]);
 
   return (
     <TableContainer component={Paper} className={classes.container}>
