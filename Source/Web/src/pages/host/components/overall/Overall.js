@@ -75,8 +75,8 @@ export default function Overall() {
         <TableHead>
           <TableRow>
             <StyledTableCell className={classes.colBorderRight}>項目</StyledTableCell>
-            <StyledTableCell className={classes.colBorderRight} align="right"><DatePickerYearMonth/></StyledTableCell>
-            <StyledTableCell align="right"><DatePickerMonthDay/></StyledTableCell>
+            <StyledTableCell className={classes.colBorderRight} align="center"><DatePickerYearMonth/></StyledTableCell>
+            <StyledTableCell align="center"><DatePickerMonthDay/></StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>

@@ -7,16 +7,37 @@ import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    '& .MuiFormControl-marginNormal': {
+      display: 'flex',
+      alignItem: 'center'
+    },
     '& .MuiInputBase-root': {
       color: '#fff',
-      fontSize: '16px',
-      borderRadius: '50px',
-      border: '1px solid #fff',
-      padding: '5px 15px',
-      width: "60%",
+      fontSize: '14px',
+      borderRadius: '4px',
+      border: '1px solid #ccc',
+      padding: '8px 10px',
+      backgroundColor: 'transparent',
+      width: '50%',
+    },
+    '& .MuiInputLabel-root': {
+      color: '#fff',
+      fontSize: '14px',
+      transform: 'translate(14px, 10px) scale(1)', 
+      backgroundColor: '#929291',
+      padding: '0 4px',
+      zIndex: 1,
+      pointerEvents: 'none',
+    },
+    '& .Mui-focused': {
+      color: '#fff',
+    },
+    '& .MuiInputAdornment-root .MuiButtonBase-root': {
+      marginLeft: '-12px',
     },
   },
 }));
@@ -24,15 +45,19 @@ const useStyles = makeStyles((theme) => ({
 const CustomKeyboardDatePicker = withStyles({
   root: {
     '& .MuiInputBase-input': {
-      color: '#000', // Màu chữ bên trong input
+      color: '#fff',
     },
     '& .MuiInput-underline:before': {
-      color: '#fff',
-      borderBottom: 'none', // Loại bỏ viền dưới mặc định
+      borderBottom: 'none',
     },
     '& .MuiInput-underline:after': {
+      borderBottom: 'none',
+    },
+    '& .MuiIconButton-root': {
+      padding: 0,
+    },
+    '& .MuiButtonBase-root': {
       color: '#fff',
-      borderBottom: 'none', // Loại bỏ viền dưới mặc định
     },
   },
 })(KeyboardDatePicker);
@@ -56,12 +81,13 @@ export default function DatePickerYearMonth() {
           format="yyyy/MM"
           margin="normal"
           id="date-picker-inline"
-          label="Custom Date Picker"
+          label="年 / 月"
           value={selectedDate}
           onChange={handleDateChange}
           KeyboardButtonProps={{
             'aria-label': 'change date',
           }}
+          keyboardIcon={<ArrowDropDownIcon />}
         />
       </Grid>
     </MuiPickersUtilsProvider>
