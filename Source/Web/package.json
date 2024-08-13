@@ -12,6 +12,7 @@
     "@testing-library/user-event": "^12.8.3",
     "date-fns": "2.8.1",
     "dayjs": "^1.11.12",
+    "exceljs": "^4.4.0",
     "fe-call-center": "file:",
     "react": "16.14.0",
     "react-dom": "16.14.0",
