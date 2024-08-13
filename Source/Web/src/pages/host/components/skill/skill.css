@@ -29,3 +29,36 @@
     cursor: pointer;
     font-size: 12px;
 }
+.table-operator{
+    padding-top: 65px;
+}
+
+.container-header-operator{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    border-bottom: 2px solid #cacaca;
+    padding: 15px 5px 5px 20px;
+    height: 100%;
+}
+
+.button-setting{
+    background-color: #4de600;
+    padding: 4px 25px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 12px;
+}
+.input-operator{
+    padding: 0 20px 0 20px;
+}
+
+.input-operator .MuiOutlinedInput-root {
+    border-radius: 8px;
+    border-color: #1976d2;
+    padding: 0;
+    height: 25px;
+}
+
+

@@ -11,12 +11,17 @@ import '../skill/skill.css';
 import constants from '../../../../constants';
 import DatePickerMonthDay from '../overall/DatePickerMonthDay';
 import DatePickerYearMonth from '../overall/DatePickerYearMonth';
+import TextField from '@material-ui/core/TextField';
+import { Box } from '@material-ui/core';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
     backgroundColor: constants.backgroundColorHead,
     color: theme.palette.common.white,
     border: '1px solid #fff',
+    height: '40px',
+    padding: '0 8px',
+    fontSize: 16,
   },
   body: {
     fontSize: 14,
@@ -25,6 +30,9 @@ const StyledTableCell = withStyles((theme) => ({
     padding: '0px 16px',
     backgroundColor: '#fff',
   },
+  table: {
+    width: '100px'
+  }
 }))(TableCell);
 
 const StyledTableRow = withStyles((theme) => ({
@@ -32,6 +40,7 @@ const StyledTableRow = withStyles((theme) => ({
     '&:nth-of-type(odd)': {
       backgroundColor: theme.palette.action.hover,
     },
+
   },
 }))(TableRow);
 
@@ -119,25 +128,35 @@ export default function CustomTable() {
   const classes = useStyles();
 
   return (
-    <div className="container">
+    <div className="table-operator">
       <TableContainer component={Paper} className={classes.container}>
         <div className="container-header">
           <div className="performance-text">スキル別パフォーマンス</div>
           <button className="button-csv">CSV 出力</button>
         </div>
-        {/* <div>
-          <div>期間指定</div>
-          <div></div>
-        </div> */}
-        <Table className={classes.table} aria-label="customized table">
-          <TableHead >
-            <TableRow >
+
+        <div className="container-header-operator">
+          <div className="performance-text">オペレータID</div>
+          <div className="input-operator">
+            <TextField id="outlined-basic" variant="outlined" />
+          </div>
+          <div>
+            <button className="button-setting">設定</button>
+          </div>
+        </div>
+        <Table className="table-operator" aria-label="customized table">
+          <TableHead>
+            <TableRow className="header-operator">
               <StyledTableCell>項目</StyledTableCell>
               <StyledTableCell align="center">
-              <DatePickerYearMonth/>
+                <div className='datetime'>
+                  <DatePickerYearMonth />
+                </div>
               </StyledTableCell>
               <StyledTableCell align="center">
-                <DatePickerMonthDay/>
+                <div className='datetime'>
+                  <DatePickerMonthDay />
+                </div>
               </StyledTableCell>
             </TableRow>
           </TableHead>
