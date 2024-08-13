@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useMemo } from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -13,7 +14,7 @@ import constants from '../../../../constants';
 import './style.css';
 import dayjs from 'dayjs';
 import { getMonthDay, getYearMonth, getYearMonthDay } from '../../../../utils/formatDate';
-import { calls } from '../../../../data/calls';
+import { calls } from '../../../../data/calls'
 import useRow from './useRow';
 
 const StyledTableCell = withStyles((theme) => ({
