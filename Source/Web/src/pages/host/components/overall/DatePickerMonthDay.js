@@ -66,6 +66,9 @@ const CustomKeyboardDatePicker = withStyles({
     '& .MuiButtonBase-root': {
       color: '#fff',
     },
+    '&:hover .MuiInput-underline:before': {
+      borderBottom: 'none', // Ensure no border on hover
+    },
   },
 })(KeyboardDatePicker);
 
