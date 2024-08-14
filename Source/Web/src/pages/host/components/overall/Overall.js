@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+
+import { useState, useEffect, useMemo } from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -14,6 +15,8 @@ import './style.css';
 import dayjs from 'dayjs';
 import { getMonthDay, getYearMonth, getYearMonthDay } from '../../../../utils/formatDate';
 import { calls } from '../../../../data/calls'
+import useRow from './useRow';
+import { CALL_STATUS_CATCH, CALL_STATUS_STOP } from '../../../../constants/data';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -42,91 +45,6 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
-function createData(data) {
-  return data;
-}
-
-const rows = [
-  createData([
-    {
-      name: '入電数',
-      metric1: 159,
-      metric2: 6.0,
-    },
-    {
-      name: '受電数',
-      metric1: 159,
-      metric2: 6.0,
-    },
-    {
-      name: '受電率',
-      metric1: 159,
-      metric2: 6.0,
-    },
-  ]),
-  createData([
-    {
-      name: '稼働席数',
-      metric1: 159,
-      metric2: 6.0,
-    },
-    {
-      name: '稼働時間',
-      metric1: 159,
-      metric2: 6.0,
-    },
-    {
-      name: '合計通話時間',
-      metric1: 159,
-      metric2: 6.0,
-    },
-    {
-      name: '平均通話時間',
-      metric1: 159,
-      metric2: 6.0,
-    },
-  ]),
-  createData([
-    {
-      name: '不在数',
-      metric1: 159,
-      metric2: 6.0,
-    },
-    {
-      name: '切断数',
-      metric1: 159,
-      metric2: 6.0,
-    },
-  ]),
-  createData([
-    {
-      name: '待ち呼数',
-      metric1: 159,
-      metric2: 6.0,
-    },
-    {
-      name: '待ち呼率',
-      metric1: 159,
-      metric2: 6.0,
-    },
-    {
-      name: '待ち呼　平均待機時間',
-      metric1: 159,
-      metric2: 6.0,
-    },
-    {
-      name: '待ち呼　接続成功数',
-      metric1: 159,
-      metric2: 6.0,
-    },
-    {
-      name: '待ち呼　離脱数',
-      metric1: 159,
-      metric2: 6.0,
-    },
-  ]),
-];
-
 const useStyles = makeStyles({
   ...constants.tableRowStyles,
   table: {
@@ -146,15 +64,16 @@ const useStyles = makeStyles({
 
 export default function Overall() {
   const classes = useStyles();
-  const [dataOverall, setDataOverall] = useState({
+
+  const [dataOverallYearMonth, setDataOverallYearMonth] = useState({
     numberOfIncomingCalls: 0,
     numberOfCallsReceived: 0,
     callReceivedRate: 0,
     numberOfActiveSeats: 0,
     upTime: 0,
-    totalTalktime: 0,
+    totalTalkTime: 0,
     averageTalkTime: 0,
-    numberOfmissedCalls: 0,
+    numberOfMissedCalls: 0,
     numberOfBreaks: 0,
     numberOfCallsWaiting: 0,
     callWaitingRate: 0,
@@ -162,13 +81,109 @@ export default function Overall() {
     callWaitingNumberOfSuccessfulConnections: 0,
     callWaitingNumberOfExits: 0,
   });
+
+  const [dataOverallMonthDay, setDataOverallMonthDay] = useState({
+    numberOfIncomingCalls: 0,
+    numberOfCallsReceived: 0,
+    callReceivedRate: 0,
+    numberOfActiveSeats: 0,
+    upTime: 0,
+    totalTalkTime: 0,
+    averageTalkTime: 0,
+    numberOfMissedCalls: 0,
+    numberOfBreaks: 0,
+    numberOfCallsWaiting: 0,
+    callWaitingRate: 0,
+    callWaitingAverageWaitingTime: 0,
+    callWaitingNumberOfSuccessfulConnections: 0,
+    callWaitingNumberOfExits: 0,
+  });
+
   const [dateYearMonth, setDateYearMonth] = useState(new Date());
   const [dateMonthDay, setDateMonthDay] = useState(new Date());
+  const rows = useRow(dataOverallYearMonth, dataOverallMonthDay);
 
+  // const sum = calls.reduce((accumulator, currentValue) => accumulator + currentValue.calls.length, 0)
 
+  useEffect(() => {
+    const numberOfIncomingCalls = calls.reduce((accumulator, item) => {
+      const date = getYearMonth(item.timestamp);
+      if (getYearMonth(dateYearMonth) === date) {
+        accumulator = accumulator + item.calls.length;
+      }
+      return accumulator;
+    }, 0);
 
+    const numberOfCallsReceived = calls.reduce((accumulator, item) => {
+      const date = getYearMonth(item.timestamp);
+      if (getYearMonth(dateYearMonth) === date) {
+        let sum = 0;
+        item.calls.forEach((i) => {
+          if(i.status === CALL_STATUS_CATCH || i.status === CALL_STATUS_STOP) sum++;
+        })
+        accumulator = accumulator + sum;
+      }
+      return accumulator;
+    }, 0);
 
+    let callReceivedRate = 0;
+    if(numberOfIncomingCalls > 0) {
+      const resultRate = (numberOfCallsReceived/numberOfIncomingCalls) * 100
+      const roundedResultRate  = resultRate.toFixed(2)
+      if (roundedResultRate.indexOf('.') !== -1 && parseFloat(roundedResultRate) % 1 === 0) {
+        callReceivedRate = parseInt(roundedResultRate, 10);
+      } else {
+        callReceivedRate = parseFloat(roundedResultRate);
+      }
+    } 
 
+    setDataOverallYearMonth((prev) => ({
+      ...prev,
+      numberOfIncomingCalls,
+      numberOfCallsReceived,
+      callReceivedRate
+    }));
+  }, [dateYearMonth]);
+
+  useEffect(() => {
+    const numberOfIncomingCalls = calls.reduce((accumulator, item) => {
+      const date = getMonthDay(item.timestamp);
+      if (getMonthDay(dateMonthDay) === date) {
+        accumulator = accumulator + item.calls.length;
+      }
+      return accumulator;
+    }, 0);
+
+    const numberOfCallsReceived = calls.reduce((accumulator, item) => {
+      const date = getMonthDay(item.timestamp);
+      if (getMonthDay(dateMonthDay) === date) {
+        let sum = 0;
+        item.calls.forEach((i) => {
+          if(i.status === CALL_STATUS_CATCH || i.status === CALL_STATUS_STOP) sum++;
+        })
+        accumulator = accumulator + sum;
+      }
+      return accumulator;
+    }, 0);
+
+    let callReceivedRate = 0;
+    if(numberOfIncomingCalls > 0) {
+      const resultRate = (numberOfCallsReceived/numberOfIncomingCalls) * 100
+      const roundedResultRate  = resultRate.toFixed(2)
+      if (roundedResultRate.indexOf('.') !== -1 && parseFloat(roundedResultRate) % 1 === 0) {
+        callReceivedRate = parseInt(roundedResultRate, 10);
+      } else {
+        callReceivedRate = parseFloat(roundedResultRate);
+      }
+    } 
+
+    setDataOverallMonthDay((prev) => ({
+        ...prev,
+        numberOfIncomingCalls,
+        numberOfCallsReceived,
+        callReceivedRate,
+    }));
+  }, [dateMonthDay]);
 
   return (
     <TableContainer component={Paper} className={classes.container}>
