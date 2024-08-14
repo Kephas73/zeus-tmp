@@ -8,33 +8,35 @@ const useRow = (dataOverallYearMonth, dataOverallMonthDay) => {
     createData([
       {
         name: '入電数',
-        metric1: dataOverallYearMonth.numberOfIncomingCalls,
-        metric2: dataOverallMonthDay.numberOfIncomingCalls,
+        metric1: `${dataOverallYearMonth.numberOfIncomingCalls} 件`,
+        metric2: `${dataOverallMonthDay.numberOfIncomingCalls} 件`,
       },
       {
         name: '受電数',
-        metric1: dataOverallYearMonth.numberOfCallsReceived,
-        metric2: dataOverallMonthDay.numberOfCallsReceived,
+        metric1: `${dataOverallYearMonth.numberOfCallsReceived} 件`,
+        metric2: `${dataOverallMonthDay.numberOfCallsReceived} 件`,
       },
       {
         name: '受電率',
-        metric1: dataOverallYearMonth.callReceivedRate,
-        metric2: dataOverallMonthDay.callReceivedRate,
+        metric1: `${dataOverallYearMonth.callReceivedRate}%`,
+        metric2: `${dataOverallMonthDay.callReceivedRate}%`,
       },
+    ]),
+    createData([
       {
         name: '稼働時間',
-        metric1: dataOverallYearMonth.upTime,
-        metric2: dataOverallMonthDay.upTime,
+        metric1: `${dataOverallYearMonth.upTime} 分`,
+        metric2: `${dataOverallMonthDay.upTime} 分`,
       },
       {
         name: '合計通話時間',
-        metric1: dataOverallYearMonth.totalTalkTime,
-        metric2: dataOverallMonthDay.totalTalkTime,
+        metric1: `${dataOverallYearMonth.totalTalkTime} 分`,
+        metric2: `${dataOverallMonthDay.totalTalkTime} 分`,
       },
       {
         name: '平均通話時間',
-        metric1: dataOverallYearMonth.averageTalkTime,
-        metric2: dataOverallMonthDay.averageTalkTime,
+        metric1: `${dataOverallYearMonth.averageTalkTime} 分`,
+        metric2: `${dataOverallMonthDay.averageTalkTime} 分`,
       },
     ]),
   ];

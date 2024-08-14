@@ -8,10 +8,10 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
-import '../skill/skill.css';
+import './operator.css';
 import constants from '../../../../constants';
-import DatePickerMonthDay from '../overall/DatePickerMonthDay';
-import DatePickerYearMonth from '../overall/DatePickerYearMonth';
+import DatePickerMonthDay from './DatePickerMonthDay';
+import DatePickerYearMonth from './DatePickerYearMonth';
 import useRow from './useRowOperator';
 import { calls } from '../../../../data/calls';
 import { getMonthDay, getYearMonth } from '../../../../utils/formatDate';
@@ -23,11 +23,13 @@ const StyledTableCell = withStyles((theme) => ({
     backgroundColor: constants.backgroundColorHead,
     color: theme.palette.common.white,
     border: '1px solid #fff',
+    width: '33.33%',
     height: '40px',
     padding: '0 8px',
     fontSize: 16,
   },
   body: {
+    width: '33.33%',
     fontSize: 14,
     height: constants.heightTableRow,
     border: '1px solid #E0E0E0',
@@ -63,7 +65,14 @@ const StyledTextField = withStyles({
 })(TextField);
 
 
-const useStyles = makeStyles(constants.tableRowStyles);
+
+const useStyles = makeStyles({
+  ...constants.tableRowStyles,
+  table: {
+    ...constants.tableRowStyles.table,
+    minWidth: 560,
+  },
+});
 
 export default function CustomTable() {
   const classes = useStyles();
@@ -95,7 +104,6 @@ export default function CustomTable() {
 
   const rows = useRow(dataOverallYearMonth, dataOverallMonthDay, filteredData);
 
-  // Hàm xử lý khi nhấn nút "Cài đặt"
   const handleSearch = () => {
     const filteredCalls = calls.filter((item) => item.hostLoginId === hostLoginId);
     setFilteredData(filteredCalls);
@@ -184,16 +192,16 @@ export default function CustomTable() {
   return (
     <div className="table-operator">
       <TableContainer component={Paper} className={classes.container}>
-        <div className="container-header">
+        <div className="operator-container-header">
           <div className="performance-text">オペレータパフォーマンス</div>
           <button
             className="button-csv"
             onClick={() => exportToCSV(rows, 'FileCSV.csv', dateYearMonth, dateMonthDay)}
-          >CSV出力</button>
+          >CSV 出力</button>
         </div>
 
         <div className="container-header-operator">
-          <div className="performance-text">オペレータID</div>
+          <div className="performance-text">オペレータ ID</div>
           <div className="input-operator">
             <StyledTextField
               id="outlined-basic"
@@ -212,11 +220,11 @@ export default function CustomTable() {
             </button>
           </div>
         </div>
-        <Table className="table-operator" aria-label="customized table" ref={tableRef}>
-          <TableHead>
+        <Table className={classes.table} aria-label="customized table" ref={tableRef}>
+          <TableHead className="custom-date-picker">
             <TableRow className="header-operator">
-              <StyledTableCell>項目</StyledTableCell>
-              <StyledTableCell align="center">
+            <StyledTableCell className={classes.cellHead}>項目</StyledTableCell>
+            <StyledTableCell className={classes.cellHead} align="right" >
                 <div className="datetime">
                   <DatePickerYearMonth
                     dateYearMonth={dateYearMonth}
@@ -231,7 +239,7 @@ export default function CustomTable() {
               </StyledTableCell>
             </TableRow>
           </TableHead>
-          <TableBody>
+          <TableBody className="global-text">
             {rows.map((group) =>
               group.map((data, dataIndex) => {
                 const isLastRow = dataIndex === group.length - 1;
@@ -244,8 +252,8 @@ export default function CustomTable() {
                     >
                       {data.name}
                     </StyledTableCell>
-                    <StyledTableCell align="center">{data.metric1}</StyledTableCell>
-                    <StyledTableCell align="center">{data.metric2}</StyledTableCell>
+                    <StyledTableCell align="right">{data.metric1}</StyledTableCell>
+                    <StyledTableCell align="right">{data.metric2}</StyledTableCell>
                   </StyledTableRow>
                 );
               })

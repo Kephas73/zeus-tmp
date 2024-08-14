@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
       alignItem: 'center'
     },
     '& .MuiInputBase-root': {
-      color: '#666',
+      color: '#fff',
       fontSize: '14px',
       borderRadius: '4px',
       border: '1px solid #ccc',
@@ -25,27 +25,34 @@ const useStyles = makeStyles((theme) => ({
       width: '100%',
     },
     '& .MuiInputLabel-root': {
-      color: '#666',
+      color: '#fff',
       fontSize: '14px',
+      marginTop: '-17px',
       transform: 'translate(14px, 10px) scale(1)', 
-      backgroundColor: '#fff',
+      backgroundColor: '#929291',
       padding: '0 4px',
       zIndex: 1,
       pointerEvents: 'none',
     },
     '& .Mui-focused': {
-      color: '#666',
+      color: '#fff',
     },
     '& .MuiInputAdornment-root .MuiButtonBase-root': {
       marginLeft: '-12px',
     },
+    '& .MuiInputBase-inputAdornedEnd': {
+      width: '50%'
+    },
+    '& .MuiInputBase-adornedEnd': {
+      justifyContent: 'center'
+    }
   },
 }));
 
 const CustomKeyboardDatePicker = withStyles({
   root: {
     '& .MuiInputBase-input': {
-      color: '#666',
+      color: '#fff',
     },
     '& .MuiInput-underline:before': {
       borderBottom: 'none',
@@ -59,19 +66,18 @@ const CustomKeyboardDatePicker = withStyles({
     '& .MuiButtonBase-root': {
       color: '#fff',
     },
-    '& .MuiFormControl-marginNormal': {
-      marginTop: 0,
-      marginBottom: 0,
-    }
+    '&:hover .MuiInput-underline:before': {
+      borderBottom: 'none', // Ensure no border on hover
+    },
   },
 })(KeyboardDatePicker);
 
-export default function DatePickerDayMonthYear() {
-  const [selectedDate, setSelectedDate] = React.useState(new Date());
+export default function DatePickerMonthDay({ dateMonthDay, setDateMonthDay}) {
+  
   const classes = useStyles();
 
   const handleDateChange = (date) => {
-    setSelectedDate(date);
+    setDateMonthDay(date);
   };
 
   return (
@@ -79,19 +85,16 @@ export default function DatePickerDayMonthYear() {
       <Grid container justifyContent="space-around">
         <CustomKeyboardDatePicker
           className={classes.root}
-          views={['year', 'month', 'day']}
           disableToolbar
+          views={['month', 'date']}
           variant="inline"
-          format="yyyy/MM/dd"
-          margin="none"
+          format="MM/dd"
+          margin="normal"
           id="date-picker-inline"
-          label="年 / 月 / 日"
-          value={selectedDate}
+          label="月 / 日"
+          value={dateMonthDay}
           onChange={handleDateChange}
-          KeyboardButtonProps={{
-            'aria-label': 'change date',
-          }}
-          keyboardIcon={<></>}
+          keyboardIcon={<ArrowDropDownIcon />}
         />
       </Grid>
     </MuiPickersUtilsProvider>

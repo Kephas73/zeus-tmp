@@ -51,7 +51,7 @@ export default function CustomTable() {
     upTime: 0,
     totalTalkTime: 0,
     averageTalkTime: 0,
-  numberOfMissedCalls: 0,
+    numberOfMissedCalls: 0,
     numberOfBreaks: 0,
     numberOfCallsWaiting: 0,
     callWaitingRate: 0,
@@ -66,7 +66,7 @@ export default function CustomTable() {
   useEffect(() => {
     const numberOfIncomingCalls = calls.reduce((accumulator, item) => {
       const date = getYearMonthDay(item.timestamp);
-      console.log("date: " + date)
+      console.log('date: ' + date);
       if (getYearMonthDay(fromDateTime) === date) {
         accumulator = accumulator + item.calls.length;
       }
@@ -78,28 +78,28 @@ export default function CustomTable() {
       if (getYearMonthDay(fromDateTime) === date) {
         let sum = 0;
         item.calls.forEach((i) => {
-          if(i.status === CALL_STATUS_CATCH || i.status === CALL_STATUS_STOP) sum++;
-        })
+          if (i.status === CALL_STATUS_CATCH || i.status === CALL_STATUS_STOP) sum++;
+        });
         accumulator = accumulator + sum;
       }
       return accumulator;
     }, 0);
     let callReceivedRate = 0;
-    if(numberOfIncomingCalls > 0) {
-      const resultRate = (numberOfCallsReceived/numberOfIncomingCalls) * 100
-      const roundedResultRate  = resultRate.toFixed(2)
+    if (numberOfIncomingCalls > 0) {
+      const resultRate = (numberOfCallsReceived / numberOfIncomingCalls) * 100;
+      const roundedResultRate = resultRate.toFixed(2);
       if (roundedResultRate.indexOf('.') !== -1 && parseFloat(roundedResultRate) % 1 === 0) {
         callReceivedRate = parseInt(roundedResultRate, 10);
       } else {
         callReceivedRate = parseFloat(roundedResultRate);
       }
-    } 
+    }
 
     setDataSkillDateTime((prev) => ({
       ...prev,
       numberOfIncomingCalls,
       numberOfCallsReceived,
-      callReceivedRate
+      callReceivedRate,
     }));
   }, [fromDateTime]);
 
@@ -111,39 +111,46 @@ export default function CustomTable() {
           <button className="button-csv">CSV 出力</button>
         </div>
         <div className="container-dateTime">
-          <div>期間指定</div>
-          <div><DatePickerDayMonthYear/></div>
-          <div><DatePickerDayMonthYear/></div>
+          <div className="text-filter">期間指定</div>
+          <div>
+            <DatePickerDayMonthYear />
+          </div>
+          <div className="tilde-filter">
+            ~
+          </div>
+          <div>
+            <DatePickerDayMonthYear />
+          </div>
         </div>
-        <Table className={classes.table} aria-label="customized table">
-          <TableHead >
-            <TableRow >
-              <StyledTableCell>項目</StyledTableCell>
-              <StyledTableCell align="center">
+        <Table className={`${classes.table} custom-tableBody`} aria-label="customized table">
+          <TableHead>
+            <TableRow>
+              <StyledTableCell className={classes.cellHead}>項目</StyledTableCell>
+              <StyledTableCell className={classes.cellHead} align="center">
                 <div>
                   <span className="languages">EN</span>
                   <span>英語</span>
                 </div>
               </StyledTableCell>
-              <StyledTableCell align="center">
+              <StyledTableCell align="center" className={classes.cellHead}>
                 <div>
                   <span className="languages">CN</span>
                   <span>中国語</span>
                 </div>
               </StyledTableCell>
-              <StyledTableCell align="center">
+              <StyledTableCell align="center" className={classes.cellHead}>
                 <div>
                   <span className="languages">KR</span>
                   <span>韓国語</span>
                 </div>
               </StyledTableCell>
-              <StyledTableCell align="center">
+              <StyledTableCell align="center" className={classes.cellHead}>
                 <div>
                   <span className="languages">ES</span>
                   <span>スペイン語</span>
                 </div>
               </StyledTableCell>
-              <StyledTableCell align="center">
+              <StyledTableCell align="center" className={classes.cellHead}>
                 <div>
                   <span className="languages">PT</span>
                   <span>ポルトガル語</span>
@@ -151,7 +158,7 @@ export default function CustomTable() {
               </StyledTableCell>
             </TableRow>
           </TableHead>
-          <TableBody>
+          <TableBody className="global-text">
             {rows.map((group) =>
               group.map((data, dataIndex) => {
                 const isLastRow = dataIndex === group.length - 1;
@@ -164,11 +171,11 @@ export default function CustomTable() {
                     >
                       {data.name}
                     </StyledTableCell>
-                    <StyledTableCell align="center">{data.metric1}</StyledTableCell>
-                    <StyledTableCell align="center">{data.metric2}</StyledTableCell>
-                    <StyledTableCell align="center">{data.metric3}</StyledTableCell>
-                    <StyledTableCell align="center">{data.metric4}</StyledTableCell>
-                    <StyledTableCell align="center">{data.metric5}</StyledTableCell>
+                    <StyledTableCell align="right">{data.metric1}</StyledTableCell>
+                    <StyledTableCell align="right">{data.metric2}</StyledTableCell>
+                    <StyledTableCell align="right">{data.metric3}</StyledTableCell>
+                    <StyledTableCell align="right">{data.metric4}</StyledTableCell>
+                    <StyledTableCell align="right">{data.metric5}</StyledTableCell>
                   </StyledTableRow>
                 );
               })

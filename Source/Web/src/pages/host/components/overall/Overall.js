@@ -208,7 +208,7 @@ export default function Overall() {
             </StyledTableCell>
           </TableRow>
         </TableHead>
-        <TableBody>
+        <TableBody className="global-text">
           {rows.map((group) =>
             group.map((data, dataIndex) => {
               const isLastRow = dataIndex === group.length - 1;
@@ -221,8 +221,8 @@ export default function Overall() {
                   >
                     {data.name}
                   </StyledTableCell>
-                  <StyledTableCell align="center">{data.metric1}</StyledTableCell>
-                  <StyledTableCell align="center">{data.metric2}</StyledTableCell>
+                  <StyledTableCell align="right">{data.metric1}</StyledTableCell>
+                  <StyledTableCell align="right">{data.metric2}</StyledTableCell>
                 </StyledTableRow>
               );
             })

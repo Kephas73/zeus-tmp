@@ -1,0 +1,53 @@
+
+.operator-container-header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    border-bottom: 2px solid #cacaca;
+    padding: 15px 5px 5px 15px;
+
+}
+.operator-container-header .performance-text {
+    font-weight: bold;
+    color: #939292
+}
+.container-header-operator{
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 15px 5px 5px 15px;
+}
+.container-header-operator .performance-text {
+    font-weight: 400;
+    color: #c3c3c3;
+}
+.button-setting{
+    background-color: #9abf18;
+    padding: 4px 25px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 12px;
+}
+.performance-text {
+    font-size: 13px;
+    font-weight: 600;
+    color: #525252;
+}
+.input-operator{
+    padding: 0 20px 0 20px;
+}
+
+.input-operator .MuiOutlinedInput-root {
+    border-radius: 8px;
+    border-color: #1976d2;
+    padding: 0;
+    height: 25px;
+}
+.input-operator {
+    width: 56%;
+}
+.text-input-operator {
+    width: 100%;
+}

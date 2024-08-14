@@ -30,3 +30,12 @@ body {
   margin-top: 12px !important;
   margin-bottom: 7px !important;
 }
+
+.global-text th,
+.global-text td{ 
+  color: #939292
+}
+
+.custom-tableBody{
+  margin-top: 7px !important;
+}

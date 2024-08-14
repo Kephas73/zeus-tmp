@@ -5,6 +5,9 @@ const constants = {
     container: {
       padding: '10px',
     },
+    cellHead: {
+      borderRight: '1px solid #c3c3c3',
+    },
     head: {
         borderRadius: '5px',
     },
@@ -14,6 +17,9 @@ const constants = {
       boxShadow: '2px 2px #d7d7d7',
     },
     lastRow: {
+      '& tr': {
+        marginTop: '10px',  
+      },
       '& td': {
         borderBottom: '2px solid #a7a7a7',
       },
