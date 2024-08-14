@@ -6,17 +6,18 @@ import Container from '@material-ui/core/Container';
 import Header from './components/header/Header';
 import './index.css';
 import { Box, Button, Modal } from '@material-ui/core';
+
 const HostPage = () => {
   const [open, setOpen] = useState(false);
   return (
     <>
-     <div className="host-header-container">
-     <h1>Welcome to the Host Page!</h1>
-      <Button variant="contained" onClick={() => setOpen(true)}>
-        Open Modal
-      </Button>
-     </div>
-    <Modal
+      <div className="host-header-container">
+        <h1>Welcome to the Host Page!</h1>
+        <Button variant="contained" onClick={() => setOpen(true)}>
+          Open Modal
+        </Button>
+      </div>
+      <Modal
         open={open}
         onClose={() => setOpen(false)}
         aria-labelledby="modal-modal-title"
@@ -24,7 +25,7 @@ const HostPage = () => {
       >
         <Box>
           <div className="host-page">
-            <Header setOpen={setOpen}/>
+            <Header setOpen={setOpen} />
             <div className="container">
               <div className="container-operator-skill">
                 <Overall />

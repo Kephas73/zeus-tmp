@@ -3,12 +3,10 @@
   height: 100vh;
   /* background-color: #f4f5f5; */
 }
-.host-header-container {
-  width: 100%;
-  position: relative;
-  top: 30vh;
-  left: 50%;
-  transform: translate(-12%,10%);
+.container-operator {
+  display: grid;
+  grid-template-columns: 35% auto;
+  gap: 10px;
 }
 
 .host-page {
@@ -30,9 +28,80 @@
   margin-bottom: 20px;
 }
 
-.container-operator {
-  display: grid;
-  overflow: hidden;
-  grid-template-columns: 35% auto;
-  gap: 10px;
+.host-header-container {
+  width: 100%;
+  position: relative;
+  top: 30vh;
+  left: 50%;
+  transform: translate(-12%, 10%);
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 1024px) {
+  .container-operator-skill,
+  .container-operator {
+    grid-template-columns: 1fr;
+    margin-bottom: 15px;
+  }
+
+  .host-page {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 10px;
+  }
+
+  .host-header-container {
+    text-align: center;
+    padding: 0 15px;
+  }
+
+  .table-wrapper {
+    overflow-x: auto; /* Allows horizontal scrolling */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  }
+
+  table {
+    width: 100%;
+    min-width: 600px; /* Ensures tables have a minimum width */
+  }
+}
+
+@media (max-width: 768px) {
+  .container-operator-skill,
+  .container-operator {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    overflow: auto;
+  }
+
+  .host-page {
+    padding: 5px;
+    width: 95%;
+  }
+
+  .host-header-container button {
+    margin-top: 10px;
+    width: 100%;
+  }
+}
+
+/* General Table Styles */
+.table-wrapper {
+  overflow-x: auto; /* Horizontal scrolling for large tables */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 800px; /* Ensures tables have a minimum width */
+  margin-bottom: 20px;
+}
+
+table th,
+table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
 }
