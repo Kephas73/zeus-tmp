@@ -38,10 +38,98 @@ export const calls = [{
     "timestamp": 1722486742101,
     "hostName": "オペレーター1",
     "hostId": "X6vh58pWx8aEih4hcgam0hKyO4l2",
-    "hostLoginId": "operator1",
+    "hostLoginId": "operator2",
     "status": 4,
     "skillId": "english"
-}, {
+},
+    {
+        "id": "Fe1rtYogDqc7XF5IDZmURlZAMx13_4kxcvpcilzas4opc",
+        "guestInput2": {
+            "type": "phone",
+            "value": "",
+            "key": "電話番号"
+        },
+        "os": "macos",
+        "serviceGuest": "",
+        "serviceParamKey": "",
+        "serviceTicket": "",
+        "kokyakuId": "",
+        "connectionAccountId": "",
+        "duration": 0,
+        "ticketParamKey": "",
+        "uid": "Fe1rtYogDqc7XF5IDZmURlZAMx13",
+        "browser": "microsoft edge",
+        "portalId": "",
+        "serviceBrokerParamKey": "",
+        "connectionId": "",
+        "subdomain": "maruse",
+        "guestInput1": {
+            "type": "other",
+            "value": "",
+            "key": "会員番号"
+        },
+        "calls": [{
+            "user": "オペレーター1",
+            "roomId": "zHGe3P3qnTGdNtl9PyRk",
+            "status": 1,
+            "timestamp": 1722486740897
+        }, {
+            "user": "オペレーター1",
+            "roomId": "zHGe3P3qnTGdNtl9PyRk",
+            "timestamp": 1722486742101,
+            "status": 0
+        }],
+        "timestamp": 1722486742101,
+        "hostName": "オペレーター1",
+        "hostId": "X6vh58pWx8aEih4hcgam0hKyO4l2",
+        "hostLoginId": "operator2",
+        "status": 4,
+        "skillId": "english"
+    },
+    ,{
+        "id": "Fe1rtYogDqc7XF5IDZmURlZAMx13_4kxcvpcilzas4opc",
+        "guestInput2": {
+            "type": "phone",
+            "value": "",
+            "key": "電話番号"
+        },
+        "os": "macos",
+        "serviceGuest": "",
+        "serviceParamKey": "",
+        "serviceTicket": "",
+        "kokyakuId": "",
+        "connectionAccountId": "",
+        "duration": 0,
+        "ticketParamKey": "",
+        "uid": "Fe1rtYogDqc7XF5IDZmURlZAMx13",
+        "browser": "microsoft edge",
+        "portalId": "",
+        "serviceBrokerParamKey": "",
+        "connectionId": "",
+        "subdomain": "maruse",
+        "guestInput1": {
+            "type": "other",
+            "value": "",
+            "key": "会員番号"
+        },
+        "calls": [{
+            "user": "オペレーター1",
+            "roomId": "zHGe3P3qnTGdNtl9PyRk",
+            "status": 1,
+            "timestamp": 1722486740897
+        }, {
+            "user": "オペレーター1",
+            "roomId": "zHGe3P3qnTGdNtl9PyRk",
+            "timestamp": 1722486742101,
+            "status": 0
+        }],
+        "timestamp": 1722486742101,
+        "hostName": "オペレーター1",
+        "hostId": "X6vh58pWx8aEih4hcgam0hKyO4l2",
+        "hostLoginId": "operator2",
+        "status": 4,
+        "skillId": "english"
+    },{
     "id": "Fe1rtYogDqc7XF5IDZmURlZAMx13_7jsp6la3lxwqy4zq",
     "guestInput2": {
         "type": "phone",
