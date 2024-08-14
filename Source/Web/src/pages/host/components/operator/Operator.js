@@ -8,7 +8,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
 import '../skill/skill.css';
 import constants from '../../../../constants';
 import DatePickerMonthDay from '../overall/DatePickerMonthDay';
@@ -17,6 +16,7 @@ import useRow from './useRowOperator';
 import { calls } from '../../../../data/calls';
 import { getMonthDay, getYearMonth } from '../../../../utils/formatDate';
 import { CALL_STATUS_CATCH, CALL_STATUS_STOP } from '../../../../constants/data';
+import { exportToCSV } from '../../../../utils/exportCSV'
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -70,6 +70,7 @@ export default function CustomTable() {
     totalTalkTime: 0,
     averageTalkTime: 0,
   });
+
 
   const [dateYearMonth, setDateYearMonth] = useState(new Date());
   const [dateMonthDay, setDateMonthDay] = useState(new Date());
@@ -169,7 +170,10 @@ export default function CustomTable() {
       <TableContainer component={Paper} className={classes.container}>
         <div className="container-header">
           <div className="performance-text">オペレータパフォーマンス</div>
-          <button className="button-csv">CSV出力</button>
+          <button
+            className="button-csv"
+            onClick={() => exportToCSV(rows, 'FileCSV.csv', dateYearMonth, dateMonthDay)}
+          >CSV出力</button>
         </div>
 
         <div className="container-header-operator">
@@ -179,7 +183,7 @@ export default function CustomTable() {
               id="outlined-basic"
               variant="outlined"
               value={hostLoginId}
-              onChange={(e) => setHostLoginId(e.target.value)} // Cập nhật giá trị hostLoginId
+              onChange={(e) => setHostLoginId(e.target.value)}
             />
           </div>
           <div>
