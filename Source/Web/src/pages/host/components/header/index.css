@@ -1,6 +1,23 @@
-.header {
+.host-header {
+    padding: 0px 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 15px;
+    /* margin-bottom: 15px; */
+}
+.host-header-icon {
+    display: flex;
+    align-items: center;
+}
+.icon {
+    font-size: 2rem;
+}
+.host-close-button {
+    padding: 2px 33px;
+    background-color: #00b5a5;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 12px;
 }

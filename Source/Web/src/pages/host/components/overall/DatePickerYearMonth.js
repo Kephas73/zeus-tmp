@@ -27,9 +27,10 @@ const useStyles = makeStyles((theme) => ({
     '& .MuiInputLabel-root': {
       color: '#fff',
       fontSize: '14px',
+      marginTop: '-17px',
       transform: 'translate(14px, 10px) scale(1)', 
       backgroundColor: '#929291',
-      padding: '0 4px',
+      padding: '0px 4px',
       zIndex: 1,
       pointerEvents: 'none',
     },

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -10,6 +10,10 @@ import Paper from '@material-ui/core/Paper';
 import './skill.css';
 import constants from '../../../../constants';
 import DatePickerDayMonthYear from './DatePickerDayMonthYear';
+import useRowSkill from './useRowSkill';
+import { calls } from '../../../../data/calls';
+import { getYearMonthDay } from '../../../../utils/formatDate';
+import { CALL_STATUS_CATCH, CALL_STATUS_STOP } from '../../../../constants/data';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -36,134 +40,68 @@ const StyledTableRow = withStyles((theme) => ({
 
 const useStyles = makeStyles(constants.tableRowStyles);
 
-function createData(data) {
-  return data;
-}
-
-const rows = [
-  createData([
-    {
-      name: 'Item 1',
-      metric1: 200,
-      metric2: 100,
-      metric3: 70.9,
-      metric4: 1000,
-      metric5: 1000,
-    },
-    {
-      name: 'Item 1',
-      metric1: 200,
-      metric2: 100,
-      metric3: 70.9,
-      metric4: 1000,
-      metric5: 1000,
-    },
-
-    {
-      name: 'Item 1',
-      metric1: 200,
-      metric2: 100,
-      metric3: 70.9,
-      metric4: 1000,
-      metric5: 1000,
-    },
-  ]),
-  createData([
-    {
-      name: 'Item 2',
-      metric1: 200,
-      metric2: 100,
-      metric3: 70.9,
-      metric4: 1000,
-      metric5: 1000,
-    },
-    {
-      name: 'Item 2',
-      metric1: 200,
-      metric2: 100,
-      metric3: 70.9,
-      metric4: 1000,
-      metric5: 1000,
-    },
-    {
-      name: 'Item 2',
-      metric1: 200,
-      metric2: 100,
-      metric3: 70.9,
-      metric4: 1000,
-      metric5: 1000,
-    },
-    {
-      name: 'Item 2',
-      metric1: 200,
-      metric2: 100,
-      metric3: 70.9,
-      metric4: 1000,
-      metric5: 1000,
-    },
-  ]),
-  createData([
-    {
-      name: 'Item 3',
-      metric1: 200,
-      metric2: 100,
-      metric3: 70.9,
-      metric4: 1000,
-      metric5: 1000,
-    },
-    {
-      name: 'Item 3',
-      metric1: 200,
-      metric2: 100,
-      metric3: 70.9,
-    },
-  ]),
-  createData([
-    {
-      name: 'Item 4',
-      metric1: 200,
-      metric2: 100,
-      metric3: 70.9,
-      metric4: 1000,
-      metric5: 1000,
-    },
-    {
-      name: 'Item 4',
-      metric1: 200,
-      metric2: 100,
-      metric3: 70.9,
-      metric4: 1000,
-      metric5: 1000,
-    },
-    {
-      name: 'Item 4',
-      metric1: 200,
-      metric2: 100,
-      metric3: 70.9,
-      metric4: 1000,
-      metric5: 1000,
-    },
-    {
-      name: 'Item 4',
-      metric1: 200,
-      metric2: 100,
-      metric3: 70.9,
-      metric4: 1000,
-      metric5: 1000,
-    },
-    {
-      name: 'Item 4',
-      metric1: 200,
-      metric2: 100,
-      metric3: 70.9,
-      metric4: 1000,
-      metric5: 1000,
-    },
-  ]),
-];
-
 export default function CustomTable() {
   const classes = useStyles();
+
+  const [dataSkillDateTime, setDataSkillDateTime] = useState({
+    numberOfIncomingCalls: 0,
+    numberOfCallsReceived: 0,
+    callReceivedRate: 0,
+    numberOfActiveSeats: 0,
+    upTime: 0,
+    totalTalkTime: 0,
+    averageTalkTime: 0,
+  numberOfMissedCalls: 0,
+    numberOfBreaks: 0,
+    numberOfCallsWaiting: 0,
+    callWaitingRate: 0,
+    callWaitingAverageWaitingTime: 0,
+    callWaitingNumberOfSuccessfulConnections: 0,
+    callWaitingNumberOfExits: 0,
+  });
+
+  const [fromDateTime, setFromDateTime] = useState('2024-06-24');
+  const [toDateTime, setToDateTime] = useState(new Date());
+  const rows = useRowSkill(dataSkillDateTime);
+  useEffect(() => {
+    const numberOfIncomingCalls = calls.reduce((accumulator, item) => {
+      const date = getYearMonthDay(item.timestamp);
+      console.log("date: " + date)
+      if (getYearMonthDay(fromDateTime) === date) {
+        accumulator = accumulator + item.calls.length;
+      }
+      return accumulator;
+    }, 0);
+
+    const numberOfCallsReceived = calls.reduce((accumulator, item) => {
+      const date = getYearMonthDay(item.timestamp);
+      if (getYearMonthDay(fromDateTime) === date) {
+        let sum = 0;
+        item.calls.forEach((i) => {
+          if(i.status === CALL_STATUS_CATCH || i.status === CALL_STATUS_STOP) sum++;
+        })
+        accumulator = accumulator + sum;
+      }
+      return accumulator;
+    }, 0);
+    let callReceivedRate = 0;
+    if(numberOfIncomingCalls > 0) {
+      const resultRate = (numberOfCallsReceived/numberOfIncomingCalls) * 100
+      const roundedResultRate  = resultRate.toFixed(2)
+      if (roundedResultRate.indexOf('.') !== -1 && parseFloat(roundedResultRate) % 1 === 0) {
+        callReceivedRate = parseInt(roundedResultRate, 10);
+      } else {
+        callReceivedRate = parseFloat(roundedResultRate);
+      }
+    } 
+
+    setDataSkillDateTime((prev) => ({
+      ...prev,
+      numberOfIncomingCalls,
+      numberOfCallsReceived,
+      callReceivedRate
+    }));
+  }, [fromDateTime]);
 
   return (
     <div className="container">

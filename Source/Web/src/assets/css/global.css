@@ -16,3 +16,17 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.custom-date-picker .MuiTableCell-root {
+  padding: 0px 16px !important;
+}
+
+.custom-date-picker .MuiInputBase-root {
+  padding: 4px !important; 
+  margin-top: 0px !important;
+}
+
+.custom-date-picker .MuiFormControl-root {
+  margin-top: 12px !important;
+  margin-bottom: 7px !important;
+}

@@ -56,7 +56,7 @@ const useStyles = makeStyles({
   },
   title: {
     display: 'inline-block',
-    marginTop: 30,
+    marginTop: 43,
     color: '#c3c3c3',
     paddingLeft: 12,
   },
@@ -193,10 +193,11 @@ export default function Overall() {
       </div>
       <span className={classes.title}>月毎・日毎</span>
       <Table className={classes.table} aria-label="customized table">
-        <TableHead>
+        <TableHead className="custom-date-picker">
           <TableRow>
             <StyledTableCell className={classes.cellHead}>項目</StyledTableCell>
-            <StyledTableCell className={classes.cellHead} align="right">
+            <StyledTableCell className={classes.cellHead} align="right" 
+            >
               <DatePickerYearMonth
                 dateYearMonth={dateYearMonth}
                 setDateYearMonth={setDateYearMonth}

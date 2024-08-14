@@ -17,8 +17,6 @@ const containerStyle = {
   padding: 24
 };
 function App() {
-  const [open, setOpen] = useState(false)
-  
   return (
     <Router>
       <div>
@@ -28,27 +26,15 @@ function App() {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/host" onClick={() =>setOpen(true)}>Host Page</Link>
+              <Link to="/host">Host Page</Link>
             </li>
           </ul>
         </nav>
 
-        <Modal
-          open={open}
-          onClose={() => setOpen(false)}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box>
-            <div className="container-host-page">
-            <HostPage setOpen={setOpen}/>
-            </div>
-          </Box>
-        </Modal>
 
         <Switch>
-          <Route exact path="/" component={HomePage} />
-          {/* <Route path="/host" component={HostPage} /> */}
+        <Route exact path="/"> <HomePage/> </Route>
+        <Route exact path="/host"> <HostPage /> </Route>
         </Switch>
       </div>
     </Router>
