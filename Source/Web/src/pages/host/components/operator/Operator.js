@@ -47,6 +47,22 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
+const StyledTextField = withStyles({
+  root: {
+    '& .MuiInputBase-input': {
+      color: '#000',
+      padding: '10px 14px',
+      backgroundColor: '#fff',
+    },
+    '& .MuiOutlinedInput-input': {
+      borderColor: '#ccc',
+      borderRadius: '4px',
+      padding: '0 0 0 6px',
+    },
+  },
+})(TextField);
+
+
 const useStyles = makeStyles(constants.tableRowStyles);
 
 export default function CustomTable() {
@@ -179,11 +195,12 @@ export default function CustomTable() {
         <div className="container-header-operator">
           <div className="performance-text">オペレータID</div>
           <div className="input-operator">
-            <TextField
+            <StyledTextField
               id="outlined-basic"
               variant="outlined"
               value={hostLoginId}
               onChange={(e) => setHostLoginId(e.target.value)}
+              className="text-input-operator"
             />
           </div>
           <div>
