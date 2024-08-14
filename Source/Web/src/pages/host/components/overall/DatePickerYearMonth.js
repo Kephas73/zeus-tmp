@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     '& .MuiFormControl-marginNormal': {
       display: 'flex',
-      alignItem: 'center'
+      alignItems: 'center',
     },
     '& .MuiInputBase-root': {
       color: '#fff',
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
       color: '#fff',
       fontSize: '14px',
       marginTop: '-17px',
-      transform: 'translate(14px, 10px) scale(1)', 
+      transform: 'translate(14px, 10px) scale(1)',
       backgroundColor: '#929291',
       padding: '0px 4px',
       zIndex: 1,
@@ -41,11 +41,11 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: '-12px',
     },
     '& .MuiInputBase-inputAdornedEnd': {
-      width: '50%'
+      width: '50%',
     },
     '& .MuiInputBase-adornedEnd': {
-      justifyContent: 'center'
-    }
+      justifyContent: 'center',
+    },
   },
 }));
 
@@ -62,14 +62,18 @@ const CustomKeyboardDatePicker = withStyles({
     },
     '& .MuiIconButton-root': {
       padding: 0,
+      borderBottom: 'none',
     },
     '& .MuiButtonBase-root': {
       color: '#fff',
     },
+    '&:hover .MuiInput-underline:before': {
+      borderBottom: 'none', // Ensure no border on hover
+    },
   },
 })(KeyboardDatePicker);
 
-export default function DatePickerYearMonth({ dateYearMonth, setDateYearMonth}) {
+export default function DatePickerYearMonth({ dateYearMonth, setDateYearMonth }) {
   const classes = useStyles();
 
   const handleDateChange = (date) => {
