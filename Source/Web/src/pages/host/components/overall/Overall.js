@@ -17,6 +17,7 @@ import { getMonthDay, getYearMonth, getYearMonthDay } from '../../../../utils/fo
 import { calls } from '../../../../data/calls'
 import useRow from './useRow';
 import { CALL_STATUS_CATCH, CALL_STATUS_STOP } from '../../../../constants/data';
+import { exportToCSV } from '../../../../utils/exportCSV'
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -189,7 +190,7 @@ export default function Overall() {
     <TableContainer component={Paper} className={classes.container}>
       <div className="overall-container-header">
         <div className="overall-performance-text">全体パフォーマンス</div>
-        <button className="overall-button-csv">CSV 出力</button>
+        <button className="overall-button-csv" onClick={() => exportToCSV(rows, 'data-host-overall.csv', dateYearMonth, dateMonthDay)}>CSV 出力</button>
       </div>
       <span className={classes.title}>月毎・日毎</span>
       <Table className={classes.table} aria-label="customized table">
