@@ -14,7 +14,7 @@ import useRowSkill from './useRowSkill';
 import { calls } from '../../../../data/calls';
 import { getYearMonthDay } from '../../../../utils/formatDate';
 import { CALL_STATUS_CATCH, CALL_STATUS_STOP } from '../../../../constants/data';
-import { exportToCSVSkill } from '../../../../utils/exportCVSSkill';
+import { exportToCSVSkill } from '../../../../utils/exportCSV';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {

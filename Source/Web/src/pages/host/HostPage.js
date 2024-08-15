@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Operator from './components/operator/Operator';
 import Overall from './components/overall/Overall';
 import Skill from './components/skill/Skill';
-import Container from '@material-ui/core/Container';
 import Header from './components/header/Header';
 import './index.css';
 import { Box, Button, Modal } from '@material-ui/core';

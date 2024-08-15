@@ -91,7 +91,7 @@ export default function DatePickerDayMonthYear() {
           KeyboardButtonProps={{
             'aria-label': 'change date',
           }}
-          keyboardIcon={<></>}
+          keyboardIcon={<ArrowDropDownIcon />}
         />
       </Grid>
     </MuiPickersUtilsProvider>
