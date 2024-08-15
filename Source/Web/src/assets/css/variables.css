@@ -2,6 +2,7 @@
     --background-color-host: #f4f5f5;
     --background-color-btn-csv: #e65600;
     --background-color-btn-close: #00b5a5;
+    --background-color-gray: #929291;
     --text-color-gray: #939292;
     --text-color-gray-bland: #c3c3c3;
     --text-color-gray-bold: #525252;
@@ -9,5 +10,7 @@
     --color-black: black;
     --color-green: #9abf18;
     --color-line: #cacaca;  
+    --color-line-bland: #E0E0E0;  
+    --color-line-bold: #ccc;  
     --color-languages: #707070;
 }

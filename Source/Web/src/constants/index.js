@@ -1,6 +1,6 @@
 const constants = {
   heightTableRow: 23,
-  backgroundColorHead: '#929291',
+  backgroundColorHead: 'var(--background-color-gray)',
   tableRowStyles: {
     container: {
       padding: '10px',
@@ -22,11 +22,11 @@ const constants = {
         marginTop: '10px',  
       },
       '& td': {
-        borderBottom: '2px solid #a7a7a7',
+        borderBottom: '2px solid var(--color-line)',
       },
     },
     categoryCell: {
-      borderBottom: '2px solid #a7a7a7',
+      borderBottom: '2px solid var(--color-line)',
     },
   },
 };
