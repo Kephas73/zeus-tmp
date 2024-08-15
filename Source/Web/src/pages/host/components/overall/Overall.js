@@ -192,7 +192,7 @@ export default function Overall() {
       <span className={classes.title}>月毎・日毎</span>
       <Table className={classes.table} aria-label="customized table">
         <TableHead className="host-custom-date-picker">
-          <TableRow>
+          <TableRow className='host-table-row'>
             <StyledTableCell className={classes.cellHead}>項目</StyledTableCell>
             <StyledTableCell className={classes.cellHead} align="right" 
             >

@@ -220,7 +220,7 @@ export default function CustomTable() {
         </div>
         <Table className={classes.table} aria-label="customized table" ref={tableRef}>
           <TableHead className="host-custom-date-picker">
-            <TableRow className="host-header-operator">
+            <TableRow className="host-header-operator host-table-row">
             <StyledTableCell className={classes.cellHead}>項目</StyledTableCell>
             <StyledTableCell className={classes.cellHead} align="right" >
                 <div>

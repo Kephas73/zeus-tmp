@@ -124,7 +124,7 @@ export default function CustomTable() {
         </div>
         <Table className={`${classes.table} custom-tableBody`} aria-label="customized table">
           <TableHead>
-            <TableRow>
+            <TableRow className="host-table-row-skill">
               <StyledTableCell className={classes.cellHead}>項目</StyledTableCell>
               <StyledTableCell className={classes.cellHead} align="center">
                 <div>

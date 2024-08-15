@@ -40,3 +40,20 @@ body {
 .host-custom-tableBody{
   margin-top: 7px !important;
 }
+
+.host-table-row th:first-child {
+  border-radius: 8px 0px 0px 0px;
+}
+.host-table-row th:last-child {
+  border-radius: 0px 8px 0px 0px;
+}
+
+.host-table-row-skill th:first-child {
+  border-radius: 10px 0px 0px 0px;
+}
+.host-table-row-skill th:last-child {
+  border-radius: 0px 10px 0px 0px;
+}
+.makeStyles-cellHead-20:last-child {
+  border-right: 0px solid  var(--text-color-gray-bland) !important;
+}

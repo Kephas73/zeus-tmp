@@ -79,7 +79,6 @@ export default function DatePickerDayMonthYear() {
       <Grid container>
         <CustomKeyboardDatePicker
           className={classes.root}
-          views={['year', 'month', 'day']}
           disableToolbar
           variant="inline"
           format="yyyy/MM/dd"

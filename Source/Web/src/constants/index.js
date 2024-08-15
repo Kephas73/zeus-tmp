@@ -14,7 +14,8 @@ const constants = {
     table: {
       marginTop: '10px',
       minWidth: 700,
-      boxShadow: '2px 2px #d7d7d7',
+      boxShadow: '2px 2px var(--text-color-gray-bland)',
+      borderRadius: '8px',
     },
     lastRow: {
       '& tr': {
