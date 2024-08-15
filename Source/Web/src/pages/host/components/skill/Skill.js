@@ -14,6 +14,7 @@ import useRowSkill from './useRowSkill';
 import { calls } from '../../../../data/calls';
 import { getYearMonthDay } from '../../../../utils/formatDate';
 import { CALL_STATUS_CATCH, CALL_STATUS_STOP } from '../../../../constants/data';
+import { exportToCSVSkill } from '../../../../utils/exportCVSSkill';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -60,7 +61,7 @@ export default function CustomTable() {
     callWaitingNumberOfExits: 0,
   });
 
-  const [fromDateTime, setFromDateTime] = useState('2024-06-24');
+  const [fromDateTime, setFromDateTime] = useState(new Date());
   const [toDateTime, setToDateTime] = useState(new Date());
   const rows = useRowSkill(dataSkillDateTime);
   useEffect(() => {
@@ -108,7 +109,7 @@ export default function CustomTable() {
       <TableContainer component={Paper} className={classes.container}>
         <div className="container-header">
           <div className="performance-text">スキル別パフォーマンス</div>
-          <button className="button-csv">CSV 出力</button>
+          <button className="button-csv"  onClick={() => exportToCSVSkill(rows, 'data-host-skill.csv', fromDateTime, toDateTime)}>CSV 出力</button>
         </div>
         <div className="container-dateTime">
           <div className="text-filter">期間指定</div>
