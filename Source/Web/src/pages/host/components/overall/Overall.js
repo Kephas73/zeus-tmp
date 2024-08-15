@@ -31,7 +31,7 @@ const StyledTableCell = withStyles((theme) => ({
     width: '33.33%',
     fontSize: 14,
     height: constants.heightTableRow,
-    border: '1px solid #E0E0E0',
+    border: '1px solid var(--color-line-bland)',
     padding: '0px 16px',
     backgroundColor: 'var(--color-white)',
   },

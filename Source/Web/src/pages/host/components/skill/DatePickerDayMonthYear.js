@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
       color: '#666',
       fontSize: '14px',
       borderRadius: '4px',
-      border: '1px solid #ccc',
+      border: '1px solid var(--color-line-bold)',
       padding: '8px 10px',
       backgroundColor: 'transparent',
       width: '100%',
