@@ -54,7 +54,7 @@ const styles = (theme) => ({
     justifyContent: 'flex-start',
     alignItems: 'center',
     overflowX: 'auto',
-    backgroundColor: '#FFF',
+    backgroundColor: 'var(--color-white)',
     borderRadius: '5px',
   },
   monthlyWrapper: {
@@ -102,7 +102,7 @@ const styles = (theme) => ({
     padding: '8px',
   },
   infoTitle: {
-    backgroundColor: '#FFF',
+    backgroundColor: 'var(--color-white)',
     position: 'absolute',
     top: '-18px',
     left: '40px',
@@ -156,7 +156,7 @@ const styles = (theme) => ({
   },
   detailButton: {
     marginTop: '15px',
-    color: '#FFF',
+    color: 'var(--color-white)',
     padding: '2px 30px',
   },
   detailButtonSales: {
@@ -189,7 +189,7 @@ const styles = (theme) => ({
     overflowY: 'auto',
     flexGrow: '1',
     padding: '10px',
-    backgroundColor: '#FFF',
+    backgroundColor: 'var(--color-white)',
     borderRadius: '10px',
   },
   tableContainer: {
@@ -251,7 +251,7 @@ const styles = (theme) => ({
     borderRight: '1px solid #ccc',
   },
   headerSection: {
-    backgroundColor: '#FFF',
+    backgroundColor: 'var(--color-white)',
     width: '100%',
     borderRadius: '20px',
     padding: '20px 20px 21px 20px',
@@ -358,11 +358,11 @@ const styles = (theme) => ({
     background: '#e26b04',
     border: '1px solid #e26b04',
     borderRadius: '0.3rem',
-    color: '#fff',
+    color: 'var(--color-white)',
     padding: '0.1rem 1rem',
     fontSize: '0.8rem',
     '&:hover': {
-      backgroundColor: '#fff',
+      backgroundColor: 'var(--color-white)',
       color: '#e26b04',
       opacity: 0.8,
     },

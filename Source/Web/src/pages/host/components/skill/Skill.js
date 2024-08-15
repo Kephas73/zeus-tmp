@@ -20,14 +20,14 @@ const StyledTableCell = withStyles((theme) => ({
   head: {
     backgroundColor: constants.backgroundColorHead,
     color: theme.palette.common.white,
-    border: '1px solid #fff',
+    border: '1px solid var(--color-white)',
   },
   body: {
     fontSize: 14,
     height: constants.heightTableRow,
     border: '1px solid #E0E0E0',
     padding: '0px 16px',
-    backgroundColor: '#fff',
+    backgroundColor: 'var(--color-white)',
   },
 }))(TableCell);
 
@@ -104,18 +104,18 @@ export default function CustomTable() {
   }, [fromDateTime]);
 
   return (
-    <div className="container">
+    <div className="host-container">
       <TableContainer component={Paper} className={classes.container}>
-        <div className="container-header">
-          <div className="performance-text">スキル別パフォーマンス</div>
-          <button className="button-csv"  onClick={() => exportToCSVSkill(rows, 'data-host-skill.csv', fromDateTime, toDateTime)}>CSV 出力</button>
+        <div className="host-container-header">
+          <div className="host-performance-text">スキル別パフォーマンス</div>
+          <button className="host-button-csv"  onClick={() => exportToCSVSkill(rows, 'data-host-skill.csv', fromDateTime, toDateTime)}>CSV 出力</button>
         </div>
-        <div className="container-dateTime">
-          <div className="text-filter">期間指定</div>
+        <div className="host-container-dateTime">
+          <div className="host-text-filter">期間指定</div>
           <div>
             <DatePickerDayMonthYear />
           </div>
-          <div className="tilde-filter">
+          <div className="host-tilde-filter">
             ~
           </div>
           <div>
@@ -128,37 +128,37 @@ export default function CustomTable() {
               <StyledTableCell className={classes.cellHead}>項目</StyledTableCell>
               <StyledTableCell className={classes.cellHead} align="center">
                 <div>
-                  <span className="languages">EN</span>
+                  <span className="host-languages">EN</span>
                   <span>英語</span>
                 </div>
               </StyledTableCell>
               <StyledTableCell align="center" className={classes.cellHead}>
                 <div>
-                  <span className="languages">CN</span>
+                  <span className="host-languages">CN</span>
                   <span>中国語</span>
                 </div>
               </StyledTableCell>
               <StyledTableCell align="center" className={classes.cellHead}>
                 <div>
-                  <span className="languages">KR</span>
+                  <span className="host-languages">KR</span>
                   <span>韓国語</span>
                 </div>
               </StyledTableCell>
               <StyledTableCell align="center" className={classes.cellHead}>
                 <div>
-                  <span className="languages">ES</span>
+                  <span className="host-languages">ES</span>
                   <span>スペイン語</span>
                 </div>
               </StyledTableCell>
               <StyledTableCell align="center" className={classes.cellHead}>
                 <div>
-                  <span className="languages">PT</span>
+                  <span className="host-languages">PT</span>
                   <span>ポルトガル語</span>
                 </div>
               </StyledTableCell>
             </TableRow>
           </TableHead>
-          <TableBody className="global-text">
+          <TableBody className="host-global-text">
             {rows.map((group) =>
               group.map((data, dataIndex) => {
                 const isLastRow = dataIndex === group.length - 1;

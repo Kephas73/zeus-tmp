@@ -1,24 +1,24 @@
 
-.overall-container-header {
+.host-overall-container-header {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    border-bottom: 2px solid #cacaca;
+    border-bottom: 2px solid var(--color-line);
     padding: 15px 5px 5px 12px;
 
 }
 
-.overall-performance-text {
+.host-overall-performance-text {
     font-size: 13px;
     font-weight: 600;
-    color: #525252;
+    color: var(--text-color-gray-bold);
 }
-.overall-button-csv {
+.host-overall-button-csv {
     padding: 2px 25px;
-    background-color: #e65600;
+    background-color: var(--background-color-btn-csv);
     border: none;
     border-radius: 5px;
-    color: #fff;
+    color: var(--color-white);
     cursor: pointer;
     font-size: 12px;
 }

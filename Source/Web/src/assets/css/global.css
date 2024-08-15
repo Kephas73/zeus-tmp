@@ -1,3 +1,4 @@
+@import "./variables.css";
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
@@ -6,36 +7,36 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.container {
+.host-container {
   max-width: 100%;
 }
 
-.container-nav {
+.host-container-nav {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
-.custom-date-picker .MuiTableCell-root {
+.host-custom-date-picker .MuiTableCell-root {
   padding: 0px 16px !important;
 }
 
-.custom-date-picker .MuiInputBase-root {
+.host-custom-date-picker .MuiInputBase-root {
   padding: 4px !important; 
   margin-top: 0px !important;
 }
 
-.custom-date-picker .MuiFormControl-root {
+.host-custom-date-picker .MuiFormControl-root {
   margin-top: 12px !important;
   margin-bottom: 7px !important;
 }
 
-.global-text th,
-.global-text td{ 
-  color: #939292
+.host-global-text th,
+.host-global-text td{ 
+  color: var(--text-color-gray)
 }
 
-.custom-tableBody{
+.host-custom-tableBody{
   margin-top: 7px !important;
 }

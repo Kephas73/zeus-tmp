@@ -1,0 +1,13 @@
+:root {
+    --background-color-host: #f4f5f5;
+    --background-color-btn-csv: #e65600;
+    --background-color-btn-close: #00b5a5;
+    --text-color-gray: #939292;
+    --text-color-gray-bland: #c3c3c3;
+    --text-color-gray-bold: #525252;
+    --color-white: #fff;
+    --color-black: black;
+    --color-green: #9abf18;
+    --color-line: #cacaca;  
+    --color-languages: #707070;
+}

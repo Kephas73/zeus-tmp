@@ -6,7 +6,7 @@ const constants = {
       padding: '10px',
     },
     cellHead: {
-      borderRight: '1px solid #c3c3c3',
+      borderRight: '1px solid var(--text-color-gray-bland)',
     },
     head: {
         borderRadius: '5px',

@@ -33,7 +33,7 @@ const StyledTableCell = withStyles((theme) => ({
     height: constants.heightTableRow,
     border: '1px solid #E0E0E0',
     padding: '0px 16px',
-    backgroundColor: '#fff',
+    backgroundColor: 'var(--color-white)',
   },
 }))(TableCell);
 
@@ -52,12 +52,12 @@ const useStyles = makeStyles({
     minWidth: 560,
   },
   cellHead: {
-    borderRight: '1px solid #c3c3c3',
+    borderRight: '1px solid var(--text-color-gray-bland)',
   },
   title: {
     display: 'inline-block',
     marginTop: 43,
-    color: '#c3c3c3',
+    color: 'var(--text-color-gray-bland)',
     paddingLeft: 12,
   },
 });
@@ -185,13 +185,13 @@ export default function Overall() {
 
   return (
     <TableContainer component={Paper} className={classes.container}>
-      <div className="overall-container-header">
-        <div className="overall-performance-text">全体パフォーマンス</div>
-        <button className="overall-button-csv" onClick={() => exportToCSV(rows, 'data-host-overall.csv', dateYearMonth, dateMonthDay)}>CSV 出力</button>
+      <div className="host-overall-container-header">
+        <div className="host-overall-performance-text">全体パフォーマンス</div>
+        <button className="host-overall-button-csv" onClick={() => exportToCSV(rows, 'data-host-overall.csv', dateYearMonth, dateMonthDay)}>CSV 出力</button>
       </div>
       <span className={classes.title}>月毎・日毎</span>
       <Table className={classes.table} aria-label="customized table">
-        <TableHead className="custom-date-picker">
+        <TableHead className="host-custom-date-picker">
           <TableRow>
             <StyledTableCell className={classes.cellHead}>項目</StyledTableCell>
             <StyledTableCell className={classes.cellHead} align="right" 
@@ -206,7 +206,7 @@ export default function Overall() {
             </StyledTableCell>
           </TableRow>
         </TableHead>
-        <TableBody className="global-text">
+        <TableBody className="host-global-text">
           {rows.map((group) =>
             group.map((data, dataIndex) => {
               const isLastRow = dataIndex === group.length - 1;

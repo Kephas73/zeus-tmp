@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
       color: '#666',
       fontSize: '14px',
       transform: 'translate(14px, 10px) scale(1)', 
-      backgroundColor: '#fff',
+      backgroundColor: 'var(--color-white)',
       padding: '0 4px',
       zIndex: 1,
       pointerEvents: 'none',
@@ -57,7 +57,7 @@ const CustomKeyboardDatePicker = withStyles({
       padding: 0,
     },
     '& .MuiButtonBase-root': {
-      color: '#fff',
+      color: 'var(--color-white)',
     },
     '& .MuiFormControl-marginNormal': {
       marginTop: 0,

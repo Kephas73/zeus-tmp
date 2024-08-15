@@ -4,12 +4,12 @@ import React from 'react';
 import './header.css';
 const useStyles = makeStyles(() => ({
   customIcon: {
-    color: '#939292',
+    color: 'var(--text-color-gray)',
     fontSize: '3rem',
   },
   hostCloseButton: {
     fontWeight: 'bold',
-    color: '#939292'
+    color: 'var(--text-color-gray)'
   }
 }));
 const Header = ({ setOpen }) => {

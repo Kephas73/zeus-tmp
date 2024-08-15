@@ -25,12 +25,12 @@ const HostPage = () => {
         <Box>
           <div className="host-page">
             <Header setOpen={setOpen} />
-            <div className="container">
-              <div className="container-operator-skill">
+            <div className="host-container">
+              <div className="host-container-operator-skill">
                 <Overall />
                 <Skill />
               </div>
-              <div className="container-operator">
+              <div className="host-container-operator">
                 <Operator />
               </div>
             </div>

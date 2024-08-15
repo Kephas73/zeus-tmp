@@ -22,7 +22,7 @@ const StyledTableCell = withStyles((theme) => ({
   head: {
     backgroundColor: constants.backgroundColorHead,
     color: theme.palette.common.white,
-    border: '1px solid #fff',
+    border: '1px solid var(--color-white)',
     width: '33.33%',
     height: '40px',
     padding: '0 8px',
@@ -34,7 +34,7 @@ const StyledTableCell = withStyles((theme) => ({
     height: constants.heightTableRow,
     border: '1px solid #E0E0E0',
     padding: '0px 16px',
-    backgroundColor: '#fff',
+    backgroundColor: 'var(--color-white)',
   },
   table: {
     width: '100px'
@@ -54,7 +54,7 @@ const StyledTextField = withStyles({
     '& .MuiInputBase-input': {
       color: '#000',
       padding: '10px 14px',
-      backgroundColor: '#fff',
+      backgroundColor: 'var(--color-white)',
     },
     '& .MuiOutlinedInput-input': {
       borderColor: '#ccc',
@@ -190,30 +190,30 @@ export default function CustomTable() {
   }, [filteredData, dateMonthDay]);
 
   return (
-    <div className="table-operator">
+    <div className="host-table-operator">
       <TableContainer component={Paper} className={classes.container}>
-        <div className="operator-container-header">
-          <div className="performance-text">オペレータパフォーマンス</div>
+        <div className="host-operator-container-header">
+          <div className="host-performance-text">オペレータパフォーマンス</div>
           <button
-            className="button-csv"
+            className="host-button-csv"
             onClick={() => exportToCSV(rows, 'FileCSV.csv', dateYearMonth, dateMonthDay)}
           >CSV 出力</button>
         </div>
 
-        <div className="container-header-operator">
-          <div className="performance-text">オペレータ ID</div>
-          <div className="input-operator">
+        <div className="host-container-header-operator">
+          <div className="host-performance-text">オペレータ ID</div>
+          <div className="host-input-operator">
             <StyledTextField
               id="outlined-basic"
               variant="outlined"
               value={hostLoginId}
               onChange={(e) => setHostLoginId(e.target.value)}
-              className="text-input-operator"
+              className="host-text-input-operator"
             />
           </div>
           <div>
             <button
-              className="button-setting"
+              className="host-button-setting"
               onClick={handleSearch}
             >
               設定
@@ -221,11 +221,11 @@ export default function CustomTable() {
           </div>
         </div>
         <Table className={classes.table} aria-label="customized table" ref={tableRef}>
-          <TableHead className="custom-date-picker">
-            <TableRow className="header-operator">
+          <TableHead className="host-custom-date-picker">
+            <TableRow className="host-header-operator">
             <StyledTableCell className={classes.cellHead}>項目</StyledTableCell>
             <StyledTableCell className={classes.cellHead} align="right" >
-                <div className="datetime">
+                <div>
                   <DatePickerYearMonth
                     dateYearMonth={dateYearMonth}
                     setDateYearMonth={setDateYearMonth}
@@ -233,13 +233,13 @@ export default function CustomTable() {
                 </div>
               </StyledTableCell>
               <StyledTableCell align="center">
-                <div className='datetime'>
+                <div>
                   <DatePickerMonthDay dateMonthDay={dateMonthDay} setDateMonthDay={setDateMonthDay} />
                 </div>
               </StyledTableCell>
             </TableRow>
           </TableHead>
-          <TableBody className="global-text">
+          <TableBody className="host-global-text">
             {rows.map((group) =>
               group.map((data, dataIndex) => {
                 const isLastRow = dataIndex === group.length - 1;

@@ -17,7 +17,7 @@ const useRowSkill = (dataSkillDateTime) => {
         metric2: `${dataSkillDateTime.numberOfIncomingCalls} 件`,
         metric3: `${dataSkillDateTime.numberOfIncomingCalls} 件`,
         metric4: `${dataSkillDateTime.numberOfIncomingCalls} 件`,
-        metric5: dataSkillDateTime.numberOfCallsReceived,
+        metric5: `${dataSkillDateTime.numberOfCallsReceived} 件`,
       },
       {
         name: '受電率',

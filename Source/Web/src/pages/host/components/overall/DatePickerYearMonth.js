@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
       alignItems: 'center',
     },
     '& .MuiInputBase-root': {
-      color: '#fff',
+      color: 'var(--color-white)',
       fontSize: '14px',
       borderRadius: '4px',
       border: '1px solid #ccc',
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
       width: '100%',
     },
     '& .MuiInputLabel-root': {
-      color: '#fff',
+      color: 'var(--color-white)',
       fontSize: '14px',
       marginTop: '-17px',
       transform: 'translate(14px, 10px) scale(1)',
@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
       pointerEvents: 'none',
     },
     '& .Mui-focused': {
-      color: '#fff',
+      color: 'var(--color-white)',
     },
     '& .MuiInputAdornment-root .MuiButtonBase-root': {
       marginLeft: '-12px',
@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
 const CustomKeyboardDatePicker = withStyles({
   root: {
     '& .MuiInputBase-input': {
-      color: '#fff',
+      color: 'var(--color-white)',
     },
     '& .MuiInput-underline:before': {
       borderBottom: 'none',
@@ -65,7 +65,7 @@ const CustomKeyboardDatePicker = withStyles({
       borderBottom: 'none',
     },
     '& .MuiButtonBase-root': {
-      color: '#fff',
+      color: 'var(--color-white)',
     },
     '&:hover .MuiInput-underline:before': {
       borderBottom: 'none', 

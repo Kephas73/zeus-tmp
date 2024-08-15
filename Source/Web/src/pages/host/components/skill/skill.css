@@ -1,43 +1,43 @@
-.container-header {
+.host-container-header {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    border-bottom: 2px solid #cacaca;
+    border-bottom: 2px solid var(--color-line);
     padding: 15px 5px 5px 20px;
 
 }
-.languages {
+.host-languages {
     padding: 4px;
-    background-color: #fff;
+    background-color: var(--color-white);
     border-radius: 2px;
     margin-right: 5px;
-    color: #707070;
+    color: var(--color-languages);
     font-size: 10px;
 }
 
-.button-csv {
+.host-button-csv {
     padding: 2px 25px;
-    background-color: #e65600;
+    background-color: var(--background-color-btn-csv);
     border: none;
     border-radius: 5px;
-    color: #fff;
+    color: var(--color-white);
     cursor: pointer;
     font-size: 12px;
 }
 
-.container-dateTime {
+.host-container-dateTime {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     padding: 0px 5px 0px 20px;
 }
 
-.text-filter {
-    color: #c3c3c3;
+.host-text-filter {
+    color: var(--text-color-gray-bland);
     margin-right: 15px;
     padding-top: 40px;
 }
-.tilde-filter {
+.host-tilde-filter {
     font-size: 50px;
-    color:#a0a0a0
+    color: var(--text-color-gray-bland)
 }
