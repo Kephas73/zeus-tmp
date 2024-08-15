@@ -7,7 +7,6 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import TextField from '@material-ui/core/TextField';
 import './operator.css';
 import constants from '../../../../constants';
 import DatePickerMonthDay from './DatePickerMonthDay';
@@ -17,6 +16,8 @@ import { calls } from '../../../../data/calls';
 import { getMonthDay, getYearMonth } from '../../../../utils/formatDate';
 import { CALL_STATUS_CATCH, CALL_STATUS_STOP } from '../../../../constants/data';
 import { exportToCSV } from '../../../../utils/exportCSV'
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -49,29 +50,16 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
-const StyledTextField = withStyles({
-  root: {
-    '& .MuiInputBase-input': {
-      color: '#000',
-      padding: '10px 14px',
-      backgroundColor: 'var(--color-white)',
-    },
-    '& .MuiOutlinedInput-input': {
-      borderColor: '#ccc',
-      borderRadius: '4px',
-      padding: '0 0 0 6px',
-    },
-  },
-})(TextField);
-
-
-
 const useStyles = makeStyles({
   ...constants.tableRowStyles,
   table: {
     ...constants.tableRowStyles.table,
     minWidth: 560,
   },
+  colorOption: {
+    color: 'var(--text-color-gray-bold)',
+    fontSize: '14px',
+  }
 });
 
 export default function CustomTable() {
@@ -203,13 +191,26 @@ export default function CustomTable() {
         <div className="host-container-header-operator">
           <div className="host-performance-text">オペレータ ID</div>
           <div className="host-input-operator">
-            <StyledTextField
-              id="outlined-basic"
-              variant="outlined"
-              value={hostLoginId}
-              onChange={(e) => setHostLoginId(e.target.value)}
-              className="host-text-input-operator"
-            />
+            <FormControl variant="outlined" className="host-text-input-operator">
+              <Select
+                native
+                className={classes.colorOption}
+                value={hostLoginId}
+                onChange={(e) => setHostLoginId(e.target.value)}
+                inputProps={{
+                  name: 'Host login ID',
+                  id: 'outlined-age-native-simple',
+                }}
+              >
+                <option className={classes.colorOption} value={10}>Operator1</option>
+                <option className={classes.colorOption} value={20}>Operator2</option>
+                <option className={classes.colorOption} value={30}>Operator3</option>
+                <option className={classes.colorOption} value={40}>Operator4</option>
+                <option className={classes.colorOption} value={50}>Operator5</option>
+                <option className={classes.colorOption} value={60}>Operator6</option>
+                <option className={classes.colorOption} value={70}>Operator7</option>
+              </Select>
+            </FormControl>
           </div>
           <div>
             <button
