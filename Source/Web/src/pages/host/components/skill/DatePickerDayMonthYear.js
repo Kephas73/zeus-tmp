@@ -76,7 +76,7 @@ export default function DatePickerDayMonthYear() {
 
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
-      <Grid container justifyContent="space-around">
+      <Grid container>
         <CustomKeyboardDatePicker
           className={classes.root}
           views={['year', 'month', 'day']}

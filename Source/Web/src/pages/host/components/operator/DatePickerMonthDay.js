@@ -82,7 +82,7 @@ export default function DatePickerMonthDay({ dateMonthDay, setDateMonthDay}) {
 
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
-      <Grid container justifyContent="space-around">
+      <Grid container >
         <CustomKeyboardDatePicker
           className={classes.root}
           disableToolbar

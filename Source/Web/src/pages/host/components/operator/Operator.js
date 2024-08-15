@@ -36,9 +36,6 @@ const StyledTableCell = withStyles((theme) => ({
     border: '1px solid #E0E0E0',
     padding: '0px 16px',
     backgroundColor: 'var(--color-white)',
-  },
-  table: {
-    width: '100px'
   }
 }))(TableCell);
 
@@ -264,4 +261,5 @@ export default function CustomTable() {
       </TableContainer>
     </div>
   );
+
 }

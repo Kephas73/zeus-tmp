@@ -25,7 +25,7 @@ const StyledTableCell = withStyles((theme) => ({
     width: '33.33%',
     '&:nth-of-type(2), &:nth-of-type(3)': {
       textAlign: 'center',
-    },
+    }
   },
   body: {
     width: '33.33%',
@@ -56,7 +56,7 @@ const useStyles = makeStyles({
   },
   title: {
     display: 'inline-block',
-    marginTop: 43,
+    marginTop: 45,
     color: 'var(--text-color-gray-bland)',
     paddingLeft: 12,
   },
