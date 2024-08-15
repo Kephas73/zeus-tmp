@@ -1,5 +1,5 @@
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -11,9 +11,8 @@ import Paper from '@material-ui/core/Paper';
 import DatePickerYearMonth from './DatePickerYearMonth';
 import DatePickerMonthDay from './DatePickerMonthDay';
 import constants from '../../../../constants';
-import './style.css';
-import dayjs from 'dayjs';
-import { getMonthDay, getYearMonth, getYearMonthDay } from '../../../../utils/formatDate';
+import './overall.css';
+import { getMonthDay, getYearMonth } from '../../../../utils/formatDate';
 import { calls } from '../../../../data/calls'
 import useRow from './useRow';
 import { CALL_STATUS_CATCH, CALL_STATUS_STOP } from '../../../../constants/data';
@@ -103,8 +102,6 @@ export default function Overall() {
   const [dateYearMonth, setDateYearMonth] = useState(new Date());
   const [dateMonthDay, setDateMonthDay] = useState(new Date());
   const rows = useRow(dataOverallYearMonth, dataOverallMonthDay);
-
-  // const sum = calls.reduce((accumulator, currentValue) => accumulator + currentValue.calls.length, 0)
 
   useEffect(() => {
     const numberOfIncomingCalls = calls.reduce((accumulator, item) => {

@@ -67,7 +67,6 @@ export default function CustomTable() {
   useEffect(() => {
     const numberOfIncomingCalls = calls.reduce((accumulator, item) => {
       const date = getYearMonthDay(item.timestamp);
-      console.log('date: ' + date);
       if (getYearMonthDay(fromDateTime) === date) {
         accumulator = accumulator + item.calls.length;
       }

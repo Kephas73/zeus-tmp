@@ -99,8 +99,8 @@ export default function CustomTable() {
 
   const [dateYearMonth, setDateYearMonth] = useState(new Date());
   const [dateMonthDay, setDateMonthDay] = useState(new Date());
-  const [hostLoginId, setHostLoginId] = useState(''); // State cho hostLoginId
-  const [filteredData, setFilteredData] = useState([]); // State để lưu dữ liệu lọc
+  const [hostLoginId, setHostLoginId] = useState(''); 
+  const [filteredData, setFilteredData] = useState([]); 
 
   const rows = useRow(dataOverallYearMonth, dataOverallMonthDay, filteredData);
 

@@ -1,7 +1,7 @@
-import { Button, Container, makeStyles } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
 import PersonIcon from '@material-ui/icons/Person';
 import React from 'react';
-import './index.css';
+import './header.css';
 const useStyles = makeStyles(() => ({
   customIcon: {
     color: '#939292',
