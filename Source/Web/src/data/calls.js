@@ -1,4 +1,6 @@
-export const calls = [{
+// eslint-disable-next-line
+export const calls = [
+    {
     "id": "Fe1rtYogDqc7XF5IDZmURlZAMx13_4kxcvpcilzas4opc",
     "guestInput2": {
         "type": "phone",
@@ -11,7 +13,7 @@ export const calls = [{
     "serviceTicket": "",
     "kokyakuId": "",
     "connectionAccountId": "",
-    "duration": 0,
+    "duration": 1,
     "ticketParamKey": "",
     "uid": "Fe1rtYogDqc7XF5IDZmURlZAMx13",
     "browser": "microsoft edge",
@@ -55,7 +57,7 @@ export const calls = [{
         "serviceTicket": "",
         "kokyakuId": "",
         "connectionAccountId": "",
-        "duration": 0,
+        "duration": 3,
         "ticketParamKey": "",
         "uid": "Fe1rtYogDqc7XF5IDZmURlZAMx13",
         "browser": "microsoft edge",
@@ -454,4 +456,9 @@ export const calls = [{
     "hostLoginId": "operator3",
     "status": 4,
     "skillId": "english"
-}]
+},
+
+
+
+
+]
