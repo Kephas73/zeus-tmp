@@ -1,10 +1,26 @@
 import dayjs from 'dayjs';
 
+const YYYY_MM_DD_HH_MM_SS = 'YYYY-MM-DD HH:mm:ss';
 const YYYY_MM_DD = 'YYYY-MM-DD';
 const YYYY_MM = 'YYYY-MM';
 const MM_DD = 'MM-DD';
 const NUMBER = 'number';
 const STRING = 'string';
+
+export const getFullDate = (date) => {
+  if (date instanceof Date) {
+    return dayjs(date).format(YYYY_MM_DD_HH_MM_SS);
+  }
+
+  if (typeof date === NUMBER && date > 0) {
+    return dayjs(date).format(YYYY_MM_DD_HH_MM_SS);
+  }
+  if (typeof date === STRING) {
+    const dateTime = dayjs(new Date(date)).format(YYYY_MM_DD_HH_MM_SS);
+    return dateTime;
+  }
+  return false;
+};
 
 export const getYearMonthDay = (date) => {
   if (date instanceof Date) {

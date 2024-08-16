@@ -12,11 +12,13 @@ import DatePickerYearMonth from './DatePickerYearMonth';
 import DatePickerMonthDay from './DatePickerMonthDay';
 import constants from '../../../../constants';
 import './overall.css';
-import { getMonthDay, getYearMonth } from '../../../../utils/formatDate';
+import { getFullDate, getMonthDay, getYearMonth } from '../../../../utils/formatDate';
 import { calls } from '../../../../data/calls'
+import { roomChangeLogs } from '../../../../data/roomChangeLogs'
 import useRow from './useRow';
-import { CALL_STATUS_CATCH, CALL_STATUS_STOP } from '../../../../constants/data';
+import { CALL_STATUS_CATCH, CALL_STATUS_FINISHED, CALL_STATUS_NO_ONE_AVAILABLE, CALL_STATUS_NO_REPLY, CALL_STATUS_STOP, WAITING_GUESTS_STATUS_CONNECTED, WAITING_GUESTS_STATUS_DISCONNECT } from '../../../../constants/data';
 import { exportToCSV } from '../../../../utils/exportCSV'
+import { waitingGuests } from '../../../../data/waitingGuests';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -117,7 +119,7 @@ export default function Overall() {
       if (getYearMonth(dateYearMonth) === date) {
         let sum = 0;
         item.calls.forEach((i) => {
-          if(i.status === CALL_STATUS_CATCH || i.status === CALL_STATUS_STOP) sum++;
+          if(i.status === CALL_STATUS_CATCH || i.status === CALL_STATUS_FINISHED) sum++;
         })
         accumulator = accumulator + sum;
       }
@@ -135,11 +137,98 @@ export default function Overall() {
       }
     } 
 
+    const totalTalkTime = calls.reduce((accumulator, item) => {
+      const date = getYearMonth(item.timestamp);
+      if (getYearMonth(dateYearMonth) === date) {
+        accumulator = accumulator + item.duration;
+      }
+      return accumulator;
+    }, 0);
+
+    let averageTalkTime = 0;
+    if(numberOfIncomingCalls > 0) {
+      const result = totalTalkTime/numberOfIncomingCalls
+      const roundedResult  = result.toFixed(1)
+      if (roundedResult.indexOf('.') !== -1 && parseFloat(roundedResult) % 1 === 0) {
+        averageTalkTime = parseInt(roundedResult, 10);
+      } else {
+        averageTalkTime = parseFloat(roundedResult);
+      }
+    } 
+
+    const numberOfMissedCalls = calls.reduce((accumulator, item) => {
+      const date = getYearMonth(item.timestamp);
+      if (getYearMonth(dateYearMonth) === date) {
+        let sum = 0;
+        item.calls.forEach((i) => {
+          if(i.status === CALL_STATUS_NO_REPLY  || i.status === CALL_STATUS_NO_ONE_AVAILABLE ) sum++;
+        })
+        accumulator = accumulator + sum;
+      }
+      return accumulator;
+    }, 0);
+
+    const numberOfBreaks = calls.reduce((accumulator, item) => {
+      const date = getYearMonth(item.timestamp);
+      if (getYearMonth(dateYearMonth) === date) {
+        let sum = 0;
+        item.calls.forEach((i) => {
+          if(i.status === CALL_STATUS_STOP) sum++;
+        })
+        accumulator = accumulator + sum;
+      }
+      return accumulator;
+    }, 0);
+
+
+    let numberWaitingGuests = 0
+    let callWaitingAverageWaitingTime = 0;
+    const callWaitingTotalWaitingTime = waitingGuests.reduce((accumulator, item) => {
+      const date = getYearMonth(item.start);
+      if (getYearMonth(dateYearMonth) === date) {
+        numberWaitingGuests++
+        const timeWait = item.end - item.start;
+        accumulator += timeWait
+      }
+      return accumulator;
+    }, 0);
+    if(numberWaitingGuests > 0) {
+      const result = callWaitingTotalWaitingTime / numberWaitingGuests
+      callWaitingAverageWaitingTime = Math.round(result)
+    } 
+
+
+    const callWaitingNumberOfSuccessfulConnections = waitingGuests.reduce((accumulator, item) => {
+      const date = getYearMonth(item.start);
+      if (getYearMonth(dateYearMonth) === date) {
+        if (item.status === WAITING_GUESTS_STATUS_CONNECTED) accumulator++
+      }
+      return accumulator;
+    }, 0);
+
+
+    const callWaitingNumberOfExits = waitingGuests.reduce((accumulator, item) => {
+      const date = getYearMonth(item.start);
+      if (getYearMonth(dateYearMonth) === date) {
+        if (item.status === WAITING_GUESTS_STATUS_DISCONNECT) accumulator++
+      }
+      return accumulator;
+    }, 0);
+
+
     setDataOverallYearMonth((prev) => ({
       ...prev,
       numberOfIncomingCalls,
       numberOfCallsReceived,
-      callReceivedRate
+      callReceivedRate,
+      totalTalkTime,
+      averageTalkTime,
+      numberOfMissedCalls,
+      numberOfBreaks,
+      callWaitingAverageWaitingTime,
+      callWaitingNumberOfSuccessfulConnections,
+      callWaitingNumberOfExits
+
     }));
   }, [dateYearMonth]);
 
@@ -157,7 +246,7 @@ export default function Overall() {
       if (getMonthDay(dateMonthDay) === date) {
         let sum = 0;
         item.calls.forEach((i) => {
-          if(i.status === CALL_STATUS_CATCH || i.status === CALL_STATUS_STOP) sum++;
+          if(i.status === CALL_STATUS_CATCH || i.status === CALL_STATUS_FINISHED) sum++;
         })
         accumulator = accumulator + sum;
       }
@@ -175,11 +264,93 @@ export default function Overall() {
       }
     } 
 
+    const totalTalkTime = calls.reduce((accumulator, item) => {
+      const date = getMonthDay(item.timestamp);
+      if (getMonthDay(dateMonthDay) === date) {
+        accumulator = accumulator + item.duration;
+      }
+      return accumulator;
+    }, 0);
+
+    let averageTalkTime = 0;
+    if(numberOfIncomingCalls > 0) {
+      const result = totalTalkTime/numberOfIncomingCalls
+      const roundedResult  = result.toFixed(1)
+      if (roundedResult.indexOf('.') !== -1 && parseFloat(roundedResult) % 1 === 0) {
+        averageTalkTime = parseInt(roundedResult, 10);
+      } else {
+        averageTalkTime = parseFloat(roundedResult);
+      }
+    } 
+
+    const numberOfMissedCalls = calls.reduce((accumulator, item) => {
+      const date = getMonthDay(item.timestamp);
+      if (getMonthDay(dateMonthDay) === date) {
+        let sum = 0;
+        item.calls.forEach((i) => {
+          if(i.status === CALL_STATUS_NO_REPLY  || i.status === CALL_STATUS_NO_ONE_AVAILABLE ) sum++;
+        })
+        accumulator = accumulator + sum;
+      }
+      return accumulator;
+    }, 0);
+
+    const numberOfBreaks = calls.reduce((accumulator, item) => {
+      const date = getMonthDay(item.timestamp);
+      if (getMonthDay(dateMonthDay) === date) {
+        let sum = 0;
+        item.calls.forEach((i) => {
+          if(i.status === CALL_STATUS_STOP) sum++;
+        })
+        accumulator = accumulator + sum;
+      }
+      return accumulator;
+    }, 0);
+
+    let numberWaitingGuests = 0
+    let callWaitingAverageWaitingTime = 0;
+    const callWaitingTotalWaitingTime = waitingGuests.reduce((accumulator, item) => {
+      const date = getMonthDay(item.start);
+      if (getMonthDay(dateMonthDay) === date) {
+        numberWaitingGuests++
+        const timeWait = item.end - item.start;
+        accumulator += timeWait
+      }
+      return accumulator;
+    }, 0);
+    if(numberWaitingGuests > 0) {
+      const result = callWaitingTotalWaitingTime / numberWaitingGuests
+      callWaitingAverageWaitingTime = Math.round(result)
+    } 
+
+    const callWaitingNumberOfSuccessfulConnections = waitingGuests.reduce((accumulator, item) => {
+      const date = getMonthDay(item.start);
+      if (getMonthDay(dateMonthDay) === date) {
+        if (item.status === WAITING_GUESTS_STATUS_CONNECTED) accumulator++
+      }
+      return accumulator;
+    }, 0);
+
+    const callWaitingNumberOfExits = waitingGuests.reduce((accumulator, item) => {
+      const date = getMonthDay(item.start);
+      if (getMonthDay(dateMonthDay) === date) {
+        if (item.status === WAITING_GUESTS_STATUS_DISCONNECT) accumulator++
+      }
+      return accumulator;
+    }, 0);
+
     setDataOverallMonthDay((prev) => ({
         ...prev,
         numberOfIncomingCalls,
         numberOfCallsReceived,
         callReceivedRate,
+        totalTalkTime,
+        averageTalkTime,
+        numberOfMissedCalls,
+        numberOfBreaks,
+        callWaitingAverageWaitingTime, // millisecond
+        callWaitingNumberOfSuccessfulConnections,
+        callWaitingNumberOfExits
     }));
   }, [dateMonthDay]);
 
