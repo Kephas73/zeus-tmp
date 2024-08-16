@@ -451,7 +451,7 @@ export const calls = [{
     "duration": 2,
     "hostName": "オペレーター1",
     "hostId": "X6vh58pWx8aEih4hcgam0hKyO4l2",
-    "hostLoginId": "operator1",
+    "hostLoginId": "operator3",
     "status": 4,
     "skillId": "english"
 }]

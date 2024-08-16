@@ -56,6 +56,10 @@ const useStyles = makeStyles({
   colorOption: {
     color: 'var(--text-color-gray-bold)',
     fontSize: '14px',
+    '& .MuiOutlinedInput-input': {
+      padding: '0 0 0 10px',
+      backgroundColor:'#fff',
+    },
   }
 });
 
@@ -89,6 +93,7 @@ export default function CustomTable() {
 
   const rows = useRow(dataOverallYearMonth, dataOverallMonthDay, filteredData);
 
+  const uniqueHostLoginIds = Array.from(new Set(calls.map(call => call.hostLoginId)));
   const handleSearch = () => {
     const filteredCalls = calls.filter((item) => item.hostLoginId === hostLoginId);
     setFilteredData(filteredCalls);
@@ -199,14 +204,13 @@ export default function CustomTable() {
                   id: 'outlined-age-native-simple',
                 }}
               >
-                <option className={classes.colorOption} value={10}>Operator1</option>
-                <option className={classes.colorOption} value={20}>Operator2</option>
-                <option className={classes.colorOption} value={30}>Operator3</option>
-                <option className={classes.colorOption} value={40}>Operator4</option>
-                <option className={classes.colorOption} value={50}>Operator5</option>
-                <option className={classes.colorOption} value={60}>Operator6</option>
-                <option className={classes.colorOption} value={70}>Operator7</option>
+                {uniqueHostLoginIds.map(id => (
+                  <option key={id} className={classes.colorOption} value={id}>
+                    {id}
+                  </option>
+                ))}
               </Select>
+
             </FormControl>
           </div>
           <div>
