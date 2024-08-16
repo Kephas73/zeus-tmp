@@ -55,14 +55,14 @@ const CustomKeyboardDatePicker = withStyles({
     },
     '& .MuiIconButton-root': {
       padding: 0,
+      borderBottom: 'none',
     },
     '& .MuiButtonBase-root': {
       color: 'var(--color-white)',
     },
-    '& .MuiFormControl-marginNormal': {
-      marginTop: 0,
-      marginBottom: 0,
-    }
+    '&:hover .MuiInput-underline:before': {
+      borderBottom: 'none', 
+    },
   },
 })(KeyboardDatePicker);
 
