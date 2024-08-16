@@ -10,6 +10,7 @@
     "@testing-library/jest-dom": "^5.11.0",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
+    "caniuse-lite": "^1.0.30001632",
     "date-fns": "2.8.1",
     "dayjs": "^1.11.12",
     "exceljs": "^4.4.0",
