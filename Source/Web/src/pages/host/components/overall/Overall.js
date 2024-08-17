@@ -11,10 +11,10 @@ import DatePickerYearMonth from './DatePickerYearMonth';
 import DatePickerMonthDay from './DatePickerMonthDay';
 import constants from '../../../../constants';
 import './overall.css';
+
 import { getMonthDay, getYearMonth, getYear, getMonth } from '../../../../utils/formatDate';
 import { roundToDecimalPlaces } from '../../../../utils/roundDecimal';
 import useRow from './useRow';
-
 import { exportToCSV } from '../../../../utils/exportCSV';
 import {
   countCallWaitingNumberOfExits,
@@ -162,6 +162,7 @@ export default function Overall() {
       numberOfMissedCalls -
       numberOfBreaks +
       callWaitingNumberOfSuccessfulConnections;
+
     const callWaitingRate =
       numberOfCallsWaiting / (numberOfIncomingCalls - numberOfMissedCalls - numberOfBreaks);
 
@@ -225,6 +226,7 @@ export default function Overall() {
       numberOfMissedCalls -
       numberOfBreaks +
       callWaitingNumberOfSuccessfulConnections;
+      
     const callWaitingRate =
       numberOfCallsWaiting / (numberOfIncomingCalls - numberOfMissedCalls - numberOfBreaks);
 
@@ -267,7 +269,6 @@ export default function Overall() {
       },
       5 * 60 * 1000
     );
-
     return () => clearInterval(intervalId);
   }, []);
 
