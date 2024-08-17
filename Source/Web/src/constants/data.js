@@ -20,8 +20,8 @@ export const ROOM_SUPPORT = 7; // supporting, no new call
 export const ROOM_APPOINTMENT = 8; // waiting appointment call, only accept appointment call
 
 
-
-
+export const WAITING_GUESTS_STATUS_CONNECTED = 1; // connected to call
+export const WAITING_GUESTS_STATUS_DISCONNECT = 2; // disconnected
 
 
 
