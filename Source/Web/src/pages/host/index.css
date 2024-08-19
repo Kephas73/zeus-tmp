@@ -86,6 +86,9 @@
     width: 100vw;
     height: calc(97vh - 10px);
   }
+  .host-container-operator{
+    width: 120vw;
+  }
 
   .host-header-container button {
     margin-top: 10px;
