@@ -11,11 +11,8 @@ import './skill.css';
 import constants from '../../../../constants';
 import DatePickerDayMonthYear from './DatePickerDayMonthYear';
 import useRowSkill from './useRowSkill';
-import { calls } from '../../../../data/calls';
-import { getYearMonthDay } from '../../../../utils/formatDate';
-import { CALL_STATUS_CATCH, CALL_STATUS_STOP } from '../../../../constants/data';
 import { exportToCSVSkill } from '../../../../utils/exportCSV';
-import { formatDataForLanguages, funcCallReceivedRate, funcNumberOfCallsReceived, funcNumberOfIncomingCalls } from './caculator';
+import { formatDataForLanguages } from './caculator';
 import DatePickerDayMonthYearPlusOneMonth from './DatePickerDayMonthYearPlusOneMonth';
 
 const StyledTableCell = withStyles((theme) => ({
@@ -46,56 +43,55 @@ const useStyles = makeStyles(constants.tableRowStyles);
 export default function CustomTable() {
   const classes = useStyles();
 
-  const [dataSkillDateTime, setDataSkillDateTime] = useState({
-    numberOfIncomingCalls: 0,
-    numberOfCallsReceived: 0,
-    callReceivedRate: 0,
-    numberOfActiveSeats: 0,
-    upTime: 0,
-    totalTalkTime: 0,
-    averageTalkTime: 0,
-    numberOfMissedCalls: 0,
-    numberOfBreaks: 0,
-    numberOfCallsWaiting: 0,
-    callWaitingRate: 0,
-    callWaitingAverageWaitingTime: 0,
-    callWaitingNumberOfSuccessfulConnections: 0,
-    callWaitingNumberOfExits: 0,
-  });
+  const [dataSkillDateTime, setDataSkillDateTime] = useState({});
 
   const [fromDateTime, setFromDateTime] = useState(new Date());
   const [toDateTime, setToDateTime] = useState(new Date());
   const rows = useRowSkill(dataSkillDateTime);
-  useEffect(() => {
-    const data = formatDataForLanguages()
-    console.log(data);
-    const numberOfIncomingCalls = funcNumberOfIncomingCalls(fromDateTime);
-    const numberOfCallsReceived = funcNumberOfCallsReceived(fromDateTime)
-    const callReceivedRate = funcCallReceivedRate(numberOfIncomingCalls, numberOfCallsReceived)
 
-    setDataSkillDateTime((prev) => ({
-      ...prev,
-      numberOfIncomingCalls,
-      numberOfCallsReceived,
-      callReceivedRate,
-    }));
-  }, [fromDateTime]);
+  useEffect(() => {
+    const data = formatDataForLanguages(fromDateTime, toDateTime);
+    setDataSkillDateTime(data);
+  }, [fromDateTime, toDateTime]);
+
+  const renderTableRows = () => {
+    if (!dataSkillDateTime || Object.keys(dataSkillDateTime).length === 0) return null;
+
+    const firstLanguage = Object.keys(dataSkillDateTime)[0];
+    const keys = Object.keys(dataSkillDateTime[firstLanguage]);
+
+    return keys.map((key) => (
+      <StyledTableRow key={key}>
+        <StyledTableCell component="th" scope="row">
+          {key}
+        </StyledTableCell>
+        <StyledTableCell align="right">{dataSkillDateTime.ENGLISH[key]}</StyledTableCell>
+        <StyledTableCell align="right">{dataSkillDateTime.CHINESE[key]}</StyledTableCell>
+        <StyledTableCell align="right">{dataSkillDateTime.KOREAN[key]}</StyledTableCell>
+        <StyledTableCell align="right">{dataSkillDateTime.SPAIN[key]}</StyledTableCell>
+        <StyledTableCell align="right">{dataSkillDateTime.PORTUGAL[key]}</StyledTableCell>
+      </StyledTableRow>
+    ));
+  };
 
   return (
     <div className="host-container">
       <TableContainer component={Paper} className={classes.container}>
         <div className="host-container-header">
           <div className="host-performance-text">スキル別パフォーマンス</div>
-          <button className="host-button-csv"  onClick={() => exportToCSVSkill(rows, 'data-host-skill.csv', fromDateTime, toDateTime)}>CSV 出力</button>
+          <button
+            className="host-button-csv"
+            onClick={() => exportToCSVSkill(rows, 'data-host-skill.csv', fromDateTime, toDateTime)}
+          >
+            CSV 出力
+          </button>
         </div>
         <div className="host-container-dateTime">
           <div className="host-text-filter">期間指定</div>
           <div>
             <DatePickerDayMonthYear value={fromDateTime} setFromDateTime={setFromDateTime} />
           </div>
-          <div className="host-tilde-filter">
-            ~
-          </div>
+          <div className="host-tilde-filter">~</div>
           <div>
             <DatePickerDayMonthYearPlusOneMonth value={toDateTime} setToDateTime={setToDateTime} />
           </div>
@@ -137,27 +133,7 @@ export default function CustomTable() {
             </TableRow>
           </TableHead>
           <TableBody className="host-global-text">
-            {rows.map((group) =>
-              group.map((data, dataIndex) => {
-                const isLastRow = dataIndex === group.length - 1;
-                return (
-                  <StyledTableRow key={data.name} className={isLastRow ? classes.lastRow : ''}>
-                    <StyledTableCell
-                      component="th"
-                      scope="row"
-                      className={isLastRow ? classes.categoryCell : ''}
-                    >
-                      {data.name}
-                    </StyledTableCell>
-                    <StyledTableCell align="right">{data.metric1}</StyledTableCell>
-                    <StyledTableCell align="right">{data.metric2}</StyledTableCell>
-                    <StyledTableCell align="right">{data.metric3}</StyledTableCell>
-                    <StyledTableCell align="right">{data.metric4}</StyledTableCell>
-                    <StyledTableCell align="right">{data.metric5}</StyledTableCell>
-                  </StyledTableRow>
-                );
-              })
-            )}
+            {renderTableRows()}
           </TableBody>
         </Table>
       </TableContainer>
