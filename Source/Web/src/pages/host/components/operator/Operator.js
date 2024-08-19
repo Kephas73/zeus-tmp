@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -13,11 +13,10 @@ import DatePickerMonthDay from './DatePickerMonthDay';
 import DatePickerYearMonth from './DatePickerYearMonth';
 import useRow from './useRowOperator';
 import { calls } from '../../../../data/calls';
-import { getMonthDay, getYearMonth } from '../../../../utils/formatDate';
-import { CALL_STATUS_CATCH, CALL_STATUS_STOP } from '../../../../constants/data';
-import { exportToCSV } from '../../../../utils/exportCSV'
+import { exportToCSV } from '../../../../utils/exportCSV';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import { useYearMonthEffect, useMonthDayEffect } from './useEffect';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -85,99 +84,33 @@ export default function CustomTable() {
     averageTalkTime: 0,
   });
 
-
   const [dateYearMonth, setDateYearMonth] = useState(new Date());
   const [dateMonthDay, setDateMonthDay] = useState(new Date());
-  const [hostLoginId, setHostLoginId] = useState(''); 
-  const [filteredData, setFilteredData] = useState([]); 
+  const [hostId, setHostId] = useState('');
+  const [filteredData, setFilteredData] = useState([]);
 
   const rows = useRow(dataOverallYearMonth, dataOverallMonthDay, filteredData);
 
-  const uniqueHostLoginIds = Array.from(new Set(calls.map(call => call.hostLoginId)));
+  const uniqueHostIds = Array.from(new Set(calls.map(call => call.hostId))).filter(id => id);
+
+  const uniqueHostData = Array.from(new Set(calls.map(call => call.hostId)))
+    .filter(id => id)
+    // .map(id => {
+    //   const hostData = calls.find(call => call.hostId === id);
+    //   return {
+    //     hostId: id,
+    //     hostLoginId: hostData.hostLoginId,
+    //   };
+    ;
+
+  console.log('ihjfkjàdhkjadhfkjahfkjádhfkjáhdfkáhdfkhádfkhádkf', uniqueHostData);
   const handleSearch = () => {
-    const filteredCalls = calls.filter((item) => item.hostLoginId === hostLoginId);
+    const filteredCalls = calls.filter((item) => item.hostId === hostId);
     setFilteredData(filteredCalls);
   };
 
-  useEffect(() => {
-    const numberOfIncomingCalls = filteredData.reduce((accumulator, item) => {
-      const date = getYearMonth(item.timestamp);
-      if (getYearMonth(dateYearMonth) === date) {
-        accumulator = accumulator + item.calls.length;
-      }
-      return accumulator;
-    }, 0);
-
-    const numberOfCallsReceived = filteredData.reduce((accumulator, item) => {
-      const date = getYearMonth(item.timestamp);
-      if (getYearMonth(dateYearMonth) === date) {
-        let sum = 0;
-        item.calls.forEach((i) => {
-          if(i.status === CALL_STATUS_CATCH || i.status === CALL_STATUS_STOP) sum++;
-        })
-        accumulator = accumulator + sum;
-      }
-      return accumulator;
-    }, 0);
-
-    let callReceivedRate = 0;
-    if(numberOfIncomingCalls > 0) {
-      const resultRate = (numberOfCallsReceived/numberOfIncomingCalls) * 100
-      const roundedResultRate  = resultRate.toFixed(2)
-      if (roundedResultRate.indexOf('.') !== -1 && parseFloat(roundedResultRate) % 1 === 0) {
-        callReceivedRate = parseInt(roundedResultRate, 10);
-      } else {
-        callReceivedRate = parseFloat(roundedResultRate);
-      }
-    }
-
-    setDataOverallYearMonth((prev) => ({
-      ...prev,
-      numberOfIncomingCalls,
-      numberOfCallsReceived,
-      callReceivedRate
-    }));
-  }, [filteredData, dateYearMonth]);
-
-  useEffect(() => {
-    const numberOfIncomingCalls = filteredData.reduce((accumulator, item) => {
-      const date = getMonthDay(item.timestamp);
-      if (getMonthDay(dateMonthDay) === date) {
-        accumulator = accumulator + item.calls.length;
-      }
-      return accumulator;
-    }, 0);
-
-    const numberOfCallsReceived = filteredData.reduce((accumulator, item) => {
-      const date = getMonthDay(item.timestamp);
-      if (getMonthDay(dateMonthDay) === date) {
-        let sum = 0;
-        item.calls.forEach((i) => {
-          if(i.status === CALL_STATUS_CATCH || i.status === CALL_STATUS_STOP) sum++;
-        })
-        accumulator = accumulator + sum;
-      }
-      return accumulator;
-    }, 0);
-
-    let callReceivedRate = 0;
-    if(numberOfIncomingCalls > 0) {
-      const resultRate = (numberOfCallsReceived/numberOfIncomingCalls) * 100
-      const roundedResultRate  = resultRate.toFixed(2)
-      if (roundedResultRate.indexOf('.') !== -1 && parseFloat(roundedResultRate) % 1 === 0) {
-        callReceivedRate = parseInt(roundedResultRate, 10);
-      } else {
-        callReceivedRate = parseFloat(roundedResultRate);
-      }
-    }
-
-    setDataOverallMonthDay((prev) => ({
-      ...prev,
-      numberOfIncomingCalls,
-      numberOfCallsReceived,
-      callReceivedRate,
-    }));
-  }, [filteredData, dateMonthDay]);
+  useYearMonthEffect(filteredData, dateYearMonth, setDataOverallYearMonth);
+  useMonthDayEffect(filteredData, dateMonthDay, setDataOverallMonthDay);
 
   return (
     <div className="host-table-operator">
@@ -197,24 +130,26 @@ export default function CustomTable() {
               <Select
                 native
                 className={classes.colorOption}
-                value={hostLoginId}
-                onChange={(e) => setHostLoginId(e.target.value)}
+                value={hostId}
+                onChange={(e) => setHostId(e.target.value)}
                 inputProps={{
                   name: 'Host login ID',
                   id: 'outlined-age-native-simple',
                 }}
               >
-                {uniqueHostLoginIds.map(id => (
+                <option key={'default'} value={''} disabled>
+                  オペレータ ID
+                </option>
+                {uniqueHostIds.map(id => (
                   <option key={id} className={classes.colorOption} value={id}>
                     {id}
                   </option>
                 ))}
               </Select>
-
             </FormControl>
           </div>
           <div>
-            <button
+          <button
               className="host-button-setting"
               onClick={handleSearch}
             >
@@ -225,8 +160,8 @@ export default function CustomTable() {
         <Table className={classes.table} aria-label="customized table" ref={tableRef}>
           <TableHead className="host-custom-date-picker">
             <TableRow className="host-header-operator host-table-row">
-            <StyledTableCell className={classes.cellHead}>項目</StyledTableCell>
-            <StyledTableCell className={classes.cellHead} align="right" >
+              <StyledTableCell className={classes.cellHead}>項目</StyledTableCell>
+              <StyledTableCell className={classes.cellHead} align="right" >
                 <div>
                   <DatePickerYearMonth
                     dateYearMonth={dateYearMonth}

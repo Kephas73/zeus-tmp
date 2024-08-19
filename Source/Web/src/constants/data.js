@@ -25,3 +25,9 @@ export const CHINESE = 'chinese';
 export const KOREAN = 'korean';
 export const SPAIN = 'spain';
 export const PORTUGAL = 'portugal';
+
+export const WAITING_GUESTS_STATUS_CONNECTED = 1; // connected to call
+export const WAITING_GUESTS_STATUS_DISCONNECT = 2; // disconnected
+
+
+
