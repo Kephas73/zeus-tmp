@@ -15,6 +15,8 @@ import { calls } from '../../../../data/calls';
 import { getYearMonthDay } from '../../../../utils/formatDate';
 import { CALL_STATUS_CATCH, CALL_STATUS_STOP } from '../../../../constants/data';
 import { exportToCSVSkill } from '../../../../utils/exportCSV';
+import { formatDataForLanguages, funcCallReceivedRate, funcNumberOfCallsReceived, funcNumberOfIncomingCalls } from './caculator';
+import DatePickerDayMonthYearPlusOneMonth from './DatePickerDayMonthYearPlusOneMonth';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -65,35 +67,11 @@ export default function CustomTable() {
   const [toDateTime, setToDateTime] = useState(new Date());
   const rows = useRowSkill(dataSkillDateTime);
   useEffect(() => {
-    const numberOfIncomingCalls = calls.reduce((accumulator, item) => {
-      const date = getYearMonthDay(item.timestamp);
-      if (getYearMonthDay(fromDateTime) === date) {
-        accumulator = accumulator + item.calls.length;
-      }
-      return accumulator;
-    }, 0);
-
-    const numberOfCallsReceived = calls.reduce((accumulator, item) => {
-      const date = getYearMonthDay(item.timestamp);
-      if (getYearMonthDay(fromDateTime) === date) {
-        let sum = 0;
-        item.calls.forEach((i) => {
-          if (i.status === CALL_STATUS_CATCH || i.status === CALL_STATUS_STOP) sum++;
-        });
-        accumulator = accumulator + sum;
-      }
-      return accumulator;
-    }, 0);
-    let callReceivedRate = 0;
-    if (numberOfIncomingCalls > 0) {
-      const resultRate = (numberOfCallsReceived / numberOfIncomingCalls) * 100;
-      const roundedResultRate = resultRate.toFixed(2);
-      if (roundedResultRate.indexOf('.') !== -1 && parseFloat(roundedResultRate) % 1 === 0) {
-        callReceivedRate = parseInt(roundedResultRate, 10);
-      } else {
-        callReceivedRate = parseFloat(roundedResultRate);
-      }
-    }
+    const data = formatDataForLanguages()
+    console.log(data);
+    const numberOfIncomingCalls = funcNumberOfIncomingCalls(fromDateTime);
+    const numberOfCallsReceived = funcNumberOfCallsReceived(fromDateTime)
+    const callReceivedRate = funcCallReceivedRate(numberOfIncomingCalls, numberOfCallsReceived)
 
     setDataSkillDateTime((prev) => ({
       ...prev,
@@ -113,13 +91,13 @@ export default function CustomTable() {
         <div className="host-container-dateTime">
           <div className="host-text-filter">期間指定</div>
           <div>
-            <DatePickerDayMonthYear />
+            <DatePickerDayMonthYear value={fromDateTime} setFromDateTime={setFromDateTime} />
           </div>
           <div className="host-tilde-filter">
             ~
           </div>
           <div>
-            <DatePickerDayMonthYear />
+            <DatePickerDayMonthYearPlusOneMonth value={toDateTime} setToDateTime={setToDateTime} />
           </div>
         </div>
         <Table className={`${classes.table} custom-tableBody`} aria-label="customized table">

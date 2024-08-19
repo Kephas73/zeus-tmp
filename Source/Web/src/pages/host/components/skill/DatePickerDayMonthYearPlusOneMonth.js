@@ -66,11 +66,21 @@ const CustomKeyboardDatePicker = withStyles({
   },
 })(KeyboardDatePicker);
 
-export default function DatePickerDayMonthYear({value, setFromDateTime}) {
+export default function DatePickerDayMonthYearPlusOneMonth({value, setToDateTime}) {
   const classes = useStyles();
 
+  const getLastMonthDate = (date) => {
+    const newDate = new Date(date);
+    newDate.setMonth(newDate.getMonth() + 1);
+    return newDate;
+  };
+  
+  // Initialize state with the date one month ahead
+  const [selectedDate, setSelectedDate] = React.useState(() => getLastMonthDate(new Date()));
+
   const handleDateChange = (date) => {
-    setFromDateTime(date);
+    setSelectedDate(date);
+    setToDateTime(date); // Update the toDateTime state in the parent component
   };
 
   return (
@@ -84,7 +94,7 @@ export default function DatePickerDayMonthYear({value, setFromDateTime}) {
           margin="none"
           id="date-picker-inline"
           label="年 / 月 / 日"
-          value={value}
+          value={selectedDate}
           onChange={handleDateChange}
           KeyboardButtonProps={{
             'aria-label': 'change date',

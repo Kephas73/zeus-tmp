@@ -19,9 +19,9 @@ export const ROOM_MEETING = 6; // meeting, no new call
 export const ROOM_SUPPORT = 7; // supporting, no new call
 export const ROOM_APPOINTMENT = 8; // waiting appointment call, only accept appointment call
 
-
-
-
-
-
-
+// languages
+export const ENGLISH = 'english';
+export const CHINESE = 'chinese';
+export const KOREAN = 'korean';
+export const SPAIN = 'spain';
+export const PORTUGAL = 'portugal';
