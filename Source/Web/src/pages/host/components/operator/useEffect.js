@@ -45,7 +45,7 @@ export function useYearMonthEffect(filteredData, dateYearMonth, setDataOverallYe
       }
     }
 
-    const averageTalkTime = numberOfCallsReceived > 0 ? totalTalkTime / numberOfCallsReceived : 0;
+    const averageTalkTime = numberOfCallsReceived > 0 ?  Math.ceil((totalTalkTime / numberOfCallsReceived) * 10) / 10 : 0;
 
     //count time waiting
     const hostIds = filteredData.map(item => item.hostId);
@@ -122,7 +122,7 @@ export function useMonthDayEffect(filteredData, dateMonthDay, setDataOverallMont
       return accumulator;
     }, 0);
 
-    const averageTalkTime = numberOfCallsReceived > 0 ? totalTalkTime / numberOfCallsReceived : 0;
+    const averageTalkTime = numberOfCallsReceived > 0 ?  Math.ceil((totalTalkTime / numberOfCallsReceived) * 10) / 10 : 0;
 
     //count time waiting
     const hostIds = filteredData.map(item => item.hostId);
