@@ -189,5 +189,4 @@ export default function CustomTable() {
       </TableContainer>
     </div>
   );
-
 }
