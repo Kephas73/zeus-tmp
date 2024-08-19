@@ -3,8 +3,11 @@ import { getMonthDay, getYearMonth } from '../../../../utils/formatDate';
 import { CALL_STATUS_CATCH, CALL_STATUS_STOP } from '../../../../constants/data';
 import { roomChangeLogs } from '../../../../data/roomChangeLogs';
 
+//filter data operator by Year month
 export function useYearMonthEffect(filteredData, dateYearMonth, setDataOverallYearMonth) {
   useEffect(() => {
+
+    //number call coming
     const numberOfIncomingCalls = filteredData.reduce((accumulator, item) => {
       const date = getYearMonth(item.timestamp);
       if (getYearMonth(dateYearMonth) === date) {
@@ -13,6 +16,7 @@ export function useYearMonthEffect(filteredData, dateYearMonth, setDataOverallYe
       return accumulator;
     }, 0);
 
+    //number call received
     const numberOfCallsReceived = filteredData.reduce((accumulator, item) => {
       const date = getYearMonth(item.timestamp);
       if (getYearMonth(dateYearMonth) === date) {
@@ -25,6 +29,7 @@ export function useYearMonthEffect(filteredData, dateYearMonth, setDataOverallYe
       return accumulator;
     }, 0);
 
+    // total talk time
     const totalTalkTime = filteredData.reduce((accumulator, item) => {
       const date = getYearMonth(item.timestamp);
 
@@ -34,6 +39,7 @@ export function useYearMonthEffect(filteredData, dateYearMonth, setDataOverallYe
       return accumulator;
     }, 0);
 
+    //call received date
     let callReceivedRate = 0;
     if (numberOfIncomingCalls > 0) {
       const resultRate = (numberOfCallsReceived / numberOfIncomingCalls) * 100;
@@ -45,6 +51,7 @@ export function useYearMonthEffect(filteredData, dateYearMonth, setDataOverallYe
       }
     }
 
+    // average talk time
     const averageTalkTime = numberOfCallsReceived > 0 ?  Math.ceil((totalTalkTime / numberOfCallsReceived) * 10) / 10 : 0;
 
     //count time waiting
@@ -64,11 +71,12 @@ export function useYearMonthEffect(filteredData, dateYearMonth, setDataOverallYe
         timeWaitingInMinutes,
       };
     });
-    const timeWaitingPrev = timeWaitingDifferencePrev.reduce((total, log) => {
+    const timeWaiting = timeWaitingDifferencePrev.reduce((total, log) => {
       return total + log.timeWaitingInMinutes;
     }, 0);
 
-    const upTime = Math.ceil((totalTalkTime + timeWaitingPrev) * 10) / 10;
+    // total operating time
+    const upTime = Math.ceil((totalTalkTime + timeWaiting) * 10) / 10;
 
     setDataOverallYearMonth((prev) => ({
       ...prev,
@@ -82,8 +90,11 @@ export function useYearMonthEffect(filteredData, dateYearMonth, setDataOverallYe
   }, [filteredData, dateYearMonth, setDataOverallYearMonth]);
 }
 
+//filter data operator by day month
 export function useMonthDayEffect(filteredData, dateMonthDay, setDataOverallMonthDay) {
   useEffect(() => {
+
+    //number call coming
     const numberOfIncomingCalls = filteredData.reduce((accumulator, item) => {
       const date = getMonthDay(item.timestamp);
       if (getMonthDay(dateMonthDay) === date) {
@@ -92,6 +103,7 @@ export function useMonthDayEffect(filteredData, dateMonthDay, setDataOverallMont
       return accumulator;
     }, 0);
 
+    //number call received
     const numberOfCallsReceived = filteredData.reduce((accumulator, item) => {
       const date = getMonthDay(item.timestamp);
       if (getMonthDay(dateMonthDay) === date) {
@@ -104,6 +116,7 @@ export function useMonthDayEffect(filteredData, dateMonthDay, setDataOverallMont
       return accumulator;
     }, 0);
 
+    //call received date
     let callReceivedRate = 0;
     if (numberOfIncomingCalls > 0) {
       const resultRate = (numberOfCallsReceived / numberOfIncomingCalls) * 100;
@@ -114,6 +127,9 @@ export function useMonthDayEffect(filteredData, dateMonthDay, setDataOverallMont
         callReceivedRate = parseFloat(roundedResultRate);
       }
     }
+
+    // total talk time
+
     const totalTalkTime = filteredData.reduce((accumulator, item) => {
       const date = getMonthDay(item.timestamp);
       if (getMonthDay(dateMonthDay) === date) {
@@ -122,6 +138,7 @@ export function useMonthDayEffect(filteredData, dateMonthDay, setDataOverallMont
       return accumulator;
     }, 0);
 
+    // average talk time
     const averageTalkTime = numberOfCallsReceived > 0 ?  Math.ceil((totalTalkTime / numberOfCallsReceived) * 10) / 10 : 0;
 
     //count time waiting
@@ -145,7 +162,9 @@ export function useMonthDayEffect(filteredData, dateMonthDay, setDataOverallMont
       return total + log.timeWaitingInMinutes;
     }, 0);
 
+    // total operating time
     const upTime = Math.ceil((totalTalkTime + timeWaitingPrev) * 10) / 10;
+
     setDataOverallMonthDay((prev) => ({
       ...prev,
       numberOfIncomingCalls,
