@@ -324,10 +324,10 @@ export default function Overall() {
                   </StyledTableCell>
 
                   <StyledTableCell align="right">
-                    {isFieldActiveSeats ? addText('日の平均', data.metric1) : data.metric1}
+                    {isFieldActiveSeats ? addText('[月平均]', data.metric1) : data.metric1}
                   </StyledTableCell>
                   <StyledTableCell align="right">
-                    {isFieldActiveSeats ? addText('日の平均', data.metric2) : data.metric2}
+                    {isFieldActiveSeats ? addText('[1日平均]', data.metric2) : data.metric2}
                   </StyledTableCell>
                 </StyledTableRow>
               );

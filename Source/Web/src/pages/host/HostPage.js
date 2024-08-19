@@ -9,7 +9,7 @@ import { Box, Button, Modal } from '@material-ui/core';
 const HostPage = () => {
   const [open, setOpen] = useState(false);
   return (
-    <>
+    <div className="host-page-container">
       <div className="host-header-container">
         <h1>Welcome to the Host Page!</h1>
         <Button variant="contained" onClick={() => setOpen(true)}>
@@ -21,6 +21,7 @@ const HostPage = () => {
         onClose={() => setOpen(false)}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        className='host-modal'
       >
         <Box>
           <div className="host-page">
@@ -37,7 +38,7 @@ const HostPage = () => {
           </div>
         </Box>
       </Modal>
-    </>
+    </div>
   );
 };
 
