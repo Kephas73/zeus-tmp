@@ -91,21 +91,10 @@ export default function CustomTable() {
 
   const rows = useRow(dataOverallYearMonth, dataOverallMonthDay, filteredData);
 
-  const uniqueHostIds = Array.from(new Set(calls.map(call => call.hostId))).filter(id => id);
+  const uniqueHostIds = Array.from(new Set(calls.map(call => call.hostLoginId))).filter(id => id);
 
-  const uniqueHostData = Array.from(new Set(calls.map(call => call.hostId)))
-    .filter(id => id)
-    // .map(id => {
-    //   const hostData = calls.find(call => call.hostId === id);
-    //   return {
-    //     hostId: id,
-    //     hostLoginId: hostData.hostLoginId,
-    //   };
-    ;
-
-  console.log('ihjfkjàdhkjadhfkjahfkjádhfkjáhdfkáhdfkhádfkhádkf', uniqueHostData);
   const handleSearch = () => {
-    const filteredCalls = calls.filter((item) => item.hostId === hostId);
+    const filteredCalls = calls.filter((item) => item.hostLoginId === hostId);
     setFilteredData(filteredCalls);
   };
 

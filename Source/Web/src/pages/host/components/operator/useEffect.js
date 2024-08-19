@@ -49,22 +49,9 @@ export function useYearMonthEffect(filteredData, dateYearMonth, setDataOverallYe
 
     //count time waiting
     const hostIds = filteredData.map(item => item.hostId);
-    const filteredNewValue = roomChangeLogs.filter(value => {
-      return value.newValue.status === 1 && value.prevValue.status === 0 && hostIds.includes(value.newValue.hostId);
-    });
 
     const filteredPrevValue = roomChangeLogs.filter(value => {
       return value.prevValue.status === 1 && hostIds.includes(value.prevValue.hostId);
-    });
-
-    const TimeWaitingDifferenceNew = filteredNewValue.map(value => {
-      const newValueTimestamp = value.newValue.timestamp._seconds;
-      const prevValueTimestamp = value.prevValue.timestamp._seconds;
-      const timeWaitingInMinutes = (newValueTimestamp - prevValueTimestamp) / 60;
-      return {
-        ...value,
-        timeWaitingInMinutes,
-      };
     });
 
     const TimeWaitingDifferencePrev = filteredPrevValue.map(value => {
@@ -80,12 +67,8 @@ export function useYearMonthEffect(filteredData, dateYearMonth, setDataOverallYe
     const TimeWaitingPrev = TimeWaitingDifferencePrev.reduce((total, log) => {
       return total + log.timeWaitingInMinutes;
     }, 0);
-    const TimeWaitingNew = TimeWaitingDifferenceNew.reduce((total, log) => {
-      return total + log.timeWaitingInMinutes;
-    }, 0);
 
-    const totalWaitingTime = TimeWaitingPrev + TimeWaitingNew;
-    const upTime = Math.ceil((totalTalkTime + totalWaitingTime) * 10) / 10;
+    const upTime = Math.ceil((totalTalkTime + TimeWaitingPrev) * 10) / 10;
 
     setDataOverallYearMonth((prev) => ({
       ...prev,
@@ -143,21 +126,9 @@ export function useMonthDayEffect(filteredData, dateMonthDay, setDataOverallMont
 
     //count time waiting
     const hostIds = filteredData.map(item => item.hostId);
-    const filteredNewValue = roomChangeLogs.filter(value => {
-      return value.newValue.status === 1 && value.prevValue.status === 0 && hostIds.includes(value.newValue.hostId);
-    });
+
     const filteredPrevValue = roomChangeLogs.filter(value => {
       return value.prevValue.status === 1 && hostIds.includes(value.prevValue.hostId);
-    });
-
-    const TimeWaitingDifferenceNew = filteredNewValue.map(value => {
-      const newValueTimestamp = value.newValue.timestamp._seconds;
-      const prevValueTimestamp = value.prevValue.timestamp._seconds;
-      const timeWaitingInMinutes = (newValueTimestamp - prevValueTimestamp) / 60;
-      return {
-        ...value,
-        timeWaitingInMinutes,
-      };
     });
 
     const TimeWaitingDifferencePrev = filteredPrevValue.map(value => {
@@ -173,13 +144,8 @@ export function useMonthDayEffect(filteredData, dateMonthDay, setDataOverallMont
     const TimeWaitingPrev = TimeWaitingDifferencePrev.reduce((total, log) => {
       return total + log.timeWaitingInMinutes;
     }, 0);
-    const TimeWaitingNew = TimeWaitingDifferenceNew.reduce((total, log) => {
-      return total + log.timeWaitingInMinutes;
-    }, 0);
 
-    const totalWaitingTime = TimeWaitingPrev + TimeWaitingNew;
-    const upTime = Math.ceil((totalTalkTime + totalWaitingTime) * 10) / 10;
-
+    const upTime = Math.ceil((totalTalkTime + TimeWaitingPrev) * 10) / 10;
     setDataOverallMonthDay((prev) => ({
       ...prev,
       numberOfIncomingCalls,
