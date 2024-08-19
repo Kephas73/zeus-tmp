@@ -13,20 +13,13 @@ import constants from '../../../../constants';
 import './overall.css';
 
 import { getMonthDay, getYearMonth, getYear, getMonth } from '../../../../utils/formatDate';
+import { MONTH_DAY, YEAR_MONTH } from '../../../../constants/data';
 import { roundToDecimalPlaces } from '../../../../utils/roundDecimal';
 import useRow from './useRow';
 import { exportToCSV } from '../../../../utils/exportCSV';
 import {
-  countCallWaitingNumberOfExits,
-  countCallWaitingNumberOfSuccessfulConnections,
   countNumberOfActiveSeats,
-  countNumberOfBreaks,
-  countNumberOfCallsReceived,
-  countNumberOfIncomingCalls,
-  countNumberOfMissedCalls,
-  countTimeWaiting,
-  getCallWaitingAverageWaitingTime,
-  getTotalTalkTime,
+  getDataOverall,
 } from './helper';
 
 const StyledTableCell = withStyles((theme) => ({
@@ -125,130 +118,18 @@ export default function Overall() {
   const rows = useRow(dataOverallYearMonth, dataOverallMonthDay);
 
   useEffect(() => {
-    const numberOfIncomingCalls = countNumberOfIncomingCalls(getYearMonth, dateYearMonth);
-
-    const numberOfCallsReceived = countNumberOfCallsReceived(getYearMonth, dateYearMonth);
-
-    const callReceivedRate = (numberOfCallsReceived / numberOfIncomingCalls) * 100;
-
-    const numberOfActiveSeats = countNumberOfActiveSeats(getYear, dateYearMonth);
-    const numberOfActiveSeatsAverageMonthly = numberOfActiveSeats / 12;
-
-    const timeWaiting = countTimeWaiting(getYearMonth, dateYearMonth); // seconds
-    const totalTalkTime = getTotalTalkTime(getYearMonth, dateYearMonth); // seconds
-
-    const upTime = totalTalkTime + timeWaiting; // seconds
-
-    const averageTalkTime = totalTalkTime / numberOfIncomingCalls; // seconds
-
-    const numberOfMissedCalls = countNumberOfMissedCalls(getYearMonth, dateYearMonth);
-
-    const numberOfBreaks = countNumberOfBreaks(getYearMonth, dateYearMonth);
-
-    const callWaitingAverageWaitingTime = getCallWaitingAverageWaitingTime(
-      getYearMonth,
-      dateYearMonth
-    ); // milliseconds
-
-    const callWaitingNumberOfSuccessfulConnections = countCallWaitingNumberOfSuccessfulConnections(
-      getYearMonth,
-      dateYearMonth
-    );
-
-    const callWaitingNumberOfExits = countCallWaitingNumberOfExits(getYearMonth, dateYearMonth);
-
-    const numberOfCallsWaiting =
-      numberOfIncomingCalls -
-      numberOfMissedCalls -
-      numberOfBreaks +
-      callWaitingNumberOfSuccessfulConnections;
-
-    const callWaitingRate =
-      numberOfCallsWaiting / (numberOfIncomingCalls - numberOfMissedCalls - numberOfBreaks);
-
+    const data = getDataOverall(getYearMonth, dateYearMonth, YEAR_MONTH)
     setDataOverallYearMonth((prev) => ({
       ...prev,
-      numberOfIncomingCalls,
-      numberOfCallsReceived,
-      callReceivedRate: roundToDecimalPlaces(callReceivedRate, 2),
-      numberOfActiveSeats: roundToDecimalPlaces(numberOfActiveSeatsAverageMonthly, 2),
-      upTime: roundToDecimalPlaces(upTime / 60, 2),
-      totalTalkTime: roundToDecimalPlaces(totalTalkTime / 60, 2),
-      averageTalkTime: roundToDecimalPlaces(averageTalkTime / 60, 1),
-      numberOfMissedCalls,
-      numberOfBreaks,
-      numberOfCallsWaiting,
-      callWaitingRate: roundToDecimalPlaces(callWaitingRate, 2),
-      callWaitingAverageWaitingTime: roundToDecimalPlaces(
-        callWaitingAverageWaitingTime / (60 * 1000),
-        2
-      ),
-      callWaitingNumberOfSuccessfulConnections,
-      callWaitingNumberOfExits,
+      ...data
     }));
   }, [dateYearMonth]);
 
   useEffect(() => {
-    const numberOfIncomingCalls = countNumberOfIncomingCalls(getMonthDay, dateMonthDay);
-
-    const numberOfCallsReceived = countNumberOfCallsReceived(getMonthDay, dateMonthDay);
-
-    const callReceivedRate = (numberOfCallsReceived / numberOfIncomingCalls) * 100;
-
-    const numberOfActiveSeatsMonth = countNumberOfActiveSeats(getMonth, dateMonthDay);
-    const numberOfActiveSeatsAverageDay = numberOfActiveSeatsMonth / 30;
-
-    const timeWaiting = countTimeWaiting(getMonthDay, dateMonthDay); // seconds
-    const totalTalkTime = getTotalTalkTime(getMonthDay, dateMonthDay); // seconds
-
-    const upTime = totalTalkTime + timeWaiting; // seconds
-
-    const averageTalkTime = totalTalkTime / numberOfIncomingCalls; // seconds
-
-    const numberOfMissedCalls = countNumberOfMissedCalls(getMonthDay, dateMonthDay);
-
-    const numberOfBreaks = countNumberOfBreaks(getMonthDay, dateMonthDay);
-
-    const callWaitingAverageWaitingTime = getCallWaitingAverageWaitingTime(
-      getMonthDay,
-      dateMonthDay
-    ); // milliseconds
-
-    const callWaitingNumberOfSuccessfulConnections = countCallWaitingNumberOfSuccessfulConnections(
-      getMonthDay,
-      dateMonthDay
-    );
-
-    const callWaitingNumberOfExits = countCallWaitingNumberOfExits(getMonthDay, dateMonthDay);
-
-    const numberOfCallsWaiting =
-      numberOfIncomingCalls -
-      numberOfMissedCalls -
-      numberOfBreaks +
-      callWaitingNumberOfSuccessfulConnections;
-      
-    const callWaitingRate =
-      numberOfCallsWaiting / (numberOfIncomingCalls - numberOfMissedCalls - numberOfBreaks);
-
+    const data = getDataOverall(getMonthDay, dateMonthDay, MONTH_DAY)
     setDataOverallMonthDay((prev) => ({
       ...prev,
-      numberOfIncomingCalls,
-      numberOfCallsReceived,
-      callReceivedRate: roundToDecimalPlaces(callReceivedRate, 2),
-      numberOfActiveSeats: roundToDecimalPlaces(numberOfActiveSeatsAverageDay, 2),
-      upTime: roundToDecimalPlaces(upTime / 60, 2),
-      totalTalkTime: roundToDecimalPlaces(totalTalkTime / 60, 2),
-      averageTalkTime: roundToDecimalPlaces(averageTalkTime / 60, 1),
-      numberOfMissedCalls,
-      numberOfBreaks,
-      numberOfCallsWaiting,
-      callWaitingRate: roundToDecimalPlaces(callWaitingRate, 2),
-      callWaitingAverageWaitingTime: roundToDecimalPlaces(
-        callWaitingAverageWaitingTime / (60 * 1000),
-        2
-      ),
-      callWaitingNumberOfSuccessfulConnections,
-      callWaitingNumberOfExits,
+      ...data
     }));
   }, [dateMonthDay]);
 

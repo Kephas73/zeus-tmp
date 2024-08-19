@@ -29,5 +29,6 @@ export const PORTUGAL = 'portugal';
 export const WAITING_GUESTS_STATUS_CONNECTED = 1; // connected to call
 export const WAITING_GUESTS_STATUS_DISCONNECT = 2; // disconnected
 
-
-
+// checkDate
+export const YEAR_MONTH = 1
+export const MONTH_DAY = 2

@@ -9,10 +9,13 @@ import {
   ROOM_TALKING,
   WAITING_GUESTS_STATUS_CONNECTED,
   WAITING_GUESTS_STATUS_DISCONNECT,
+  YEAR_MONTH,
 } from '../../../../constants/data';
 import { calls } from '../../../../data/calls';
 import { roomChangeLogs } from '../../../../data/roomChangeLogs';
 import { waitingGuests } from '../../../../data/waitingGuests';
+import { getMonth, getYear } from '../../../../utils/formatDate';
+import { roundToDecimalPlaces } from '../../../../utils/roundDecimal';
 
 /**
  * @param {Function} funcGetDate
@@ -197,3 +200,80 @@ export const countCallWaitingNumberOfExits = (funcGetDate, dateTime) => {
   }, 0);
   return callWaitingNumberOfExits;
 };
+
+
+/**
+ * @param {Function} funcGetDate
+ * @param {Date} dateTime
+ * @param {number} checkDate
+ * @returns {object} - dataOverallYearMonth or dataOverallMonthDay
+ */
+export const getDataOverall = (funcGetDate, dateTime, checkDate) => {
+  const numberOfIncomingCalls = countNumberOfIncomingCalls(funcGetDate, dateTime);
+
+  const numberOfCallsReceived = countNumberOfCallsReceived(funcGetDate, dateTime);
+
+  const callReceivedRate = (numberOfCallsReceived / numberOfIncomingCalls) * 100;
+
+  let numberOfActiveSeats = 0;
+  let numberOfActiveSeatsAverage = 0;
+  if (checkDate === YEAR_MONTH) {
+     numberOfActiveSeats = countNumberOfActiveSeats(getYear, dateTime);
+     numberOfActiveSeatsAverage = numberOfActiveSeats / 12;
+  } else {
+     numberOfActiveSeats = countNumberOfActiveSeats(getMonth, dateTime); 
+     numberOfActiveSeatsAverage = numberOfActiveSeats / 30; 
+  }
+
+  const timeWaiting = countTimeWaiting(funcGetDate, dateTime); // seconds
+  const totalTalkTime = getTotalTalkTime(funcGetDate, dateTime); // seconds
+
+  const upTime = totalTalkTime + timeWaiting; // seconds
+
+  const averageTalkTime = totalTalkTime / numberOfIncomingCalls; // seconds
+
+  const numberOfMissedCalls = countNumberOfMissedCalls(funcGetDate, dateTime);
+
+  const numberOfBreaks = countNumberOfBreaks(funcGetDate, dateTime);
+
+  const callWaitingAverageWaitingTime = getCallWaitingAverageWaitingTime(
+    funcGetDate,
+    dateTime
+  ); // milliseconds
+
+  const callWaitingNumberOfSuccessfulConnections = countCallWaitingNumberOfSuccessfulConnections(
+    funcGetDate,
+    dateTime
+  );
+
+  const callWaitingNumberOfExits = countCallWaitingNumberOfExits(funcGetDate, dateTime);
+
+  const numberOfCallsWaiting =
+    numberOfIncomingCalls -
+    numberOfMissedCalls -
+    numberOfBreaks +
+    callWaitingNumberOfSuccessfulConnections;
+
+  const callWaitingRate =
+    numberOfCallsWaiting / (numberOfIncomingCalls - numberOfMissedCalls - numberOfBreaks);
+
+  return {
+    numberOfIncomingCalls,
+    numberOfCallsReceived,
+    callReceivedRate: roundToDecimalPlaces(callReceivedRate, 2),
+    numberOfActiveSeats: roundToDecimalPlaces(numberOfActiveSeatsAverage, 2),
+    upTime: roundToDecimalPlaces(upTime / 60, 2),
+    totalTalkTime: roundToDecimalPlaces(totalTalkTime / 60, 2),
+    averageTalkTime: roundToDecimalPlaces(averageTalkTime / 60, 1),
+    numberOfMissedCalls,
+    numberOfBreaks,
+    numberOfCallsWaiting,
+    callWaitingRate: roundToDecimalPlaces(callWaitingRate, 2),
+    callWaitingAverageWaitingTime: roundToDecimalPlaces(
+      callWaitingAverageWaitingTime / (60 * 1000),
+      2
+    ),
+    callWaitingNumberOfSuccessfulConnections,
+    callWaitingNumberOfExits,
+  }
+}
