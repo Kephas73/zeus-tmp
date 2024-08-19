@@ -2,87 +2,79 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>$(DEVELOPMENT_LANGUAGE)</string>
-	<key>CFBundleDisplayName</key>
-	<string>Call Center</string>
-	<key>CFBundleExecutable</key>
-	<string>$(EXECUTABLE_NAME)</string>
-	<key>CFBundleIdentifier</key>
-	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
-	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
-	<key>CFBundleName</key>
-	<string>call_center</string>
-	<key>CFBundlePackageType</key>
-	<string>APPL</string>
-	<key>CFBundleShortVersionString</key>
-	<string>$(FLUTTER_BUILD_NAME)</string>
-	<key>CFBundleSignature</key>
-	<string>????</string>
-	<key>CFBundleVersion</key>
-	<string>$(FLUTTER_BUILD_NUMBER)</string>
-	<key>LSRequiresIPhoneOS</key>
-	<true/>
-	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
-	<key>UIMainStoryboardFile</key>
-	<string>Main</string>
-	<key>UISupportedInterfaceOrientations</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>UISupportedInterfaceOrientations~ipad</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>CADisableMinimumFrameDurationOnPhone</key>
-	<true/>
-	<key>UIApplicationSupportsIndirectInputEvents</key>
-	<true/>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-			<!-- Cho phép các kết nối không bảo mật, nếu cần -->
-			<key>NSAllowsArbitraryLoads</key>
-			<false/>
-
-			<!-- Các miền ngoại lệ -->
-			<key>NSExceptionDomains</key>
-			<dict>
-					<!-- Miền chính của bạn -->
-					<key>example.likeness-online.com</key>
-					<dict>
-							<!-- Cho phép các kết nối HTTP cho miền này -->
-							<key>NSIncludesSubdomains</key>
-							<true/>
-							<key>NSExceptionAllowsInsecureHTTPLoads</key>
-							<false/>
-							<!-- Yêu cầu bí mật tiến về phía trước -->
-							<key>NSExceptionRequiresForwardSecrecy</key>
-							<true/>
-							<!-- Chứng chỉ SSL cần phải hợp lệ -->
-							<key>NSRequiresCertificateTransparency</key>
-							<true/>
-					</dict>
-
-					<!-- Thêm nhiều miền nếu cần -->
-			</dict>
-	</dict>
-	<key>NSCameraUsageDescription</key>
-	<string>App needs access to the camera for video calls.</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>App needs access to the microphone for audio calls.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>App needs access to the photo library.</string>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>App needs access to add photos to the library.</string>
-	<key>NSAllowsArbitraryLoads</key>
-	<true/>
-
+ <key>CADisableMinimumFrameDurationOnPhone</key>
+ <true/>
+ <key>CFBundleDevelopmentRegion</key>
+ <string>$(DEVELOPMENT_LANGUAGE)</string>
+ <key>CFBundleDisplayName</key>
+ <string>Webview IOS Flutter</string>
+ <key>CFBundleExecutable</key>
+ <string>$(EXECUTABLE_NAME)</string>
+ <key>CFBundleIdentifier</key>
+ <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+ <key>CFBundleInfoDictionaryVersion</key>
+ <string>6.0</string>
+ <key>CFBundleName</key>
+ <string>call_center</string>
+ <key>CFBundlePackageType</key>
+ <string>APPL</string>
+ <key>CFBundleShortVersionString</key>
+ <string>$(FLUTTER_BUILD_NAME)</string>
+ <key>CFBundleSignature</key>
+ <string>????</string>
+ <key>CFBundleVersion</key>
+ <string>$(FLUTTER_BUILD_NUMBER)</string>
+ <key>LSRequiresIPhoneOS</key>
+ <true/>
+ <key>NSAllowsArbitraryLoads</key>
+ <true/>
+ <key>NSAppTransportSecurity</key>
+ <dict>
+  <key>NSAllowsArbitraryLoads</key>
+  <false/>
+  <key>NSExceptionDomains</key>
+  <dict>
+   <key>example.likeness-online.com</key>
+   <dict>
+    <key>NSExceptionAllowsInsecureHTTPLoads</key>
+    <false/>
+    <key>NSExceptionRequiresForwardSecrecy</key>
+    <true/>
+    <key>NSIncludesSubdomains</key>
+    <true/>
+    <key>NSRequiresCertificateTransparency</key>
+    <true/>
+   </dict>
+  </dict>
+ </dict>
+ <key>NSCameraUsageDescription</key>
+ <string>App needs access to the camera for video calls.</string>
+ <key>NSMicrophoneUsageDescription</key>
+ <string>App needs access to the microphone for audio calls.</string>
+ <key>NSSpeechRecognitionUsageDescription</key>
+ <string>Our app uses speech recognition to provide voice commands and improve user experience. We need access to your voice data to make this feature work.</string>
+ <key>NSPhotoLibraryAddUsageDescription</key>
+ <string>App needs access to add photos to the library.</string>
+ <key>NSPhotoLibraryUsageDescription</key>
+ <string>App needs access to the photo library.</string>
+ <key>UIApplicationSupportsIndirectInputEvents</key>
+ <true/>
+ <key>UILaunchStoryboardName</key>
+ <string>LaunchScreen</string>
+ <key>UIMainStoryboardFile</key>
+ <string>Main</string>
+ <key>UISupportedInterfaceOrientations</key>
+ <array>
+  <string>UIInterfaceOrientationPortrait</string>
+  <string>UIInterfaceOrientationLandscapeLeft</string>
+  <string>UIInterfaceOrientationLandscapeRight</string>
+ </array>
+ <key>UISupportedInterfaceOrientations~ipad</key>
+ <array>
+  <string>UIInterfaceOrientationPortrait</string>
+  <string>UIInterfaceOrientationPortraitUpsideDown</string>
+  <string>UIInterfaceOrientationLandscapeLeft</string>
+  <string>UIInterfaceOrientationLandscapeRight</string>
+ </array>
 </dict>
 </plist>
