@@ -96,20 +96,3 @@ export const getMonthDay = (date) => {
   }
   return false;
 };
-
-/** 
-// timestamp
-const timestamp = 1722486742101;
-
-console.log(getYearMonthDay(timestamp)); // "2024-07-01"
-console.log(getYearMonth(timestamp)); // "2024-07"
-console.log(getMonthDay(timestamp)); // "07-01"
-
-// string
-const dateString = 'Fri Sep 13 2024 16:06:10 GMT+0700 (Giờ Đông Dương)';
-
-console.log(getYearMonthDay(dateString)); // "2024-09-13"
-console.log(getYearMonth(dateString)); // "2024-09"
-console.log(getMonthDay(dateString)); // "09-13"
-
-*/

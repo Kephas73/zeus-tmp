@@ -57,12 +57,12 @@ const useStyles = makeStyles({
     fontSize: '14px',
     '& .MuiOutlinedInput-input': {
       padding: '0 0 0 10px',
-      backgroundColor:'#fff',
+      backgroundColor:'var(--color-white)',
     },
   }
 });
 
-export default function CustomTable() {
+export default function Operator() {
   const classes = useStyles();
   const tableRef = useRef(null);
 

@@ -40,7 +40,7 @@ const StyledTableRow = withStyles((theme) => ({
 
 const useStyles = makeStyles(constants.tableRowStyles);
 
-export default function CustomTable() {
+export default function Skill() {
   const classes = useStyles();
 
   const [dataSkillDateTime, setDataSkillDateTime] = useState({});

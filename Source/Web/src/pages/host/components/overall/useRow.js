@@ -1,5 +1,3 @@
-import React from 'react';
-
 const useRow = (dataOverallYearMonth, dataOverallMonthDay) => {
   const createData = (data) => data;
 

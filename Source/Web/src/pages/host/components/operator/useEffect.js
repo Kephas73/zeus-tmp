@@ -54,7 +54,7 @@ export function useYearMonthEffect(filteredData, dateYearMonth, setDataOverallYe
       return value.prevValue.status === 1 && hostIds.includes(value.prevValue.hostId);
     });
 
-    const TimeWaitingDifferencePrev = filteredPrevValue.map(value => {
+    const timeWaitingDifferencePrev = filteredPrevValue.map(value => {
       const newValueTimestamp = value.newValue.timestamp._seconds;
       const prevValueTimestamp = value.prevValue.timestamp._seconds;
       const timeWaitingInMinutes = (newValueTimestamp - prevValueTimestamp) / 60;
@@ -64,11 +64,11 @@ export function useYearMonthEffect(filteredData, dateYearMonth, setDataOverallYe
         timeWaitingInMinutes,
       };
     });
-    const TimeWaitingPrev = TimeWaitingDifferencePrev.reduce((total, log) => {
+    const timeWaitingPrev = timeWaitingDifferencePrev.reduce((total, log) => {
       return total + log.timeWaitingInMinutes;
     }, 0);
 
-    const upTime = Math.ceil((totalTalkTime + TimeWaitingPrev) * 10) / 10;
+    const upTime = Math.ceil((totalTalkTime + timeWaitingPrev) * 10) / 10;
 
     setDataOverallYearMonth((prev) => ({
       ...prev,
@@ -131,7 +131,7 @@ export function useMonthDayEffect(filteredData, dateMonthDay, setDataOverallMont
       return value.prevValue.status === 1 && hostIds.includes(value.prevValue.hostId);
     });
 
-    const TimeWaitingDifferencePrev = filteredPrevValue.map(value => {
+    const timeWaitingDifferencePrev = filteredPrevValue.map(value => {
       const newValueTimestamp = value.newValue.timestamp._seconds;
       const prevValueTimestamp = value.prevValue.timestamp._seconds;
       const timeWaitingInMinutes = (newValueTimestamp - prevValueTimestamp) / 60;
@@ -141,11 +141,11 @@ export function useMonthDayEffect(filteredData, dateMonthDay, setDataOverallMont
         timeWaitingInMinutes,
       };
     });
-    const TimeWaitingPrev = TimeWaitingDifferencePrev.reduce((total, log) => {
+    const timeWaitingPrev = timeWaitingDifferencePrev.reduce((total, log) => {
       return total + log.timeWaitingInMinutes;
     }, 0);
 
-    const upTime = Math.ceil((totalTalkTime + TimeWaitingPrev) * 10) / 10;
+    const upTime = Math.ceil((totalTalkTime + timeWaitingPrev) * 10) / 10;
     setDataOverallMonthDay((prev) => ({
       ...prev,
       numberOfIncomingCalls,

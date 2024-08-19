@@ -14,7 +14,6 @@ import { calls } from '../../../../data/calls';
 import { roomChangeLogs } from '../../../../data/roomChangeLogs';
 import { waitingGuests } from '../../../../data/waitingGuests';
 
-
 /**
  * @param {Function} funcGetDate
  * @param {Date} dateTime
