@@ -5,10 +5,7 @@
   border-bottom: 2px solid var(--color-line);
   padding: 15px 5px 5px 20px;
 }
-.host-container {
-    width: 100%;
-    overflow: auto;
-}
+
 .host-languages {
   padding: 4px;
   background-color: var(--color-white);
