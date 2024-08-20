@@ -10,7 +10,6 @@ import Paper from '@material-ui/core/Paper';
 import './skill.css';
 import constants from '../../../../constants';
 import DatePickerDayMonthYear from './DatePickerDayMonthYear';
-import useRowSkill from './useRowSkill';
 import { exportToCSVSkill } from '../../../../utils/exportCSV';
 import { formatDataForLanguages } from './caculator';
 import DatePickerDayMonthYearPlusOneMonth from './DatePickerDayMonthYearPlusOneMonth';
@@ -47,7 +46,6 @@ export default function Skill() {
 
   const [fromDateTime, setFromDateTime] = useState(new Date());
   const [toDateTime, setToDateTime] = useState(new Date());
-  const rows = useRowSkill(dataSkillDateTime);
 
   useEffect(() => {
     const data = formatDataForLanguages(fromDateTime, toDateTime);
