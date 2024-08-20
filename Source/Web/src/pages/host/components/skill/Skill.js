@@ -130,7 +130,7 @@ export default function Skill() {
               </StyledTableCell>
             </TableRow>
           </TableHead>
-          <TableBody className="host-global-text">
+          <TableBody className="host-global-text host-global-text-skill">
             {renderTableRows()}
           </TableBody>
         </Table>
