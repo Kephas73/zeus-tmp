@@ -36,18 +36,23 @@ export const exportToCSVSkill = (
     `年 / 月 / 日: ${getYearMonthDay(toDayMonthYear)}`,
   ];
 
-  const csvContent = rows
-    .map((group) => {
-      return group
-        .map((data) => {
-          return `${data.name},${data.metric1},${data.metric2},${data.metric3},${data.metric4},${data.metric5}`;
-        })
-        .join('\n');
+  const metrics = Object.keys(rows.ENGLISH);
+
+  const csvContent = metrics
+    .map((metric) => {
+      return [
+        metric,
+        rows.ENGLISH[metric],
+        rows.CHINESE[metric],
+        rows.KOREAN[metric],
+        rows.SPAIN[metric],
+        rows.PORTUGAL[metric],
+      ].join(',');
     })
     .join('\n');
 
   const csvData = [headers.join(','), csvContent].join('\n');
-  const bom = '\uFEFF';
+  const bom = '\uFEFF'; // Add BOM for UTF-8 encoding
   const blob = new Blob([bom + csvData], { type: 'text/csv;charset=utf-8;' });
   saveAs(blob, fileName);
 };
