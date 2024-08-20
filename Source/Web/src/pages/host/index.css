@@ -9,9 +9,9 @@
 }
 
 .host-header-container {
-    margin: 0 auto;
-    margin-top: 30%;
-    width: 50%;
+  margin: 0 auto;
+  margin-top: 30%;
+  width: 50%;
 }
 
 .host-modal {
@@ -33,7 +33,6 @@
   margin-bottom: 20px;
 }
 
-
 /* Responsive Design for Smaller Screens */
 @media (max-width: 1024px) {
   .host-container-operator-skill,
@@ -44,7 +43,6 @@
 
   .host-page {
     width: 100%;
-    max-width: 100%;
     margin: 0 auto;
     padding: 10px;
   }
@@ -66,13 +64,6 @@
 }
 
 @media (max-width: 768px) {
-  .container-operator-skill,
-  .container-operator {
-    grid-template-columns: 1fr;
-    gap: 10px;
-    overflow: auto;
-  }
-
   .host-page-container {
     width: 100vw;
   }
@@ -86,9 +77,9 @@
     width: 100vw;
     height: calc(97vh - 10px);
   }
-  .host-container-operator{
+  /* .host-container-operator{
     width: 120vw;
-  }
+  } */
 
   .host-header-container button {
     margin-top: 10px;
