@@ -151,7 +151,7 @@ export default function Overall() {
       5 * 60 * 1000
     );
     return () => clearInterval(intervalId);
-  }, []);
+  });
 
   const addText = (text, data) => {
     return (

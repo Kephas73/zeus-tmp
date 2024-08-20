@@ -7,9 +7,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.host-container {
-  max-width: 100%;
-}
 
 .host-container-nav {
   position: absolute;

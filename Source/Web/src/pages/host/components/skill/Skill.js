@@ -49,7 +49,6 @@ export default function Skill() {
 
   useEffect(() => {
     const data = formatDataForLanguages(fromDateTime, toDateTime);
-    console.log(data);
     setDataSkillDateTime(data);
   }, [fromDateTime, toDateTime]);
 

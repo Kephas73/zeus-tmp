@@ -102,7 +102,6 @@ export default function Operator() {
   useMonthDayEffect(filteredData, dateMonthDay, setDataOverallMonthDay);
 
   return (
-    <div className="host-table-operator">
       <TableContainer component={Paper} className={classes.container}>
         <div className="host-operator-container-header">
           <div className="host-performance-text">オペレータパフォーマンス</div>
@@ -187,6 +186,5 @@ export default function Operator() {
           </TableBody>
         </Table>
       </TableContainer>
-    </div>
   );
 }

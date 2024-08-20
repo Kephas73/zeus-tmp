@@ -33,8 +33,22 @@
   margin-bottom: 20px;
 }
 
+
+.host-table-wrapper {
+  overflow-x: auto; /* Horizontal scrolling for large tables */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 800px; /* Ensures tables have a minimum width */
+  margin-bottom: 20px;
+}
+
 /* Responsive Design for Smaller Screens */
 @media (max-width: 1024px) {
+ 
   .host-container-operator-skill,
   .host-container-operator {
     grid-template-columns: 1fr;
@@ -67,34 +81,18 @@
   .host-page-container {
     width: 100vw;
   }
-
   .host-modal {
     padding: 20px 10px;
     width: 100vw;
   }
   .host-page {
     padding: 5px;
-    width: 100vw;
     height: calc(97vh - 10px);
   }
-  /* .host-container-operator{
-    width: 120vw;
-  } */
-
   .host-header-container button {
     margin-top: 10px;
     width: 100%;
   }
 }
 
-.host-table-wrapper {
-  overflow-x: auto; /* Horizontal scrolling for large tables */
-  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-}
 
-table {
-  border-collapse: collapse;
-  width: 100%;
-  min-width: 800px; /* Ensures tables have a minimum width */
-  margin-bottom: 20px;
-}
