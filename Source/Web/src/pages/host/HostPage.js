@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+
+import { Box, Button, Modal } from '@material-ui/core';
+
 import Operator from './components/operator/Operator';
 import Overall from './components/overall/Overall';
 import Skill from './components/skill/Skill';
 import Header from './components/header/Header';
 import './index.css';
-import { Box, Button, Modal } from '@material-ui/core';
 
 const HostPage = () => {
   const [open, setOpen] = useState(false);

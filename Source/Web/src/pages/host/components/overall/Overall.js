@@ -1,5 +1,9 @@
 import { useState, useEffect } from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
+
+import DatePickerYearMonth from './DatePickerYearMonth';
+import DatePickerMonthDay from './DatePickerMonthDay';
+
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -7,20 +11,18 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import DatePickerYearMonth from './DatePickerYearMonth';
-import DatePickerMonthDay from './DatePickerMonthDay';
-import constants from '../../../../constants';
-import './overall.css';
 
-import { getMonthDay, getYearMonth, getYear, getMonth } from '../../../../utils/formatDate';
+import constants from '../../../../constants';
 import { MONTH_DAY, YEAR_MONTH } from '../../../../constants/data';
+import { getMonthDay, getYearMonth, getYear, getMonth } from '../../../../utils/formatDate';
 import { roundToDecimalPlaces } from '../../../../utils/roundDecimal';
-import useRow from './useRow';
 import { exportToCSV } from '../../../../utils/exportCSV';
 import {
   countNumberOfActiveSeats,
+  createRows,
   getDataOverall,
 } from './helper';
+import './overall.css';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -115,7 +117,7 @@ export default function Overall() {
 
   const [dateYearMonth, setDateYearMonth] = useState(new Date());
   const [dateMonthDay, setDateMonthDay] = useState(new Date());
-  const rows = useRow(dataOverallYearMonth, dataOverallMonthDay);
+  const rows = createRows(dataOverallYearMonth, dataOverallMonthDay);
 
   useEffect(() => {
     const data = getDataOverall(getYearMonth, dateYearMonth, YEAR_MONTH)
