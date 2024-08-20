@@ -96,41 +96,42 @@ export default function Skill() {
           </div>
         </div>
         <Table className={`${classes.table} custom-tableBody`} aria-label="customized table">
-          <TableHead>
-            <TableRow className="host-table-row-skill">
-              <StyledTableCell className={classes.cellHead}>項目</StyledTableCell>
-              <StyledTableCell className={classes.cellHead} align="center">
-                <div>
-                  <span className="host-languages">EN</span>
-                  <span>英語</span>
-                </div>
-              </StyledTableCell>
-              <StyledTableCell align="center" className={classes.cellHead}>
-                <div>
-                  <span className="host-languages">CN</span>
-                  <span>中国語</span>
-                </div>
-              </StyledTableCell>
-              <StyledTableCell align="center" className={classes.cellHead}>
-                <div>
-                  <span className="host-languages">KR</span>
-                  <span>韓国語</span>
-                </div>
-              </StyledTableCell>
-              <StyledTableCell align="center" className={classes.cellHead}>
-                <div>
-                  <span className="host-languages">ES</span>
-                  <span>スペイン語</span>
-                </div>
-              </StyledTableCell>
-              <StyledTableCell align="center" className={classes.cellHead}>
-                <div>
-                  <span className="host-languages">PT</span>
-                  <span>ポルトガル語</span>
-                </div>
-              </StyledTableCell>
-            </TableRow>
+        <TableHead>
+          <TableRow className="host-table-row-skill">
+            <StyledTableCell className={`${classes.cellHead} item-column`}>項目</StyledTableCell>
+            <StyledTableCell className={`${classes.cellHead} language-column`} align="center">
+              <div>
+                <span className="host-languages">EN</span>
+                <span>英語</span>
+              </div>
+            </StyledTableCell>
+            <StyledTableCell className={`${classes.cellHead} language-column`} align="center">
+              <div>
+                <span className="host-languages">CN</span>
+                <span>中国語</span>
+              </div>
+            </StyledTableCell>
+            <StyledTableCell className={`${classes.cellHead} language-column`} align="center">
+              <div>
+                <span className="host-languages">KR</span>
+                <span>韓国語</span>
+              </div>
+            </StyledTableCell>
+            <StyledTableCell className={`${classes.cellHead} language-column`} align="center">
+              <div>
+                <span className="host-languages">ES</span>
+                <span>スペイン語</span>
+              </div>
+            </StyledTableCell>
+            <StyledTableCell className={`${classes.cellHead} language-column`} align="center">
+              <div>
+                <span className="host-languages">PT</span>
+                <span>ポルトガル語</span>
+              </div>
+            </StyledTableCell>
+          </TableRow>
           </TableHead>
+
           <TableBody className="host-global-text host-global-text-skill">
             {renderTableRows()}
           </TableBody>

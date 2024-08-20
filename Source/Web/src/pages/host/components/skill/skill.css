@@ -1,56 +1,70 @@
 .host-container-header {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: 2px solid var(--color-line);
+  padding: 15px 5px 5px 20px;
+}
+.host-container {
     width: 100%;
-    border-bottom: 2px solid var(--color-line);
-    padding: 15px 5px 5px 20px;
-
+    overflow: auto;
 }
 .host-languages {
-    padding: 4px;
-    background-color: var(--color-white);
-    border-radius: 2px;
-    margin-right: 5px;
-    color: var(--color-languages);
-    font-size: 10px;
+  padding: 4px;
+  background-color: var(--color-white);
+  border-radius: 2px;
+  margin-right: 5px;
+  color: var(--color-languages);
+  font-size: 10px;
 }
 
 .host-button-csv {
-    padding: 2px 25px;
-    background-color: var(--background-color-btn-csv);
-    border: none;
-    border-radius: 5px;
-    color: var(--color-white);
-    cursor: pointer;
-    font-size: 12px;
+  padding: 2px 25px;
+  background-color: var(--background-color-btn-csv);
+  border: none;
+  border-radius: 5px;
+  color: var(--color-white);
+  cursor: pointer;
+  font-size: 12px;
 }
 
 .host-container-dateTime {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 0px 5px 0px 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0px 5px 0px 20px;
 }
 
 .host-text-filter {
-    color: var(--text-color-gray-bland);
-    margin-right: 15px;
-    padding-top: 40px;
+  color: var(--text-color-gray-bland);
+  margin-right: 15px;
+  padding-top: 40px;
 }
+
+.host-table-row-skill .item-column {
+  width: 20%;
+}
+
+.host-table-row-skill .language-column {
+  width: 16%;
+}
+
 .host-tilde-filter {
-    font-size: 50px;
-    color: var(--text-color-gray-bland)
+  font-size: 50px;
+  color: var(--text-color-gray-bland);
 }
 
 .host-drop-icon {
-    color: var(--text-color-gray-bold)
+  color: var(--text-color-gray-bold);
 }
 
-.host-global-text tr:nth-of-type(3), tr:nth-of-type(7), .host-global-text tr:nth-of-type(9){
-    border: unset;
-    border-bottom: 3px solid var(--color-line);
+.host-global-text tr:nth-of-type(3),
+tr:nth-of-type(7),
+.host-global-text tr:nth-of-type(9) {
+  border: unset;
+  border-bottom: 3px solid var(--color-line);
 }
 
 .host-table-row-skill th:nth-of-type(6) {
-    border-right: 0px;
+  border-right: 0px;
 }
