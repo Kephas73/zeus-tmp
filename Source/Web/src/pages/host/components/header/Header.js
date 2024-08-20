@@ -1,7 +1,8 @@
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core';
 import PersonIcon from '@material-ui/icons/Person';
-import React from 'react';
 import './header.css';
+
 const useStyles = makeStyles(() => ({
   customIcon: {
     color: 'var(--text-color-gray)',
@@ -12,6 +13,7 @@ const useStyles = makeStyles(() => ({
     color: 'var(--text-color-gray)'
   }
 }));
+
 const Header = ({ setOpen }) => {
   const classes = useStyles()
   return (
@@ -29,6 +31,10 @@ const Header = ({ setOpen }) => {
       </div>
     </>
   );
+};
+
+Header.propTypes = {
+  setOpen: PropTypes.func.isRequired
 };
 
 export default Header;

@@ -16,6 +16,7 @@
     "exceljs": "^4.4.0",
     "fe-call-center": "file:",
     "file-saver": "^2.0.5",
+    "prop-types": "^15.8.1",
     "react": "16.14.0",
     "react-dom": "16.14.0",
     "react-router-dom": "5",

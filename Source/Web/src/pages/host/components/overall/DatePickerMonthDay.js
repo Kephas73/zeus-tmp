@@ -1,15 +1,16 @@
-import 'date-fns';
-import React from 'react';
+import PropTypes from 'prop-types';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
+import 'date-fns';
+
+import Grid from '@material-ui/core/Grid';
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     '& .MuiFormControl-marginNormal': {
       display: 'flex',
@@ -100,3 +101,8 @@ export default function DatePickerMonthDay({ dateMonthDay, setDateMonthDay}) {
     </MuiPickersUtilsProvider>
   );
 }
+
+DatePickerMonthDay.propTypes = {
+  dateMonthDay: PropTypes.instanceOf(Date).isRequired,
+  setDateMonthDay: PropTypes.func.isRequired,
+};
