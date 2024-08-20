@@ -45,3 +45,12 @@
 .host-drop-icon {
     color: var(--text-color-gray-bold)
 }
+
+.host-global-text tr:nth-of-type(3), tr:nth-of-type(7), .host-global-text tr:nth-of-type(9){
+    border: unset;
+    border-bottom: 3px solid var(--color-line);
+}
+
+.host-table-row-skill th:nth-of-type(6) {
+    border-right: 0px;
+}
