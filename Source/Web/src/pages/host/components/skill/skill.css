@@ -74,8 +74,3 @@ tr:nth-of-type(7),
 .custom-tableBody {
   width: max-content;
 }
-
-.host-container {
-  width: 100%;
-  overflow-x: auto !important;
-}
