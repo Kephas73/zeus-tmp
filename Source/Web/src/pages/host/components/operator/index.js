@@ -1,25 +1,25 @@
 import React, { useRef, useState } from 'react';
 
+import { useYearMonthEffect, useMonthDayEffect } from './operator.hooks';
+import DatePickerMonthDay from './DatePickerMonthDay';
+import DatePickerYearMonth from './DatePickerYearMonth';
+import { exportToCSV } from '../../../../utils/exportCSV';
+import prepareData from './prepareData';
+
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-
-import DatePickerMonthDay from './DatePickerMonthDay';
-import DatePickerYearMonth from './DatePickerYearMonth';
-import { useYearMonthEffect, useMonthDayEffect } from './operator.hooks';
-import { exportToCSV } from '../../../../utils/exportCSV';
-import useRow from './prepareData';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
 import './operator.css';
 import { calls } from '../../../../data/calls';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
 import { StyledTableCell, StyledTableRow } from './style';
 
-export default function Index() {
+export default function Operator() {
   const tableRef = useRef(null);
 
   const [dataOverallYearMonth, setDataOverallYearMonth] = useState({
@@ -45,7 +45,7 @@ export default function Index() {
   const [hostId, setHostId] = useState('');
   const [filteredData, setFilteredData] = useState([]);
 
-  const rows = useRow(dataOverallYearMonth, dataOverallMonthDay, filteredData);
+  const rows = prepareData(dataOverallYearMonth, dataOverallMonthDay, filteredData);
 
   const uniqueHostIds = Array.from(new Set(calls.map(call => call.hostId))).filter(id => id);
 

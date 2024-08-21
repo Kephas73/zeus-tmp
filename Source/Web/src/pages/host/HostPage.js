@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 
 import { Box, Button, Modal } from '@material-ui/core';
 
-import Index from './components/operator';
 import Overall from './components/overall/Overall';
 import Skill from './components/skill/Skill';
 import Header from './components/header/Header';
+import Operator from "./components/operator";
 import './index.css';
 
 const HostPage = () => {
@@ -34,7 +34,7 @@ const HostPage = () => {
                 <Skill />
               </div>
               <div className="host-container-operator">
-                <Index />
+                <Operator />
               </div>
             </div>
           </div>
