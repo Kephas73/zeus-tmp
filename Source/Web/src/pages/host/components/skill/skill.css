@@ -39,11 +39,11 @@
 }
 
 .host-table-row-skill .item-column {
-  width: 20%;
+  min-width: 150px; 
 }
 
 .host-table-row-skill .language-column {
-  width: 16%;
+  width: calc(100% / 6);
 }
 
 .host-tilde-filter {
@@ -64,4 +64,13 @@ tr:nth-of-type(7),
 
 .host-table-row-skill th:nth-of-type(6) {
   border-right: 0px;
+}
+
+.table-container-scroll {
+  width: 100% !important;
+  overflow: auto !important;
+}
+
+.custom-tableBody {
+  width: max-content;
 }
