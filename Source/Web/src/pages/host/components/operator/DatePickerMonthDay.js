@@ -1,4 +1,7 @@
 import React from 'react';
+import 'date-fns';
+import DateFnsUtils from '@date-io/date-fns';
+import PropTypes from "prop-types";
 
 import Grid from '@material-ui/core/Grid';
 import {
@@ -8,9 +11,6 @@ import {
 
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-
-import 'date-fns';
-import DateFnsUtils from '@date-io/date-fns';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -103,3 +103,8 @@ export default function DatePickerMonthDay({ dateMonthDay, setDateMonthDay}) {
     </MuiPickersUtilsProvider>
   );
 }
+
+DatePickerMonthDay.propTypes = {
+  dateMonthDay: PropTypes.instanceOf(Date).isRequired,
+  setDateMonthDay: PropTypes.func.isRequired,
+};

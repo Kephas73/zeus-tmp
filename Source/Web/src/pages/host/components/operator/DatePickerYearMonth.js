@@ -1,12 +1,15 @@
-import 'date-fns';
 import React from 'react';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
+import PropTypes from "prop-types";
+import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
+
+import Grid from '@material-ui/core/Grid';
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
+
+import { withStyles, makeStyles } from '@material-ui/core/styles';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 
 const useStyles = makeStyles((theme) => ({
@@ -103,3 +106,7 @@ export default function DatePickerYearMonth({ dateYearMonth, setDateYearMonth })
     </MuiPickersUtilsProvider>
   );
 }
+DatePickerYearMonth.propTypes = {
+  dateYearMonth: PropTypes.instanceOf(Date).isRequired,
+  setDateYearMonth: PropTypes.func.isRequired,
+};
