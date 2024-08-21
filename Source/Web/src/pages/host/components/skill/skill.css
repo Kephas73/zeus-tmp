@@ -43,7 +43,7 @@
 }
 
 .host-table-row-skill .language-column {
-  width: calc(100% / 6);
+  width: calc(100% / 6.5);
 }
 
 .host-tilde-filter {
@@ -73,4 +73,9 @@ tr:nth-of-type(7),
 
 .custom-tableBody {
   width: max-content;
+}
+
+.host-container {
+  width: 100%;
+  overflow-x: auto !important;
 }
