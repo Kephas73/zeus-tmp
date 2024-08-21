@@ -1,69 +1,25 @@
 import React, { useRef, useState } from 'react';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
+
+import DatePickerMonthDay from './DatePickerMonthDay';
+import DatePickerYearMonth from './DatePickerYearMonth';
+import { useYearMonthEffect, useMonthDayEffect } from './operator.hooks';
+import { exportToCSV } from '../../../../utils/exportCSV';
+import useRow from './prepareData';
+
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+
 import './operator.css';
-import constants from '../../../../constants';
-import DatePickerMonthDay from './DatePickerMonthDay';
-import DatePickerYearMonth from './DatePickerYearMonth';
-import useRow from './useRowOperator';
 import { calls } from '../../../../data/calls';
-import { exportToCSV } from '../../../../utils/exportCSV';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import { useYearMonthEffect, useMonthDayEffect } from './useEffect';
+import { StyledTableCell, StyledTableRow } from './style';
 
-const StyledTableCell = withStyles((theme) => ({
-  head: {
-    backgroundColor: constants.backgroundColorHead,
-    color: theme.palette.common.white,
-    border: '1px solid var(--color-white)',
-    width: '33.33%',
-    height: '40px',
-    padding: '0 8px',
-    fontSize: 16,
-  },
-  body: {
-    width: '33.33%',
-    fontSize: 14,
-    height: constants.heightTableRow,
-    border: '1px solid var(--color-line-bland)',
-    padding: '0px 16px',
-    backgroundColor: 'var(--color-white)',
-  }
-}))(TableCell);
-
-const StyledTableRow = withStyles((theme) => ({
-  root: {
-    '&:nth-of-type(odd)': {
-      backgroundColor: theme.palette.action.hover,
-    },
-  },
-}))(TableRow);
-
-const useStyles = makeStyles({
-  ...constants.tableRowStyles,
-  table: {
-    ...constants.tableRowStyles.table,
-    minWidth: 560,
-  },
-  colorOption: {
-    color: 'var(--text-color-gray-bold)',
-    fontSize: '14px',
-    '& .MuiOutlinedInput-input': {
-      padding: '0 0 0 10px',
-      backgroundColor:'var(--color-white)',
-    },
-  }
-});
-
-export default function Operator() {
-  const classes = useStyles();
+export default function Index() {
   const tableRef = useRef(null);
 
   const [dataOverallYearMonth, setDataOverallYearMonth] = useState({
@@ -91,10 +47,10 @@ export default function Operator() {
 
   const rows = useRow(dataOverallYearMonth, dataOverallMonthDay, filteredData);
 
-  const uniqueHostIds = Array.from(new Set(calls.map(call => call.hostLoginId))).filter(id => id);
+  const uniqueHostIds = Array.from(new Set(calls.map(call => call.hostId))).filter(id => id);
 
   const handleSearch = () => {
-    const filteredCalls = calls.filter((item) => item.hostLoginId === hostId);
+    const filteredCalls = calls.filter((item) => item.hostId === hostId);
     setFilteredData(filteredCalls);
   };
 
@@ -102,7 +58,7 @@ export default function Operator() {
   useMonthDayEffect(filteredData, dateMonthDay, setDataOverallMonthDay);
 
   return (
-      <TableContainer component={Paper} className={classes.container}>
+      <TableContainer component={Paper} className='operator-container'>
         <div className="host-operator-container-header">
           <div className="host-performance-text">オペレータパフォーマンス</div>
           <button
@@ -117,7 +73,7 @@ export default function Operator() {
             <FormControl variant="outlined" className="host-text-input-operator">
               <Select
                 native
-                className={classes.colorOption}
+                className='option'
                 value={hostId}
                 onChange={(e) => setHostId(e.target.value)}
                 inputProps={{
@@ -129,7 +85,7 @@ export default function Operator() {
                   オペレータ ID
                 </option>
                 {uniqueHostIds.map(id => (
-                  <option key={id} className={classes.colorOption} value={id}>
+                  <option key={id} className='option' value={id}>
                     {id}
                   </option>
                 ))}
@@ -145,11 +101,11 @@ export default function Operator() {
             </button>
           </div>
         </div>
-        <Table className={classes.table} aria-label="customized table" ref={tableRef}>
+        <Table className='table-operator' aria-label="customized table" ref={tableRef}>
           <TableHead className="host-custom-date-picker">
             <TableRow className="host-header-operator host-table-row">
-              <StyledTableCell className={classes.cellHead}>項目</StyledTableCell>
-              <StyledTableCell className={classes.cellHead} align="right" >
+              <StyledTableCell className='cell-head'>項目</StyledTableCell>
+              <StyledTableCell className='cell-head' align="right" >
                 <div>
                   <DatePickerYearMonth
                     dateYearMonth={dateYearMonth}
@@ -169,11 +125,11 @@ export default function Operator() {
               group.map((data, dataIndex) => {
                 const isLastRow = dataIndex === group.length - 1;
                 return (
-                  <StyledTableRow key={data.name} className={isLastRow ? classes.lastRow : ''}>
+                  <StyledTableRow key={data.name} className={isLastRow ? 'last-row' : ''}>
                     <StyledTableCell
                       component="th"
                       scope="row"
-                      className={isLastRow ? classes.categoryCell : ''}
+                      className={isLastRow ? 'category-cell' : ''}
                     >
                       {data.name}
                     </StyledTableCell>
