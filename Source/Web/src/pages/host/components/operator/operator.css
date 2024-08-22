@@ -6,22 +6,26 @@
     padding: 15px 5px 5px 15px;
 
 }
+
 .host-operator-container-header .host-performance-text {
     font-weight: bold;
     color: var(--text-color-gray)
 }
-.host-container-header-operator{
+
+.host-container-header-operator {
     position: relative;
     display: flex;
     justify-content: flex-start;
     width: 100%;
     padding: 15px 5px 5px 15px;
 }
+
 .host-container-header-operator .host-performance-text {
     font-weight: 400;
     color: var(--text-color-gray-bland)
 }
-.host-button-setting{
+
+.host-button-setting {
     background-color: var(--color-green);
     padding: 4px 25px;
     border: none;
@@ -29,12 +33,14 @@
     color: var(--color-white);
     font-size: 12px;
 }
+
 .host-performance-text {
     font-size: 13px;
     font-weight: 600;
     color: var(--text-color-gray-bold);
 }
-.host-input-operator{
+
+.host-input-operator {
     padding: 0 20px 0 20px;
 }
 
@@ -44,12 +50,15 @@
     padding: 0;
     height: 25px;
 }
+
 .host-input-operator {
     width: 56%;
 }
+
 .host-text-input-operator {
     width: 100%;
 }
+
 .host-button-csv {
     padding: 2px 25px;
     background-color: var(--background-color-btn-csv);
@@ -58,4 +67,41 @@
     color: var(--color-white);
     cursor: pointer;
     font-size: 12px;
+}
+
+.table-operator {
+    margin-top: 10px;
+    min-width: 550px;
+    box-shadow: 0px 4px 6px -2px var(--text-color-gray-bland);
+    border-radius: 8px;
+}
+
+.operator-container {
+    padding: 10px;
+}
+
+.option {
+    color: var(--text-color-gray-bold);
+    font-size: 14px;
+}
+
+.option .MuiOutlinedInput-input {
+    padding: 0 0 0 10px;
+    background-color: var(--color-white);
+}
+
+.cell-head {
+    border-right: 1px solid var(--text-color-gray-bland);
+}
+
+.lastRow tr {
+    margin-top: 10px;
+}
+
+.lastRow td {
+    border-bottom: 2px solid var(--color-line);
+}
+
+.category-cell {
+    border-bottom: 2px solid var(--color-line);
 }

@@ -1,4 +1,4 @@
-const useRow = (dataOverallYearMonth, dataOverallMonthDay) => {
+const prepareData = (dataOverallYearMonth, dataOverallMonthDay) => {
 
   const createData = (data) => data
 
@@ -42,4 +42,4 @@ const useRow = (dataOverallYearMonth, dataOverallMonthDay) => {
   return rows;
 };
 
-export default useRow;
+export default prepareData;

@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 
 import { Box, Button, Modal } from '@material-ui/core';
 
-import Operator from './components/operator/Operator';
 import Overall from './components/overall/Overall';
 import Skill from './components/skill/Skill';
 import Header from './components/header/Header';
+import Operator from "./components/operator";
 import './index.css';
 
 const HostPage = () => {
