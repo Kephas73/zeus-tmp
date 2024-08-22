@@ -10,18 +10,18 @@ const useStyles = makeStyles(() => ({
   },
   hostCloseButton: {
     fontWeight: 'bold',
-    color: 'var(--text-color-gray)'
-  }
+    color: 'var(--text-color-gray)',
+  },
 }));
 
 const Header = ({ setOpen }) => {
-  const classes = useStyles()
+  const classes = useStyles();
   return (
     <>
       <div className="host-header">
         <div className="host-header-icon">
-          <span >
-            <PersonIcon className={classes.customIcon}/>
+          <span>
+            <PersonIcon className={classes.customIcon} />
           </span>
           <span className={classes.hostCloseButton}>センターパフォーマンス</span>
         </div>
@@ -34,7 +34,7 @@ const Header = ({ setOpen }) => {
 };
 
 Header.propTypes = {
-  setOpen: PropTypes.func.isRequired
+  setOpen: PropTypes.func.isRequired,
 };
 
 export default Header;

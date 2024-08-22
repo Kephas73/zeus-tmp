@@ -79,7 +79,9 @@ export default function Skill() {
           <div className="host-performance-text">スキル別パフォーマンス</div>
           <button
             className="host-button-csv"
-            onClick={() => exportToCSVSkill(dataSkillDateTime, 'data-host-skill.csv', fromDateTime, toDateTime)}
+            onClick={() =>
+              exportToCSVSkill(dataSkillDateTime, 'data-host-skill.csv', fromDateTime, toDateTime)
+            }
           >
             CSV 出力
           </button>

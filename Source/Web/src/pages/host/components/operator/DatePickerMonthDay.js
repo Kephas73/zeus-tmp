@@ -1,13 +1,10 @@
 import React from 'react';
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 import Grid from '@material-ui/core/Grid';
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-} from '@material-ui/pickers';
+import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
@@ -16,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     '& .MuiFormControl-marginNormal': {
       display: 'flex',
-      alignItem: 'center'
+      alignItem: 'center',
     },
     '& .MuiInputBase-root': {
       color: 'var(--color-white)',
@@ -31,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
       color: 'var(--color-white)',
       fontSize: '14px',
       marginTop: '-17px',
-      transform: 'translate(14px, 10px) scale(1)', 
+      transform: 'translate(14px, 10px) scale(1)',
       backgroundColor: 'var(--background-color-gray)',
       padding: '0 4px',
       zIndex: 1,
@@ -44,11 +41,11 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: '-12px',
     },
     '& .MuiInputBase-inputAdornedEnd': {
-      width: '50%'
+      width: '50%',
     },
     '& .MuiInputBase-adornedEnd': {
-      justifyContent: 'center'
-    }
+      justifyContent: 'center',
+    },
   },
 }));
 
@@ -70,13 +67,12 @@ const CustomKeyboardDatePicker = withStyles({
       color: 'var(--color-white)',
     },
     '&:hover .MuiInput-underline:before': {
-      borderBottom: 'none', 
+      borderBottom: 'none',
     },
   },
 })(KeyboardDatePicker);
 
-export default function DatePickerMonthDay({ dateMonthDay, setDateMonthDay}) {
-  
+export default function DatePickerMonthDay({ dateMonthDay, setDateMonthDay }) {
   const classes = useStyles();
 
   const handleDateChange = (date) => {
@@ -85,7 +81,7 @@ export default function DatePickerMonthDay({ dateMonthDay, setDateMonthDay}) {
 
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
-      <Grid container >
+      <Grid container>
         <CustomKeyboardDatePicker
           className={classes.root}
           disableToolbar

@@ -9,7 +9,7 @@ const constants = {
       borderRight: '1px solid var(--text-color-gray-bland)',
     },
     head: {
-        borderRadius: '5px',
+      borderRadius: '5px',
     },
     table: {
       marginTop: '10px',
@@ -19,7 +19,7 @@ const constants = {
     },
     lastRow: {
       '& tr': {
-        marginTop: '10px',  
+        marginTop: '10px',
       },
       '& td': {
         borderBottom: '2px solid var(--color-line)',

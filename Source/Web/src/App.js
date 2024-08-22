@@ -18,10 +18,15 @@ function App() {
           </ul>
         </nav>
 
-
         <Switch>
-        <Route exact path="/"> <HomePage/> </Route>
-        <Route exact path="/host"> <HostPage /> </Route>
+          <Route exact path="/">
+            {' '}
+            <HomePage />{' '}
+          </Route>
+          <Route exact path="/host">
+            {' '}
+            <HostPage />{' '}
+          </Route>
         </Switch>
       </div>
     </Router>

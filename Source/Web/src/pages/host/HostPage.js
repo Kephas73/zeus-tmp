@@ -5,7 +5,7 @@ import { Box, Button, Modal } from '@material-ui/core';
 import Overall from './components/overall/Overall';
 import Skill from './components/skill/Skill';
 import Header from './components/header/Header';
-import Operator from "./components/operator";
+import Operator from './components/operator';
 import './index.css';
 
 const HostPage = () => {
@@ -23,7 +23,7 @@ const HostPage = () => {
         onClose={() => setOpen(false)}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
-        className='host-modal'
+        className="host-modal"
       >
         <Box>
           <div className="host-page">

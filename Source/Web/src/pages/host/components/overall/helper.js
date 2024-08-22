@@ -201,7 +201,6 @@ export const countCallWaitingNumberOfExits = (funcGetDate, dateTime) => {
   return callWaitingNumberOfExits;
 };
 
-
 /**
  * @param {Function} funcGetDate
  * @param {Date} dateTime
@@ -218,11 +217,11 @@ export const getDataOverall = (funcGetDate, dateTime, checkDate) => {
   let numberOfActiveSeats = 0;
   let numberOfActiveSeatsAverage = 0;
   if (checkDate === YEAR_MONTH) {
-     numberOfActiveSeats = countNumberOfActiveSeats(getYear, dateTime);
-     numberOfActiveSeatsAverage = numberOfActiveSeats / 12;
+    numberOfActiveSeats = countNumberOfActiveSeats(getYear, dateTime);
+    numberOfActiveSeatsAverage = numberOfActiveSeats / 12;
   } else {
-     numberOfActiveSeats = countNumberOfActiveSeats(getMonth, dateTime); 
-     numberOfActiveSeatsAverage = numberOfActiveSeats / 30; 
+    numberOfActiveSeats = countNumberOfActiveSeats(getMonth, dateTime);
+    numberOfActiveSeatsAverage = numberOfActiveSeats / 30;
   }
 
   const timeWaiting = countTimeWaiting(funcGetDate, dateTime); // seconds
@@ -236,10 +235,7 @@ export const getDataOverall = (funcGetDate, dateTime, checkDate) => {
 
   const numberOfBreaks = countNumberOfBreaks(funcGetDate, dateTime);
 
-  const callWaitingAverageWaitingTime = getCallWaitingAverageWaitingTime(
-    funcGetDate,
-    dateTime
-  ); // milliseconds
+  const callWaitingAverageWaitingTime = getCallWaitingAverageWaitingTime(funcGetDate, dateTime); // milliseconds
 
   const callWaitingNumberOfSuccessfulConnections = countCallWaitingNumberOfSuccessfulConnections(
     funcGetDate,
@@ -275,14 +271,13 @@ export const getDataOverall = (funcGetDate, dateTime, checkDate) => {
     ),
     callWaitingNumberOfSuccessfulConnections,
     callWaitingNumberOfExits,
-  }
-}
-
+  };
+};
 
 /**
  * @param {Date} dataOverallYearMonth
  * @param {Date} dataOverallMonthDay
- * @returns {Array} 
+ * @returns {Array}
  */
 export const createRows = (dataOverallYearMonth, dataOverallMonthDay) => {
   const createData = (data) => data;
@@ -370,4 +365,3 @@ export const createRows = (dataOverallYearMonth, dataOverallMonthDay) => {
 
   return rows;
 };
-

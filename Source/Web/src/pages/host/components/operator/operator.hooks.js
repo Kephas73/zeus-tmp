@@ -6,7 +6,6 @@ import { roomChangeLogs } from '../../../../data/roomChangeLogs';
 //filter data operator by Year month
 export function useYearMonthEffect(filteredData, dateYearMonth, setDataOverallYearMonth) {
   useEffect(() => {
-
     //number call coming
     const numberOfIncomingCalls = filteredData.reduce((accumulator, item) => {
       const date = getYearMonth(item.timestamp);
@@ -22,7 +21,7 @@ export function useYearMonthEffect(filteredData, dateYearMonth, setDataOverallYe
       if (getYearMonth(dateYearMonth) === date) {
         let sum = 0;
         item.calls.forEach((i) => {
-          if(i.status === CALL_STATUS_CATCH || i.status === CALL_STATUS_STOP) sum++;
+          if (i.status === CALL_STATUS_CATCH || i.status === CALL_STATUS_STOP) sum++;
         });
         accumulator = accumulator + sum;
       }
@@ -52,16 +51,17 @@ export function useYearMonthEffect(filteredData, dateYearMonth, setDataOverallYe
     }
 
     // average talk time
-    const averageTalkTime = numberOfCallsReceived > 0 ?  Math.ceil((totalTalkTime / numberOfCallsReceived) * 10) / 10 : 0;
+    const averageTalkTime =
+      numberOfCallsReceived > 0 ? Math.ceil((totalTalkTime / numberOfCallsReceived) * 10) / 10 : 0;
 
     //count time waiting
-    const hostIds = filteredData.map(item => item.hostId);
+    const hostIds = filteredData.map((item) => item.hostId);
 
-    const filteredPrevValue = roomChangeLogs.filter(value => {
+    const filteredPrevValue = roomChangeLogs.filter((value) => {
       return value.prevValue.status === 1 && hostIds.includes(value.prevValue.hostId);
     });
 
-    const timeWaitingDifferencePrev = filteredPrevValue.map(value => {
+    const timeWaitingDifferencePrev = filteredPrevValue.map((value) => {
       const newValueTimestamp = value.newValue.timestamp._seconds;
       const prevValueTimestamp = value.prevValue.timestamp._seconds;
       const timeWaitingInMinutes = (newValueTimestamp - prevValueTimestamp) / 60;
@@ -85,7 +85,7 @@ export function useYearMonthEffect(filteredData, dateYearMonth, setDataOverallYe
       callReceivedRate,
       totalTalkTime,
       averageTalkTime,
-      upTime
+      upTime,
     }));
   }, [filteredData, dateYearMonth, setDataOverallYearMonth]);
 }
@@ -93,7 +93,6 @@ export function useYearMonthEffect(filteredData, dateYearMonth, setDataOverallYe
 //filter data operator by day month
 export function useMonthDayEffect(filteredData, dateMonthDay, setDataOverallMonthDay) {
   useEffect(() => {
-
     //number call coming
     const numberOfIncomingCalls = filteredData.reduce((accumulator, item) => {
       const date = getMonthDay(item.timestamp);
@@ -109,7 +108,7 @@ export function useMonthDayEffect(filteredData, dateMonthDay, setDataOverallMont
       if (getMonthDay(dateMonthDay) === date) {
         let sum = 0;
         item.calls.forEach((i) => {
-          if(i.status === CALL_STATUS_CATCH || i.status === CALL_STATUS_STOP) sum++;
+          if (i.status === CALL_STATUS_CATCH || i.status === CALL_STATUS_STOP) sum++;
         });
         accumulator = accumulator + sum;
       }
@@ -139,16 +138,17 @@ export function useMonthDayEffect(filteredData, dateMonthDay, setDataOverallMont
     }, 0);
 
     // average talk time
-    const averageTalkTime = numberOfCallsReceived > 0 ?  Math.ceil((totalTalkTime / numberOfCallsReceived) * 10) / 10 : 0;
+    const averageTalkTime =
+      numberOfCallsReceived > 0 ? Math.ceil((totalTalkTime / numberOfCallsReceived) * 10) / 10 : 0;
 
     //count time waiting
-    const hostIds = filteredData.map(item => item.hostId);
+    const hostIds = filteredData.map((item) => item.hostId);
 
-    const filteredPrevValue = roomChangeLogs.filter(value => {
+    const filteredPrevValue = roomChangeLogs.filter((value) => {
       return value.prevValue.status === 1 && hostIds.includes(value.prevValue.hostId);
     });
 
-    const timeWaitingDifferencePrev = filteredPrevValue.map(value => {
+    const timeWaitingDifferencePrev = filteredPrevValue.map((value) => {
       const newValueTimestamp = value.newValue.timestamp._seconds;
       const prevValueTimestamp = value.prevValue.timestamp._seconds;
       const timeWaitingInMinutes = (newValueTimestamp - prevValueTimestamp) / 60;
@@ -172,7 +172,7 @@ export function useMonthDayEffect(filteredData, dateMonthDay, setDataOverallMont
       callReceivedRate,
       totalTalkTime,
       averageTalkTime,
-      upTime
+      upTime,
     }));
   }, [filteredData, dateMonthDay, setDataOverallMonthDay]);
 }

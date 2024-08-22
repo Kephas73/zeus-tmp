@@ -68,7 +68,6 @@ export const getYear = (date) => {
   return false;
 };
 
-
 export const getMonth = (date) => {
   if (date instanceof Date) {
     return dayjs(date).format(MM);

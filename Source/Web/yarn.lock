@@ -5694,8 +5694,9 @@ fb-watchman@^2.0.0:
     date-fns "2.8.1"
     dayjs "^1.11.12"
     exceljs "^4.4.0"
-    fe-call-center "file:C:/Users/BinhLe/AppData/Local/Yarn/Cache/v6/npm-fe-call-center-0.1.0-fccfbf12-647c-4b0b-aeb8-e3bc985d16be-1724169810152/node_modules/fe-call-center"
+    fe-call-center "file:C:/Users/BinhLe/AppData/Local/Yarn/Cache/v6/npm-fe-call-center-0.1.0-d1b69dd2-e298-4845-bc32-705ddb87b450-1724290728328/node_modules/fe-call-center"
     file-saver "^2.0.5"
+    prop-types "^15.8.1"
     react "16.14.0"
     react-dom "16.14.0"
     react-router-dom "5"
@@ -9995,18 +9996,9 @@ prompts@2.4.0, prompts@^2.0.1:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@^15.6.2, prop-types@^15.7.2, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.npmjs.org/prop-types/-/prop-types-15.8.1.tgz"
-  integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
-  dependencies:
-    loose-envify "^1.4.0"
-    object-assign "^4.1.1"
-    react-is "^16.13.1"
-
-prop-types@^15.8.1:
-  version "15.8.1"
-  resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
   dependencies:
     loose-envify "^1.4.0"

@@ -1,6 +1,5 @@
 const prepareData = (dataOverallYearMonth, dataOverallMonthDay) => {
-
-  const createData = (data) => data
+  const createData = (data) => data;
 
   const rows = [
     createData([

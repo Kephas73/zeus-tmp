@@ -4,10 +4,7 @@ import DateFnsUtils from '@date-io/date-fns';
 import 'date-fns';
 
 import Grid from '@material-ui/core/Grid';
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-} from '@material-ui/pickers';
+import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 
 const useStyles = makeStyles(() => ({
@@ -69,7 +66,7 @@ const CustomKeyboardDatePicker = withStyles({
       color: 'var(--color-white)',
     },
     '&:hover .MuiInput-underline:before': {
-      borderBottom: 'none', 
+      borderBottom: 'none',
     },
   },
 })(KeyboardDatePicker);

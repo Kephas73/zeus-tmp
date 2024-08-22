@@ -17,11 +17,7 @@ import { MONTH_DAY, YEAR_MONTH } from '../../../../constants/data';
 import { getMonthDay, getYearMonth, getYear, getMonth } from '../../../../utils/formatDate';
 import { roundToDecimalPlaces } from '../../../../utils/roundDecimal';
 import { exportToCSV } from '../../../../utils/exportCSV';
-import {
-  countNumberOfActiveSeats,
-  createRows,
-  getDataOverall,
-} from './helper';
+import { countNumberOfActiveSeats, createRows, getDataOverall } from './helper';
 import './overall.css';
 
 const StyledTableCell = withStyles((theme) => ({
@@ -120,18 +116,18 @@ export default function Overall() {
   const rows = createRows(dataOverallYearMonth, dataOverallMonthDay);
 
   useEffect(() => {
-    const data = getDataOverall(getYearMonth, dateYearMonth, YEAR_MONTH)
+    const data = getDataOverall(getYearMonth, dateYearMonth, YEAR_MONTH);
     setDataOverallYearMonth((prev) => ({
       ...prev,
-      ...data
+      ...data,
     }));
   }, [dateYearMonth]);
 
   useEffect(() => {
-    const data = getDataOverall(getMonthDay, dateMonthDay, MONTH_DAY)
+    const data = getDataOverall(getMonthDay, dateMonthDay, MONTH_DAY);
     setDataOverallMonthDay((prev) => ({
       ...prev,
-      ...data
+      ...data,
     }));
   }, [dateMonthDay]);
 

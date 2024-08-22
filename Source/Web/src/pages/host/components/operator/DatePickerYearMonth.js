@@ -1,13 +1,10 @@
 import React from 'react';
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 
 import Grid from '@material-ui/core/Grid';
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-} from '@material-ui/pickers';
+import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
@@ -85,7 +82,7 @@ export default function DatePickerYearMonth({ dateYearMonth, setDateYearMonth })
 
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
-      <Grid container >
+      <Grid container>
         <CustomKeyboardDatePicker
           className={classes.root}
           views={['year', 'month']}

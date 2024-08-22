@@ -1,12 +1,9 @@
-
-
 // calls.status
 export const CALL_STATUS_CATCH = 0; // call accepted
 export const CALL_STATUS_STOP = 1; // guest stops call
 export const CALL_STATUS_NO_REPLY = 2; // no reply. host in rooms
 export const CALL_STATUS_NO_ONE_AVAILABLE = 3; // no reply. no host in rooms
 export const CALL_STATUS_FINISHED = 4; // call finished
-
 
 // roomChangeLogs.newValue.status, roomChangeLogs.prevValue.status
 export const ROOM_OFFLINE = 0; // offline , no new call
@@ -30,5 +27,5 @@ export const WAITING_GUESTS_STATUS_CONNECTED = 1; // connected to call
 export const WAITING_GUESTS_STATUS_DISCONNECT = 2; // disconnected
 
 // checkDate
-export const YEAR_MONTH = 1
-export const MONTH_DAY = 2
+export const YEAR_MONTH = 1;
+export const MONTH_DAY = 2;

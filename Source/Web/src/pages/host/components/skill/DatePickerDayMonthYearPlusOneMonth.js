@@ -3,17 +3,14 @@ import React from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-} from '@material-ui/pickers';
+import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     '& .MuiFormControl-marginNormal': {
       display: 'flex',
-      alignItem: 'center'
+      alignItem: 'center',
     },
     '& .MuiInputBase-root': {
       color: '#666',
@@ -27,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     '& .MuiInputLabel-root': {
       color: '#666',
       fontSize: '14px',
-      transform: 'translate(14px, 10px) scale(1)', 
+      transform: 'translate(14px, 10px) scale(1)',
       backgroundColor: 'var(--color-white)',
       padding: '0 4px',
       zIndex: 1,
@@ -61,12 +58,12 @@ const CustomKeyboardDatePicker = withStyles({
       color: 'var(--color-white)',
     },
     '&:hover .MuiInput-underline:before': {
-      borderBottom: 'none', 
+      borderBottom: 'none',
     },
   },
 })(KeyboardDatePicker);
 
-export default function DatePickerDayMonthYearPlusOneMonth({value, setToDateTime}) {
+export default function DatePickerDayMonthYearPlusOneMonth({ value, setToDateTime }) {
   const classes = useStyles();
 
   const getLastMonthDate = (date) => {
@@ -74,7 +71,7 @@ export default function DatePickerDayMonthYearPlusOneMonth({value, setToDateTime
     newDate.setMonth(newDate.getMonth() + 1);
     return newDate;
   };
-  
+
   // Initialize state with the date one month ahead
   const [selectedDate, setSelectedDate] = React.useState(() => getLastMonthDate(new Date()));
 
@@ -99,7 +96,7 @@ export default function DatePickerDayMonthYearPlusOneMonth({value, setToDateTime
           KeyboardButtonProps={{
             'aria-label': 'change date',
           }}
-          keyboardIcon={<ArrowDropDownIcon className="host-drop-icon"/>}
+          keyboardIcon={<ArrowDropDownIcon className="host-drop-icon" />}
         />
       </Grid>
     </MuiPickersUtilsProvider>
