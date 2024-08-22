@@ -13,9 +13,8 @@ const HostPage = () => {
   return (
     <div className="host-page-container">
       <div className="host-header-container">
-        <h1>Welcome to the Host Page!</h1>
         <Button variant="contained" onClick={() => setOpen(true)}>
-          Open Modal
+          センターパフォーマンス
         </Button>
       </div>
       <Modal
