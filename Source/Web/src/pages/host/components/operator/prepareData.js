@@ -16,8 +16,8 @@ const prepareData = (dataOverallYearMonth, dataOverallMonthDay) => {
       },
       {
         name: '受電率',
-        metric1: `${dataOverallYearMonth.callReceivedRate} %`,
-        metric2: `${dataOverallMonthDay.callReceivedRate}  %`,
+        metric1: `${dataOverallYearMonth.callReceivedRate}%`,
+        metric2: `${dataOverallMonthDay.callReceivedRate}%`,
       },
     ]),
     createData([
