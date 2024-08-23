@@ -288,7 +288,7 @@ export const formatDataForLanguages = (fromDateTime, toDateTime) => {
       稼働席数: `${roundToDecimalPlaces(countNumberOfActiveSeats, 2)} 席`,
       稼働時間: `${roundToDecimalPlaces(upTime / 60, 2)} 分`,
       合計通話時間: `${roundToDecimalPlaces(totalTalkTime / 60, 2)} 分`,
-      平均通話時間: `${roundToDecimalPlaces(averageTalkTime / 60, 2)} 件`,
+      平均通話時間: `${roundToDecimalPlaces(averageTalkTime / 60, 2)} 分`,
       不在数: `${countNumberOfMissedCalls} 件`,
       切断数: `${countNumberOfBreaks} 件`,
       待ち呼数: `${numberOfCallsWaiting} 件`,
