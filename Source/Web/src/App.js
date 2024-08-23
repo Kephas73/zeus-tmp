@@ -6,18 +6,6 @@ import HostPage from './pages/host/HostPage';
 function App() {
   return (
     <Router>
-      <div>
-        <nav className="host-container-nav">
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/host">Host Page</Link>
-            </li>
-          </ul>
-        </nav>
-
         <Switch>
           <Route exact path="/">
             {' '}
@@ -28,7 +16,6 @@ function App() {
             <HostPage />{' '}
           </Route>
         </Switch>
-      </div>
     </Router>
   );
 }
