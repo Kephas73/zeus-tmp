@@ -279,8 +279,8 @@ export const formatDataForLanguages = (fromDateTime, toDateTime) => {
       countNumberOfBreaks +
       callWaitingNumberOfSuccessFulConnections;
     const callWaitingRate =
-      numberOfCallsWaiting /
-      (numberOfIncomingCalls - countNumberOfMissedCalls - countNumberOfBreaks);
+      (numberOfCallsWaiting /
+      (numberOfIncomingCalls - countNumberOfMissedCalls - countNumberOfBreaks)) * 100;
     return {
       入電数: `${numberOfIncomingCalls} 件`,
       受電数: `${numberOfCallsReceived} 件`,

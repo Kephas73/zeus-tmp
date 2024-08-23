@@ -251,7 +251,7 @@ export const getDataOverall = (funcGetDate, dateTime, checkDate) => {
     callWaitingNumberOfSuccessfulConnections;
 
   const callWaitingRate =
-    numberOfCallsWaiting / (numberOfIncomingCalls - numberOfMissedCalls - numberOfBreaks);
+    (numberOfCallsWaiting / (numberOfIncomingCalls - numberOfMissedCalls - numberOfBreaks)) * 100;
 
   return {
     numberOfIncomingCalls,
