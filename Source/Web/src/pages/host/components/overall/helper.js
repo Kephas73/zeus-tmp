@@ -229,7 +229,7 @@ export const getDataOverall = (funcGetDate, dateTime, checkDate) => {
 
   const upTime = totalTalkTime + timeWaiting; // seconds
 
-  const averageTalkTime = totalTalkTime / numberOfIncomingCalls; // seconds
+  const averageTalkTime = totalTalkTime / numberOfCallsReceived; // seconds
 
   const numberOfMissedCalls = countNumberOfMissedCalls(funcGetDate, dateTime);
 
@@ -260,7 +260,7 @@ export const getDataOverall = (funcGetDate, dateTime, checkDate) => {
     numberOfActiveSeats: roundToDecimalPlaces(numberOfActiveSeatsAverage, 2),
     upTime: roundToDecimalPlaces(upTime / 60, 2),
     totalTalkTime: roundToDecimalPlaces(totalTalkTime / 60, 2),
-    averageTalkTime: roundToDecimalPlaces(averageTalkTime / 60, 1),
+    averageTalkTime: roundToDecimalPlaces(averageTalkTime / 60, 2),
     numberOfMissedCalls,
     numberOfBreaks,
     numberOfCallsWaiting,
