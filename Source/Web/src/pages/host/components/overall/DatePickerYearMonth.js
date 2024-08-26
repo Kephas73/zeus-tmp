@@ -45,9 +45,9 @@ const useStyles = makeStyles(() => ({
     '& .MuiInputBase-adornedEnd': {
       justifyContent: 'center',
     },
-    '&&&& .MuiButton-label': {
-      color: "red"
-    }
+  },
+  displayNone: {
+    display: 'none',
   },
 }));
 
@@ -73,12 +73,11 @@ const CustomKeyboardDatePicker = withStyles({
       borderBottom: 'none',
     },
   },
-
 })(KeyboardDatePicker);
 
 export default function DatePickerYearMonth({ dateYearMonth, setDateYearMonth }) {
   const classes = useStyles();
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleOpen = () => {
     setIsOpen(true);
@@ -111,7 +110,18 @@ export default function DatePickerYearMonth({ dateYearMonth, setDateYearMonth })
           KeyboardButtonProps={{
             'aria-label': 'change date',
           }}
-          keyboardIcon={<ArrowDropDownIcon/>}
+          keyboardIcon={
+            <ArrowDropDownIcon
+              onClick={() => {
+                setTimeout(() => {
+                  const displayNone = document.querySelector(
+                    'body > div.MuiPopover-root > div.MuiPaper-root.MuiPopover-paper.MuiPaper-elevation8.MuiPaper-rounded > div > div.MuiToolbar-root.MuiToolbar-regular.MuiPickersToolbar-toolbar.MuiPickersDatePickerRoot-toolbar.MuiToolbar-gutters > button:nth-child(2) > span.MuiButton-label > h4'
+                  );
+                  displayNone.className = classes.displayNone;
+                }, 0);
+              }}
+            />
+          }
         />
       </Grid>
     </MuiPickersUtilsProvider>
