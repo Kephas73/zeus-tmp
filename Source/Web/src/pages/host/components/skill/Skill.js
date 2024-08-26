@@ -44,6 +44,7 @@ const styles = theme => ({
     justifyContent: 'flex-start',
     alignItems: 'center',
     padding: '0px 5px 0px 20px',
+    
   },
   hostTextFilter: {
     color: 'var(--text-color-gray-bland)',
@@ -210,7 +211,7 @@ function Skill({ classes }) {
         </div>
         <Table className={`${classes.customTableBody}`} aria-label="customized table">
           <TableHead>
-            <TableRow className={classes.tableHead}>
+            <TableRow className={classes.hostTableRow}>
               <StyledTableCell className={classes.hostTableRowSkillItemColumn}>項目</StyledTableCell>
               <StyledTableCell className={classes.hostTableRowSkillLanguageColumn} align="center">
                 <div>
