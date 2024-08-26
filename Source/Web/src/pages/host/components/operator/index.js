@@ -15,13 +15,13 @@ import Paper from '@material-ui/core/Paper';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
-import './operator.css';
+// import './operator.css';
 import { calls } from '../../../../data/calls';
-import { StyledTableCell, StyledTableRow } from './style';
+import { StyledTableCell, StyledTableRow, useStyles } from './style';
 
 export default function Operator() {
   const tableRef = useRef(null);
-
+  const classes  = useStyles();
   const [dataOverallYearMonth, setDataOverallYearMonth] = useState({
     numberOfIncomingCalls: 0,
     numberOfCallsReceived: 0,
@@ -47,10 +47,10 @@ export default function Operator() {
 
   const rows = prepareData(dataOverallYearMonth, dataOverallMonthDay, filteredData);
 
-  const uniqueHostIds = Array.from(new Set(calls.map((call) => call.hostId))).filter((id) => id);
+  const uniqueHostIds = Array.from(new Set(calls.map((call) => call.hostLoginId))).filter((id) => id);
 
   const handleSearch = () => {
-    const filteredCalls = calls.filter((item) => item.hostId === hostId);
+    const filteredCalls = calls.filter((item) => item.hostLoginId === hostId);
     setFilteredData(filteredCalls);
   };
 
@@ -58,24 +58,24 @@ export default function Operator() {
   useMonthDayEffect(filteredData, dateMonthDay, setDataOverallMonthDay);
 
   return (
-    <TableContainer component={Paper} className="operator-container">
-      <div className="host-operator-container-header">
-        <div className="host-performance-text">オペレータパフォーマンス</div>
+    <TableContainer component={Paper} className={classes.operatorContainer}>
+      <div className={classes.hostOperatorContainerHeader}>
+        <div className={classes.hostPerformanceTextHeader}>オペレータパフォーマンス</div>
         <button
-          className="host-button-csv"
+          className={classes.hostButtonCSV}
           onClick={() => exportToCSV(rows, 'FileCSV.csv', dateYearMonth, dateMonthDay)}
         >
           CSV 出力
         </button>
       </div>
 
-      <div className="host-container-header-operator">
-        <div className="host-performance-text">オペレータ ID</div>
-        <div className="host-input-operator">
-          <FormControl variant="outlined" className="host-text-input-operator">
+      <div className={classes.hostContainerHeaderOperator}>
+        <div className={classes.hostPerformanceText}>オペレータ ID</div>
+        <div className={classes.hostInputOperator}>
+          <FormControl variant="outlined" className={classes.hostTextInputOperator}>
             <Select
               native
-              className="option"
+              className={classes.option}
               value={hostId}
               onChange={(e) => setHostId(e.target.value)}
               inputProps={{
@@ -87,7 +87,7 @@ export default function Operator() {
                 オペレータ ID
               </option>
               {uniqueHostIds.map((id) => (
-                <option key={id} className="option" value={id}>
+                <option key={id} className={classes.optionInput} value={id}>
                   {id}
                 </option>
               ))}
@@ -95,16 +95,16 @@ export default function Operator() {
           </FormControl>
         </div>
         <div>
-          <button className="host-button-setting" onClick={handleSearch}>
+          <button className={classes.hostButtonSetting} onClick={handleSearch}>
             設定
           </button>
         </div>
       </div>
-      <Table className="table-operator" aria-label="customized table" ref={tableRef}>
-        <TableHead className="host-custom-date-picker">
-          <TableRow className="host-header-operator host-table-row">
-            <StyledTableCell className="cell-head">項目</StyledTableCell>
-            <StyledTableCell className="cell-head" align="right">
+      <Table className={classes.tableOperator} aria-label="customized table" ref={tableRef}>
+        <TableHead className={classes.hostCustomDatePicker}>
+          <TableRow className={classes.hostTableRow}>
+            <StyledTableCell className={classes.cellHead}>項目</StyledTableCell>
+            <StyledTableCell className={classes.cellHead} align="right">
               <div>
                 <DatePickerYearMonth
                   dateYearMonth={dateYearMonth}
@@ -119,16 +119,16 @@ export default function Operator() {
             </StyledTableCell>
           </TableRow>
         </TableHead>
-        <TableBody className="host-global-text">
+        <TableBody className={classes.hostGlobalText}>
           {rows.map((group) =>
             group.map((data, dataIndex) => {
               const isLastRow = dataIndex === group.length - 1;
               return (
-                <StyledTableRow key={data.name} className={isLastRow ? 'last-row' : ''}>
+                <StyledTableRow key={data.name} className={isLastRow ? classes.lastRow : ''}>
                   <StyledTableCell
                     component="th"
                     scope="row"
-                    className={isLastRow ? 'category-cell' : ''}
+                    className={isLastRow ? classes.categoryCell : ''}
                   >
                     {data.name}
                   </StyledTableCell>
