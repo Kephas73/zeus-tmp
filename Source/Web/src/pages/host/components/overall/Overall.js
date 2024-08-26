@@ -18,7 +18,6 @@ import { getMonthDay, getYearMonth, getYear, getMonth } from '../../../../utils/
 import { roundToDecimalPlaces } from '../../../../utils/roundDecimal';
 import { exportToCSV } from '../../../../utils/exportCSV';
 import { countNumberOfActiveSeats, createRows, getDataOverall } from './helper';
-import './overall.css';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -71,6 +70,53 @@ const useStyles = makeStyles({
     color: 'var(--text-color-gray-bland)',
     fontSize: 8,
     transform: 'translateY(1px)',
+  },
+  hostOverallContainerHeader: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    width: '100%',
+    borderBottom: '2px solid var(--color-line)',
+    padding: '15px 5px 5px 12px',
+  },
+  hostOverallPerformanceText: {
+    fontSize: '13px',
+    fontWeight: 600,
+    color: 'var(--text-color-gray-bold)',
+  },
+  hostOverallButtonCsv: {
+    padding: '2px 25px',
+    backgroundColor: 'var(--background-color-btn-csv)',
+    border: 'none',
+    borderRadius: '5px',
+    color: 'var(--color-white)',
+    cursor: 'pointer',
+    fontSize: '12px',
+  },
+  hostCustomDatePicker: {
+    '& .MuiTableCell-root': {
+      padding: '0px 16px !important',
+    },
+    '& .MuiInputBase-root': {
+      padding: '4px !important',
+      marginTop: '0px !important',
+    },
+    '& .MuiFormControl-root': {
+      marginTop: '12px !important',
+      marginBottom: '7px !important',
+    },
+  },
+  hostTableRow: {
+    '& th:first-child': {
+      borderRadius: '8px 0 0 0',
+    },
+    '& th:last-child': {
+      borderRadius: '0 8px 0 0',
+    },
+  },
+  hostGlobalText: {
+    '& th, & td': {
+      color: 'var(--text-color-gray)',
+    },
   },
 });
 
@@ -162,10 +208,10 @@ export default function Overall() {
 
   return (
     <TableContainer component={Paper} className={classes.container}>
-      <div className="host-overall-container-header">
-        <div className="host-overall-performance-text">全体パフォーマンス</div>
+      <div className={classes.hostOverallContainerHeader}>
+        <div className={classes.hostOverallPerformanceText}>全体パフォーマンス</div>
         <button
-          className="host-overall-button-csv"
+          className={classes.hostOverallButtonCsv}
           onClick={() => exportToCSV(rows, 'data-host-overall.csv', dateYearMonth, dateMonthDay)}
         >
           CSV 出力
@@ -173,8 +219,8 @@ export default function Overall() {
       </div>
       <span className={classes.title}>月毎・日毎</span>
       <Table className={classes.table} aria-label="customized table">
-        <TableHead className="host-custom-date-picker">
-          <TableRow className="host-table-row">
+        <TableHead className={classes.hostCustomDatePicker}>
+          <TableRow className={classes.hostTableRow}>
             <StyledTableCell className={classes.cellHead}>項目</StyledTableCell>
             <StyledTableCell className={classes.cellHead} align="right">
               <DatePickerYearMonth
@@ -187,7 +233,7 @@ export default function Overall() {
             </StyledTableCell>
           </TableRow>
         </TableHead>
-        <TableBody className="host-global-text">
+        <TableBody className={classes.hostGlobalText}>
           {rows.map((group) =>
             group.map((data, dataIndex) => {
               const isLastRow = dataIndex === group.length - 1;
