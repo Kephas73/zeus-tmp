@@ -38,7 +38,7 @@ export function useYearMonthEffect(filteredData, dateYearMonth, setDataOverallYe
       return accumulator;
     }, 0);
 
-    //call received date
+    //call received rate
     let callReceivedRate = 0;
     if (numberOfIncomingCalls > 0) {
       const resultRate = (numberOfCallsReceived / numberOfIncomingCalls) * 100;

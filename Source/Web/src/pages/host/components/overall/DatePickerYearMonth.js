@@ -115,7 +115,7 @@ export default function DatePickerYearMonth({ dateYearMonth, setDateYearMonth })
               onClick={() => {
                 setTimeout(() => {
                   const displayNone = document.querySelector(
-                    'body > div.MuiPopover-root > div.MuiPaper-root.MuiPopover-paper.MuiPaper-elevation8.MuiPaper-rounded > div > div.MuiToolbar-root.MuiToolbar-regular.MuiPickersToolbar-toolbar.MuiPickersDatePickerRoot-toolbar.MuiToolbar-gutters > button:nth-child(2) > span.MuiButton-label > h4'
+                    'span.MuiButton-label > h4'
                   );
                   displayNone.className = classes.displayNone;
                 }, 0);

@@ -1,15 +1,14 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import 'date-fns';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
 import DateFnsUtils from '@date-io/date-fns';
+import 'date-fns';
 
 import Grid from '@material-ui/core/Grid';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
-
-import { withStyles, makeStyles } from '@material-ui/core/styles';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import { useState } from 'react';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     '& .MuiFormControl-marginNormal': {
       display: 'flex',
@@ -47,6 +46,9 @@ const useStyles = makeStyles((theme) => ({
       justifyContent: 'center',
     },
   },
+  displayNone: {
+    display: 'none',
+  },
 }));
 
 const CustomKeyboardDatePicker = withStyles({
@@ -75,34 +77,57 @@ const CustomKeyboardDatePicker = withStyles({
 
 export default function DatePickerYearMonth({ dateYearMonth, setDateYearMonth }) {
   const classes = useStyles();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleOpen = () => {
+    setIsOpen(true);
+  };
+
+  const handleClose = () => {
+    setIsOpen(false);
+  };
 
   const handleDateChange = (date) => {
     setDateYearMonth(date);
   };
 
   return (
-    <MuiPickersUtilsProvider utils={DateFnsUtils}>
-      <Grid container>
-        <CustomKeyboardDatePicker
-          className={classes.root}
-          views={['year', 'month']}
-          disableToolbar
-          variant="inline"
-          format="yyyy/MM"
-          margin="normal"
-          id="date-picker-inline"
-          label="年 / 月"
-          value={dateYearMonth}
-          onChange={handleDateChange}
-          KeyboardButtonProps={{
-            'aria-label': 'change date',
-          }}
-          keyboardIcon={<ArrowDropDownIcon />}
-        />
-      </Grid>
-    </MuiPickersUtilsProvider>
+      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+        <Grid container>
+          <CustomKeyboardDatePicker
+              className={classes.root}
+              views={['month']}
+              variant="inline"
+              format="yyyy/MM"
+              margin="normal"
+              id="date-picker-inline"
+              label="年 / 月"
+              value={dateYearMonth}
+              onChange={handleDateChange}
+              onOpen={handleOpen}
+              onClose={handleClose}
+              open={isOpen}
+              KeyboardButtonProps={{
+                'aria-label': 'change date',
+              }}
+              keyboardIcon={
+                <ArrowDropDownIcon
+                    onClick={() => {
+                      setTimeout(() => {
+                        const displayNone = document.querySelector(
+                            'span.MuiButton-label > h4'
+                        );
+                        displayNone.className = classes.displayNone;
+                      }, 0);
+                    }}
+                />
+              }
+          />
+        </Grid>
+      </MuiPickersUtilsProvider>
   );
 }
+
 DatePickerYearMonth.propTypes = {
   dateYearMonth: PropTypes.instanceOf(Date).isRequired,
   setDateYearMonth: PropTypes.func.isRequired,
