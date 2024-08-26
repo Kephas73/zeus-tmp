@@ -40,9 +40,9 @@ export const useStyles = makeStyles({
         padding: '15px 5px 5px 15px',
     },
     hostPerformanceTextHeader: {
-      fontSize: '13px',
-      fontWeight: 600,
-      color: 'var(--text-color-gray-bold)',
+        fontSize: '13px',
+        fontWeight: 600,
+        color: 'var(--text-color-gray-bold)',
     },
     hostContainerHeaderOperator: {
         position: 'relative',
@@ -109,9 +109,12 @@ export const useStyles = makeStyles({
     },
     cellHead: {
         borderRight: '1px solid var(--text-color-gray-bland)',
+        fontSize: '14px'
     },
     lastRow: {
-        marginTop: '10px',
+        '& tr': {
+            marginTop: '10px',
+        },
         '& td': {
             borderBottom: '2px solid var(--color-line)',
         },
@@ -120,8 +123,8 @@ export const useStyles = makeStyles({
         borderBottom: '2px solid var(--color-line)',
     },
     hostGlobalText: {
-        '& td': {
-            color: 'var(--text-color-gray)'
+        '& th, & td': {
+            color: 'var(--text-color-gray)',
         },
     },
     hostCustomDatePicker: {
