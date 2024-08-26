@@ -6,6 +6,7 @@ import 'date-fns';
 import Grid from '@material-ui/core/Grid';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import { useState } from 'react';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -44,6 +45,9 @@ const useStyles = makeStyles(() => ({
     '& .MuiInputBase-adornedEnd': {
       justifyContent: 'center',
     },
+    '&&&& .MuiButton-label': {
+      color: "red"
+    }
   },
 }));
 
@@ -69,10 +73,20 @@ const CustomKeyboardDatePicker = withStyles({
       borderBottom: 'none',
     },
   },
+
 })(KeyboardDatePicker);
 
 export default function DatePickerYearMonth({ dateYearMonth, setDateYearMonth }) {
   const classes = useStyles();
+  const [isOpen, setIsOpen] = useState(false)
+
+  const handleOpen = () => {
+    setIsOpen(true);
+  };
+
+  const handleClose = () => {
+    setIsOpen(false);
+  };
 
   const handleDateChange = (date) => {
     setDateYearMonth(date);
@@ -83,8 +97,7 @@ export default function DatePickerYearMonth({ dateYearMonth, setDateYearMonth })
       <Grid container>
         <CustomKeyboardDatePicker
           className={classes.root}
-          views={['year', 'month']}
-          disableToolbar
+          views={['month']}
           variant="inline"
           format="yyyy/MM"
           margin="normal"
@@ -92,10 +105,13 @@ export default function DatePickerYearMonth({ dateYearMonth, setDateYearMonth })
           label="年 / 月"
           value={dateYearMonth}
           onChange={handleDateChange}
+          onOpen={handleOpen}
+          onClose={handleClose}
+          open={isOpen}
           KeyboardButtonProps={{
             'aria-label': 'change date',
           }}
-          keyboardIcon={<ArrowDropDownIcon />}
+          keyboardIcon={<ArrowDropDownIcon/>}
         />
       </Grid>
     </MuiPickersUtilsProvider>
