@@ -141,17 +141,11 @@ export const useStyles = makeStyles({
         },
     },
     hostTableRow: {
-        '&.host-table-row th:first-child': {
+        '& th:first-child': {
             borderRadius: '8px 0px 0px 0px',
         },
-        '&.host-table-row th:last-child': {
+        '& th:last-child': {
             borderRadius: '0px 8px 0px 0px',
-        },
-        '&.host-table-row-skill th:first-child': {
-            borderRadius: '10px 0px 0px 0px',
-        },
-        '&.host-table-row-skill th:last-child': {
-            borderRadius: '0px 10px 0px 0px',
         },
     },
 });
