@@ -46,7 +46,7 @@ class _MyAppState extends State<MyApp> {
   Future<String> getLogFilePath() async {
     final directory = await getExternalStorageDirectory();
     final directoryPath = "${directory!.path}/MyAppLogs";
-    final filePath = "$directoryPath/webview_logs.txt";
+    final filePath = "$directoryPath/_joinRoom-Android-Flutter.txt";
 
     final dir = Directory(directoryPath);
     if (!(await dir.exists())) {
