@@ -20,7 +20,7 @@ const styles = theme => ({
     width: '100%',
     borderBottom: '2px solid var(--color-line)',
     padding: '15px 5px 5px 20px',
-    marginBottom: '16px',
+    marginBottom: '14px',
   },
   hostLanguages: {
     padding: '4px',
@@ -78,7 +78,7 @@ const styles = theme => ({
   tableContainerScroll: {
     width: '100% !important',
     overflow: 'auto !important',
-    padding: '6px 8px 8px',
+    padding: '6px 8px 10px',
   },
   customTableBody: {
     width: '100%',
