@@ -32,7 +32,7 @@ android {
 
     signingConfigs {
         release {
-            keyAlias 'key'
+            keyAlias 'my-key-alias'
             keyPassword '123456'
             storeFile file('my-release-key.jks')
             storePassword '123456'

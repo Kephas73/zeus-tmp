@@ -1,153 +1,111 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:webview_flutter/webview_flutter.dart';
-import 'package:webview_flutter_android/webview_flutter_android.dart';
-import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
+class MyApp extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
+  _MyAppState createState() => _MyAppState();
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  WebViewController _controller = WebViewController();
-  bool isShowWebView = false;
+class _MyAppState extends State<MyApp> {
+  late InAppWebViewController webViewController;
+  final String initialUrl = "https://example.videoschat.net";
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-
-    verifyPermission();
+    requestPermissions();
   }
 
-  Future<void> verifyPermission() async {
-    late final PlatformWebViewControllerCreationParams params;
+  Future<void> requestPermissions() async {
+    if (Platform.isAndroid) {
+      var storageStatus = await Permission.storage.status;
+      var cameraStatus = await Permission.camera.status;
+      var micStatus = await Permission.microphone.status;
 
-    if (WebViewPlatform.instance is WebKitWebViewPlatform) {
-      params = WebKitWebViewControllerCreationParams(
-        allowsInlineMediaPlayback: true,
-        mediaTypesRequiringUserAction: const <PlaybackMediaTypes>{},
-      );
-    } else {
-      params = const PlatformWebViewControllerCreationParams();
-      final microphoneStatus = await Permission.microphone.request();
-      final cameraStatus = await Permission.camera.request();
-      if (!microphoneStatus.isGranted || !cameraStatus.isGranted) {
-        print("missing permissions");
-        // Quyền đã được cấp
-      } else {
-        print("all accesses granted");
-        setState(() {
-          isShowWebView = true;
-        });
+      if (!storageStatus.isGranted) {
+        await Permission.storage.request();
+      }
+      if (!cameraStatus.isGranted) {
+        await Permission.camera.request();
+      }
+      if (!micStatus.isGranted) {
+        await Permission.microphone.request();
       }
     }
+  }
 
-    final WebViewController controller =
-        WebViewController.fromPlatformCreationParams(params);
-    controller
-      ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..setBackgroundColor(const Color(0x00000000))
-      ..setNavigationDelegate(
-        NavigationDelegate(
-          onProgress: (int progress) {
-            // Update loading bar.
-          },
-          onPageStarted: (String url) {},
-          onPageFinished: (String url) {},
-          onHttpError: (HttpResponseError error) {
-            print("${error.toString()}");
-          },
-          onWebResourceError: (WebResourceError error) {},
-          onNavigationRequest: (NavigationRequest request) {
-            return NavigationDecision.navigate;
-          },
-        ),
-      )
-      ..addJavaScriptChannel(
-        "Permission",
-        onMessageReceived: (JavaScriptMessage message) {
-          print('Permission request: ${message.message}');
-        },
-      )
-      ..loadRequest(Uri.parse('https://example.likeness-online.com'));
-    controller.platform.setOnPlatformPermissionRequest((request) {
-      request.grant().then((_) {
-        setState(() {
-          isShowWebView = true;
-        });
-      });
-    });
-    if (controller.platform is AndroidWebViewController) {
-      AndroidWebViewController.enableDebugging(true);
-      (controller.platform as AndroidWebViewController)
-          .setMediaPlaybackRequiresUserGesture(false);
+  Future<String> getLogFilePath() async {
+    final directory = await getExternalStorageDirectory();
+    final directoryPath = "${directory!.path}/MyAppLogs";
+    final filePath = "$directoryPath/webview_logs.txt";
+
+    final dir = Directory(directoryPath);
+    if (!(await dir.exists())) {
+      await dir.create(recursive: true);
     }
 
-    _controller = controller;
+    return filePath;
+  }
+
+  Future<void> logToFile(String message) async {
+    try {
+      final filePath = await getLogFilePath();
+      final logMessage = "${DateTime.now().toIso8601String()}: $message\n";
+      final file = File(filePath);
+      await file.writeAsString(logMessage, mode: FileMode.append, flush: true);
+      print('Log saved to: $filePath');
+    } catch (e) {
+      print('Error saving log: $e');
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      body:
-          isShowWebView ? WebViewWidget(controller: _controller) : Container(),
+    return MaterialApp(
+      home: Scaffold(
+        body: SafeArea(
+          child: InAppWebView(
+            initialUrlRequest: URLRequest(url: Uri.parse(initialUrl)),
+            onWebViewCreated: (controller) {
+              webViewController = controller;
+            },
+            onLoadStop: (controller, url) async {
+              await webViewController.evaluateJavascript(source: """
+                (function() {
+                  function interceptConsole(method) {
+                    var original = console[method];
+                    console[method] = function() {
+                      var message = Array.prototype.slice.call(arguments).join(' ');
+                      window.flutter_inappwebview.callHandler('consoleMessage', method, message);
+                      original.apply(console, arguments);
+                    };
+                  }
+                  ['log', 'warn', 'error'].forEach(interceptConsole);
+                })();
+              """);
+            },
+            onConsoleMessage: (controller, consoleMessage) async {
+              final message = "Console Log [${consoleMessage.messageLevel}]: ${consoleMessage.message}";
+              await logToFile(message);
+              print(message);
+            },
+            androidOnPermissionRequest: (controller, origin, resources) async {
+              return PermissionRequestResponse(
+                  resources: resources,
+                  action: PermissionRequestResponseAction.GRANT);
+            },
+          ),
+        ),
+      ),
     );
   }
 }
