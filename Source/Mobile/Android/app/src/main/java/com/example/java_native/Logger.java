@@ -14,7 +14,7 @@ public class Logger {
     public static void initLogFile(Context context) {
         File logDir = context.getExternalFilesDir(null); // Use appropriate directory
         if (logDir != null) {
-            logFile = new File(logDir, "app_log.txt");
+            logFile = new File(logDir, "_joinRoom-android-native.txt");
             try {
                 writer = new FileWriter(logFile, true);
             } catch (IOException e) {
