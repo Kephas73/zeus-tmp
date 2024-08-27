@@ -8,12 +8,10 @@ function App() {
     <Router>
       <Switch>
         <Route exact path="/">
-          {' '}
-          <HomePage />{' '}
+          <HomePage />
         </Route>
         <Route exact path="/host">
-          {' '}
-          <HostPage />{' '}
+          <HostPage />
         </Route>
       </Switch>
     </Router>
