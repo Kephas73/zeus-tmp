@@ -26,11 +26,16 @@ const styles = (theme) => ({
     padding: '30px',
   },
   hostPage: {
-    backgroundColor: theme.palette.background.default, // Use theme colors
+    backgroundColor: theme.palette.background.default, 
     borderRadius: '7px',
     height: 'calc(97vh - 30px)',
     overflow: 'auto',
     padding: '30px',
+    '&::-webkit-scrollbar': {
+      display: 'none',
+    },
+    scrollbarWidth: 'none',
+    '-ms-overflow-style': 'none',
   },
   hostContainerOperatorSkill: {
     display: 'grid',
