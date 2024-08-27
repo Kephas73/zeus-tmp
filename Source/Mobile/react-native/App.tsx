@@ -3,7 +3,6 @@ import {
   SafeAreaView,
   StyleSheet,
   PermissionsAndroid,
-  Platform,
   Alert,
 } from 'react-native';
 import { WebView } from 'react-native-webview';
@@ -13,6 +12,20 @@ const App = () => {
   useEffect(() => {
     requestFilePermission();
   }, []);
+
+  const injectedJavaScript = `
+    (function() {
+      function interceptConsole(method) {
+        var original = console[method];
+        console[method] = function() {
+          var message = Array.prototype.slice.call(arguments).join(' ');
+          window.ReactNativeWebView.postMessage(JSON.stringify({type: method, message: message}));
+          original.apply(console, arguments);
+        };
+      }
+      ['log', 'warn', 'error'].forEach(interceptConsole);
+    })();
+  `;
 
   async function requestFilePermission() {
     try {
@@ -30,7 +43,10 @@ const App = () => {
         console.log('Storage permission granted');
         return true;
       } else {
-        Alert.alert('Permission Denied', 'You need to grant storage permission to save logs.');
+        Alert.alert(
+          'Permission Denied',
+          'You need to grant storage permission to save logs.',
+        );
         return false;
       }
     } catch (err) {
@@ -39,7 +55,7 @@ const App = () => {
     }
   }
 
-  async function logToFile(message) {
+  async function logToFile(message: string) {
     const hasPermission = await PermissionsAndroid.check(
       PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
     );
@@ -65,33 +81,30 @@ const App = () => {
       .catch(err => console.log('Error saving log:', err));
   }
 
-  const logEvent = (eventName, data) => {
-    const message = `${eventName}: ${JSON.stringify(data)}`;
-    console.log(message);
-    logToFile(message);
+  const onMessage = (event: any) => {
+    try {
+      const log = JSON.parse(event.nativeEvent.data);
+      logToFile(`Console Log [${log.type}]: ${log.message}`);
+      console.log(`Console Log [${log.type}]: ${log.message}`);
+    } catch (e) {
+      console.error('Failed to parse message:', event.nativeEvent.data);
+    }
   };
 
   return (
     <SafeAreaView style={styles.container}>
       <WebView
-        source={{ uri: 'https://videoschat.net/' }}
+        source={{ uri: 'https://example.videoschat.net' }}
         style={styles.webview}
         javaScriptEnabled={true}
-        onLoadStart={syntheticEvent => {
-          logEvent('Page Load Start', syntheticEvent.nativeEvent);
-        }}
-        onLoadEnd={syntheticEvent => {
-          logEvent('Page Load End', syntheticEvent.nativeEvent);
-        }}
-        onError={syntheticEvent => {
-          logEvent('Page Error', syntheticEvent.nativeEvent);
-        }}
-        onHttpError={syntheticEvent => {
-          logEvent('HTTP Error', syntheticEvent.nativeEvent);
-        }}
-        onConsoleMessage={syntheticEvent => {
-          logEvent('Console Message', syntheticEvent.nativeEvent);
-        }}
+        injectedJavaScript={injectedJavaScript}
+        onMessage={onMessage}
+        allowsFullscreenVideo={false}
+        allowsInlineMediaPlayback={true}
+        mediaPlaybackRequiresUserAction={false}
+        onLoad={() => console.log('Page Loaded')}
+        onLoadEnd={() => console.log('Page Load Ended')}
+        onError={error => console.log('Error loading page:', error)}
       />
     </SafeAreaView>
   );
