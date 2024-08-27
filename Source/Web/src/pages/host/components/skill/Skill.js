@@ -20,7 +20,7 @@ const styles = theme => ({
     width: '100%',
     borderBottom: '2px solid var(--color-line)',
     padding: '15px 5px 5px 20px',
-    marginBottom: '10px',
+    marginBottom: '16px',
   },
   hostLanguages: {
     padding: '4px',
@@ -53,8 +53,10 @@ const styles = theme => ({
   },
   hostTableRowSkillItemColumn: {
     minWidth: '150px',
+    borderRight: '1px solid var(--text-color-gray-bland)',
   },
   hostTableRowSkillLanguageColumn: {
+    borderRight: '1px solid var(--text-color-gray-bland)',
     width: 'calc(100% / 6.5)',
   },
   hostTildeFilter: {
@@ -76,7 +78,7 @@ const styles = theme => ({
   tableContainerScroll: {
     width: '100% !important',
     overflow: 'auto !important',
-    padding: '10px',
+    padding: '6px 8px 8px',
   },
   customTableBody: {
     width: '100%',
@@ -128,6 +130,11 @@ const styles = theme => ({
       borderRadius: '0px 10px 0px 0px',
     },
   },
+  hostPerformanceText: {
+    fontSize: '13px',
+    fontWeight: 600,
+    color: 'var(--text-color-gray-bold)',
+  }
 });
 
 const StyledTableCell = withStyles(theme => ({
@@ -189,7 +196,7 @@ function Skill({ classes }) {
     <div className="host-container">
       <TableContainer component={Paper} className={`${classes.tableContainerScroll}`}>
         <div className={classes.hostContainerHeader}>
-          <div className="host-performance-text">スキル別パフォーマンス</div>
+          <div className={classes.hostPerformanceText}>スキル別パフォーマンス</div>
           <button
             className={classes.hostButtonCsv}
             onClick={() =>

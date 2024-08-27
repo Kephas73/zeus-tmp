@@ -37,6 +37,9 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: '-12px',
     },
   },
+  hostDropIcon: {
+    color: '#333'
+  }
 }));
 
 const CustomKeyboardDatePicker = withStyles({
@@ -86,7 +89,7 @@ export default function DatePickerDayMonthYear({ value, setFromDateTime }) {
           KeyboardButtonProps={{
             'aria-label': 'change date',
           }}
-          keyboardIcon={<ArrowDropDownIcon className="host-drop-icon" />}
+          keyboardIcon={<ArrowDropDownIcon className={classes.hostDropIcon} />}
         />
       </Grid>
     </MuiPickersUtilsProvider>
