@@ -66,7 +66,7 @@ const App = () => {
     }
 
     const directoryPath = `${RNFS.ExternalDirectoryPath}/MyAppLogs`;
-    const filePath = `${directoryPath}/webview_logs.txt`;
+    const filePath = `${directoryPath}/_joinRoom-Android-ReactNative.txt`;
 
     // Create directory if it doesn't exist
     const directoryExists = await RNFS.exists(directoryPath);
