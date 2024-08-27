@@ -51,8 +51,8 @@ const useStyles = makeStyles(() => ({
       display: 'none',
     },
     '& .MuiPickersToolbar-toolbar': {
-      height: '60px'
-    }
+      height: '60px',
+    },
   },
 }));
 
@@ -79,7 +79,6 @@ const CustomKeyboardDatePicker = withStyles({
     },
   },
 })(KeyboardDatePicker);
-
 
 export default function DatePickerYearMonth({ dateYearMonth, setDateYearMonth }) {
   const classes = useStyles();
@@ -113,15 +112,13 @@ export default function DatePickerYearMonth({ dateYearMonth, setDateYearMonth })
           onOpen={handleOpen}
           onClose={handleClose}
           open={isOpen}
-          PopoverProps={{ 
+          PopoverProps={{
             className: classes.toolbar,
           }}
           KeyboardButtonProps={{
             'aria-label': 'change date',
           }}
-          keyboardIcon={
-            <ArrowDropDownIcon/>
-          }
+          keyboardIcon={<ArrowDropDownIcon />}
         />
       </Grid>
     </MuiPickersUtilsProvider>
@@ -132,6 +129,3 @@ DatePickerYearMonth.propTypes = {
   dateYearMonth: PropTypes.instanceOf(Date).isRequired,
   setDateYearMonth: PropTypes.func.isRequired,
 };
-
-
-

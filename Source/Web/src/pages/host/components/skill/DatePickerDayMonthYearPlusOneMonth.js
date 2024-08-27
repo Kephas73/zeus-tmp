@@ -38,8 +38,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   hostDropIcon: {
-    color: '#333'
-  }
+    color: '#333',
+  },
 }));
 
 const CustomKeyboardDatePicker = withStyles({

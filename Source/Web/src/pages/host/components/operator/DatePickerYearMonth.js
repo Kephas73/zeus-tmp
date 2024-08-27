@@ -51,8 +51,8 @@ const useStyles = makeStyles(() => ({
       display: 'none',
     },
     '& .MuiPickersToolbar-toolbar': {
-      height: '60px'
-    }
+      height: '60px',
+    },
   },
 }));
 
@@ -80,7 +80,6 @@ const CustomKeyboardDatePicker = withStyles({
   },
 })(KeyboardDatePicker);
 
-
 export default function DatePickerYearMonth({ dateYearMonth, setDateYearMonth }) {
   const classes = useStyles();
   const [isOpen, setIsOpen] = useState(false);
@@ -98,33 +97,31 @@ export default function DatePickerYearMonth({ dateYearMonth, setDateYearMonth })
   };
 
   return (
-      <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <Grid container>
-          <CustomKeyboardDatePicker
-              className={classes.root}
-              views={['month']}
-              variant="inline"
-              format="yyyy/MM"
-              margin="normal"
-              id="date-picker-inline"
-              label="年 / 月"
-              value={dateYearMonth}
-              onChange={handleDateChange}
-              onOpen={handleOpen}
-              onClose={handleClose}
-              open={isOpen}
-              PopoverProps={{
-                className: classes.toolbar,
-              }}
-              KeyboardButtonProps={{
-                'aria-label': 'change date',
-              }}
-              keyboardIcon={
-                <ArrowDropDownIcon/>
-              }
-          />
-        </Grid>
-      </MuiPickersUtilsProvider>
+    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+      <Grid container>
+        <CustomKeyboardDatePicker
+          className={classes.root}
+          views={['month']}
+          variant="inline"
+          format="yyyy/MM"
+          margin="normal"
+          id="date-picker-inline"
+          label="年 / 月"
+          value={dateYearMonth}
+          onChange={handleDateChange}
+          onOpen={handleOpen}
+          onClose={handleClose}
+          open={isOpen}
+          PopoverProps={{
+            className: classes.toolbar,
+          }}
+          KeyboardButtonProps={{
+            'aria-label': 'change date',
+          }}
+          keyboardIcon={<ArrowDropDownIcon />}
+        />
+      </Grid>
+    </MuiPickersUtilsProvider>
   );
 }
 
@@ -132,6 +129,3 @@ DatePickerYearMonth.propTypes = {
   dateYearMonth: PropTypes.instanceOf(Date).isRequired,
   setDateYearMonth: PropTypes.func.isRequired,
 };
-
-
-

@@ -13,7 +13,7 @@ import { exportToCSVSkill } from '../../../../utils/exportCSV';
 import { formatDataForLanguages } from './caculator';
 import DatePickerDayMonthYearPlusOneMonth from './DatePickerDayMonthYearPlusOneMonth';
 
-const styles = theme => ({
+const styles = (theme) => ({
   hostContainerHeader: {
     display: 'flex',
     justifyContent: 'space-between',
@@ -44,7 +44,6 @@ const styles = theme => ({
     justifyContent: 'flex-start',
     alignItems: 'center',
     padding: '0px 5px 0px 20px',
-    
   },
   hostTextFilter: {
     color: 'var(--text-color-gray-bland)',
@@ -82,9 +81,8 @@ const styles = theme => ({
   },
   customTableBody: {
     width: '100%',
-    padding: '10px',    
-    boxShadow: '0px 4px 6px -2px var(--text-color-gray-bland)'
-
+    padding: '10px',
+    boxShadow: '0px 4px 6px -2px var(--text-color-gray-bland)',
   },
   tableHead: {
     borderRadius: '10px 0px 0px 0px',
@@ -134,10 +132,10 @@ const styles = theme => ({
     fontSize: '13px',
     fontWeight: 600,
     color: 'var(--text-color-gray-bold)',
-  }
+  },
 });
 
-const StyledTableCell = withStyles(theme => ({
+const StyledTableCell = withStyles((theme) => ({
   head: {
     backgroundColor: constants.backgroundColorHead,
     color: theme.palette.common.white,
@@ -152,7 +150,7 @@ const StyledTableCell = withStyles(theme => ({
   },
 }))(TableCell);
 
-const StyledTableRow = withStyles(theme => ({
+const StyledTableRow = withStyles((theme) => ({
   root: {
     '&:nth-of-type(odd)': {
       backgroundColor: theme.palette.action.hover,
@@ -178,7 +176,7 @@ function Skill({ classes }) {
     const firstLanguage = Object.keys(dataSkillDateTime)[0];
     const keys = Object.keys(dataSkillDateTime[firstLanguage]);
 
-    return keys.map(key => (
+    return keys.map((key) => (
       <StyledTableRow key={key}>
         <StyledTableCell component="th" scope="row">
           {key}
@@ -219,7 +217,9 @@ function Skill({ classes }) {
         <Table className={`${classes.customTableBody}`} aria-label="customized table">
           <TableHead>
             <TableRow className={classes.hostTableRow}>
-              <StyledTableCell className={classes.hostTableRowSkillItemColumn}>項目</StyledTableCell>
+              <StyledTableCell className={classes.hostTableRowSkillItemColumn}>
+                項目
+              </StyledTableCell>
               <StyledTableCell className={classes.hostTableRowSkillLanguageColumn} align="center">
                 <div>
                   <span className={classes.hostLanguages}>EN</span>
@@ -252,9 +252,7 @@ function Skill({ classes }) {
               </StyledTableCell>
             </TableRow>
           </TableHead>
-          <TableBody className={classes.hostGlobalText}>
-            {renderTableRows()}
-          </TableBody>
+          <TableBody className={classes.hostGlobalText}>{renderTableRows()}</TableBody>
         </Table>
       </TableContainer>
     </div>

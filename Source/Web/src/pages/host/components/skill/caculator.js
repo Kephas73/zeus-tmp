@@ -280,7 +280,8 @@ export const formatDataForLanguages = (fromDateTime, toDateTime) => {
       callWaitingNumberOfSuccessFulConnections;
     const callWaitingRate =
       (numberOfCallsWaiting /
-      (numberOfIncomingCalls - countNumberOfMissedCalls - countNumberOfBreaks)) * 100;
+        (numberOfIncomingCalls - countNumberOfMissedCalls - countNumberOfBreaks)) *
+      100;
     return {
       入電数: `${numberOfIncomingCalls} 件`,
       受電数: `${numberOfCallsReceived} 件`,
