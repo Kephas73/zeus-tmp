@@ -57,6 +57,9 @@ const styles = (theme) => ({
   hostTableRowSkillLanguageColumn: {
     borderRight: '1px solid var(--text-color-gray-bland)',
     width: 'calc(100% / 6.5)',
+    '&:last-child': {
+      borderRight: 'none'
+    },
   },
   hostTildeFilter: {
     fontSize: '50px',
@@ -71,7 +74,7 @@ const styles = (theme) => ({
     },
     '& tr:nth-of-type(3), & tr:nth-of-type(7), & tr:nth-of-type(9)': {
       border: 'unset',
-      borderBottom: '3px solid var(--color-line)',
+      borderBottom: '2px solid var(--color-line)',
     },
   },
   tableContainerScroll: {
@@ -158,7 +161,6 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
-const useStyles = makeStyles(styles);
 
 function Skill({ classes }) {
   const [dataSkillDateTime, setDataSkillDateTime] = useState({});
