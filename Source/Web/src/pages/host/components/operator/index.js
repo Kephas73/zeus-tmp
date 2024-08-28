@@ -1,10 +1,5 @@
 import React, { useRef, useState } from 'react';
-
 import { useYearMonthEffect, useMonthDayEffect } from './operator.hooks';
-import DatePickerMonthDay from './DatePickerMonthDay';
-import DatePickerYearMonth from './DatePickerYearMonth';
-import { exportToCSV } from '../../../../utils/exportCSV';
-import prepareData from './prepareData';
 
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -15,7 +10,11 @@ import Paper from '@material-ui/core/Paper';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
-// import './operator.css';
+import DatePickerMonthDay from './DatePickerMonthDay';
+import DatePickerYearMonth from './DatePickerYearMonth';
+
+import prepareData from './prepareData';
+import { exportToCSV } from '../../../../utils/exportCSV';
 import { calls } from '../../../../data/calls';
 import { StyledTableCell, StyledTableRow, useStyles } from './style';
 

@@ -1,9 +1,6 @@
 import { useState, useEffect } from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 
-import DatePickerYearMonth from './DatePickerYearMonth';
-import DatePickerMonthDay from './DatePickerMonthDay';
-
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -11,6 +8,9 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+
+import DatePickerYearMonth from './DatePickerYearMonth';
+import DatePickerMonthDay from './DatePickerMonthDay';
 
 import constants from '../../../../constants';
 import { MONTH_DAY, YEAR_MONTH } from '../../../../constants/data';

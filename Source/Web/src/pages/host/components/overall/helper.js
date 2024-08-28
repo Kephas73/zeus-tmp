@@ -280,10 +280,8 @@ export const getDataOverall = (funcGetDate, dateTime, checkDate) => {
  * @returns {Array}
  */
 export const createRows = (dataOverallYearMonth, dataOverallMonthDay) => {
-  const createData = (data) => data;
-
   const rows = [
-    createData([
+    [
       {
         name: '入電数',
         metric1: `${dataOverallYearMonth.numberOfIncomingCalls} 件`,
@@ -299,8 +297,8 @@ export const createRows = (dataOverallYearMonth, dataOverallMonthDay) => {
         metric1: `${dataOverallYearMonth.callReceivedRate}%`,
         metric2: `${dataOverallMonthDay.callReceivedRate}%`,
       },
-    ]),
-    createData([
+    ],
+    [
       {
         name: '稼働席数',
         metric1: `${dataOverallYearMonth.numberOfActiveSeats} 席`,
@@ -321,8 +319,8 @@ export const createRows = (dataOverallYearMonth, dataOverallMonthDay) => {
         metric1: `${dataOverallYearMonth.averageTalkTime} 分`,
         metric2: `${dataOverallMonthDay.averageTalkTime} 分`,
       },
-    ]),
-    createData([
+    ],
+    [
       {
         name: '不在数',
         metric1: `${dataOverallYearMonth.numberOfMissedCalls} 件`,
@@ -333,8 +331,8 @@ export const createRows = (dataOverallYearMonth, dataOverallMonthDay) => {
         metric1: `${dataOverallYearMonth.numberOfBreaks} 件`,
         metric2: `${dataOverallMonthDay.numberOfBreaks} 件`,
       },
-    ]),
-    createData([
+    ],
+    [
       {
         name: '待ち呼数',
         metric1: `${dataOverallYearMonth.numberOfCallsWaiting} 件`,
@@ -360,7 +358,7 @@ export const createRows = (dataOverallYearMonth, dataOverallMonthDay) => {
         metric1: `${dataOverallYearMonth.callWaitingNumberOfExits} 件`,
         metric2: `${dataOverallMonthDay.callWaitingNumberOfExits} 件`,
       },
-    ]),
+    ],
   ];
 
   return rows;

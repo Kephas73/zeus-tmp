@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
-import DateFnsUtils from '@date-io/date-fns';
 import 'date-fns';
+import DateFnsUtils from '@date-io/date-fns';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
 
 import Grid from '@material-ui/core/Grid';
-import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 
 const useStyles = makeStyles(() => ({
   root: {

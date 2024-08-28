@@ -1,12 +1,13 @@
-import 'date-fns';
 import React from 'react';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
+import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
-import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
+import Grid from '@material-ui/core/Grid';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
+
+const useStyles = makeStyles(() => ({
   root: {
     '& .MuiFormControl-marginNormal': {
       display: 'flex',
