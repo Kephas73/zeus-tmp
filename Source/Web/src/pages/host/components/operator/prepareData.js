@@ -1,8 +1,6 @@
 const prepareData = (dataOverallYearMonth, dataOverallMonthDay) => {
-  const createData = (data) => data;
-
   const rows = [
-    createData([
+    [
       {
         name: '入電数',
         metric1: `${dataOverallYearMonth.numberOfIncomingCalls} 件`,
@@ -18,8 +16,8 @@ const prepareData = (dataOverallYearMonth, dataOverallMonthDay) => {
         metric1: `${dataOverallYearMonth.callReceivedRate}%`,
         metric2: `${dataOverallMonthDay.callReceivedRate}%`,
       },
-    ]),
-    createData([
+    ],
+    [
       {
         name: '稼働時間',
         metric1: `${dataOverallYearMonth.upTime} 分`,
@@ -35,7 +33,7 @@ const prepareData = (dataOverallYearMonth, dataOverallMonthDay) => {
         metric1: `${dataOverallYearMonth.averageTalkTime} 分`,
         metric2: `${dataOverallMonthDay.averageTalkTime} 分`,
       },
-    ]),
+    ],
   ];
 
   return rows;

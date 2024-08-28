@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
+
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -7,13 +8,15 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import constants from '../../../../constants';
+
 import DatePickerDayMonthYear from './DatePickerDayMonthYear';
-import { exportToCSVSkill } from '../../../../utils/exportCSV';
-import { formatDataForLanguages } from './caculator';
 import DatePickerDayMonthYearPlusOneMonth from './DatePickerDayMonthYearPlusOneMonth';
 
-const styles = (theme) => ({
+import constants from '../../../../constants';
+import { exportToCSVSkill } from '../../../../utils/exportCSV';
+import { formatDataForLanguages } from './caculator';
+
+const styles = () => ({
   hostContainerHeader: {
     display: 'flex',
     justifyContent: 'space-between',
@@ -58,7 +61,7 @@ const styles = (theme) => ({
     borderRight: '1px solid var(--text-color-gray-bland)',
     width: 'calc(100% / 6.5)',
     '&:last-child': {
-      borderRight: 'none'
+      borderRight: 'none',
     },
   },
   hostTildeFilter: {
@@ -160,7 +163,6 @@ const StyledTableRow = withStyles((theme) => ({
     },
   },
 }))(TableRow);
-
 
 function Skill({ classes }) {
   const [dataSkillDateTime, setDataSkillDateTime] = useState({});

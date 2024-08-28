@@ -26,7 +26,7 @@ const styles = (theme) => ({
     padding: '30px',
   },
   hostPage: {
-    backgroundColor: theme.palette.background.default, 
+    backgroundColor: theme.palette.background.default,
     borderRadius: '7px',
     height: 'calc(97vh - 30px)',
     overflow: 'auto',
