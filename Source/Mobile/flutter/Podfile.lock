@@ -1,0 +1,28 @@
+PODS:
+  - Flutter (1.0.0)
+  - permission_handler_apple (9.1.1):
+    - Flutter
+  - webview_flutter_wkwebview (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
+  - webview_flutter_wkwebview (from `.symlinks/plugins/webview_flutter_wkwebview/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  permission_handler_apple:
+    :path: ".symlinks/plugins/permission_handler_apple/ios"
+  webview_flutter_wkwebview:
+    :path: ".symlinks/plugins/webview_flutter_wkwebview/ios"
+
+SPEC CHECKSUMS:
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  permission_handler_apple: e76247795d700c14ea09e3a2d8855d41ee80a2e6
+  webview_flutter_wkwebview: 2a23822e9039b7b1bc52e5add778e5d89ad488d1
+
+PODFILE CHECKSUM: 51326bdc3593d2cbfc4be2ea03d096c3d85a977b
+
+COCOAPODS: 1.15.2
