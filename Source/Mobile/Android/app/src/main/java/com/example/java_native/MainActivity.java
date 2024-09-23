@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Load URL and clear cache
         webView.clearCache(true);
-        webView.loadUrl("https://example.videoschat.net/");
+        webView.loadUrl("https://videoschat.net");
     }
 
     private void requestPermissions() {
