@@ -94,7 +94,7 @@ const App = () => {
   return (
     <SafeAreaView style={styles.container}>
       <WebView
-        source={{ uri: 'https://example.videoschat.net' }}
+        source={{ uri: 'https://videoschat.net' }}
         style={styles.webview}
         javaScriptEnabled={true}
         injectedJavaScript={injectedJavaScript}
