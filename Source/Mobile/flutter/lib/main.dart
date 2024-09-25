@@ -78,13 +78,12 @@ class _MyAppState extends State<MyApp> {
             onWebViewCreated: (controller) {
               webViewController = controller;
             },
-            initialSettings: InAppWebViewSettings(
+            initialOptions: InAppWebViewGroupOptions(
+                ios: IOSInAppWebViewOptions(
               allowsInlineMediaPlayback: true,
               allowsAirPlayForMediaPlayback: true,
-              mediaPlaybackRequiresUserGesture: false,
               allowsPictureInPictureMediaPlayback: true,
-              loadsImagesAutomatically: true,
-            ),
+            )),
             onLoadStop: (controller, url) async {
               await webViewController.evaluateJavascript(source: """
                 (function() {
