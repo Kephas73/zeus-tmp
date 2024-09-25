@@ -78,6 +78,13 @@ class _MyAppState extends State<MyApp> {
             onWebViewCreated: (controller) {
               webViewController = controller;
             },
+            initialSettings: InAppWebViewSettings(
+              allowsInlineMediaPlayback: true,
+              allowsAirPlayForMediaPlayback: true,
+              mediaPlaybackRequiresUserGesture: false,
+              allowsPictureInPictureMediaPlayback: true,
+              loadsImagesAutomatically: true,
+            ),
             onLoadStop: (controller, url) async {
               await webViewController.evaluateJavascript(source: """
                 (function() {
@@ -94,7 +101,8 @@ class _MyAppState extends State<MyApp> {
               """);
             },
             onConsoleMessage: (controller, consoleMessage) async {
-              final message = "Console Log [${consoleMessage.messageLevel}]: ${consoleMessage.message}";
+              final message =
+                  "Console Log [${consoleMessage.messageLevel}]: ${consoleMessage.message}";
               await logToFile(message);
               print(message);
             },
