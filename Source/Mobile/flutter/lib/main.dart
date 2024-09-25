@@ -17,7 +17,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   late InAppWebViewController webViewController;
-  final String initialUrl = "https://example.videoschat.net";
+  final String initialUrl = "https://uchida.videoschat.net/";
 
   @override
   void initState() {
