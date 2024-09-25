@@ -43,7 +43,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, WKUIDelegate 
         webView.uiDelegate = self
         self.view.addSubview(webView)
 
-        if let url = URL(string: "https://videoschat.net") {
+        if let url = URL(string: "https://uchida.videoschat.net") {
             let request = URLRequest(url: url)
             webView.load(request)
             webView.evaluateJavaScript("document.readyState", completionHandler: { (result, error) in
