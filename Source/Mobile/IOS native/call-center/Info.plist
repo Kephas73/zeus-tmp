@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>NSAllowsArbitraryLoads</key>
+	<true/>
+	<key>CFBundleIconName</key>
+	<string>icon</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>example.likeness-online.com</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSExceptionRequiresForwardSecrecy</key>
+				<true/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSRequiresCertificateTransparency</key>
+				<true/>
+			</dict>
+		</dict>
+	</dict>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>App needs access to the microphone for audio calls.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>App needs access to the camera for video calls.</string>
+	<key>NSCameraReactionEffectGesturesEnabledDefault</key>
+	<false/>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Our app uses speech recognition to provide voice commands and improve user experience. We need access to your voice data to make this feature work.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>App needs access to add photos to the library.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>App needs access to the photo library.</string>
+	<key>UIApplicationSupportsIndirectInputEvents</key>
+	<true/>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIMainStoryboardFile</key>
+	<string>Main</string>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>NSNetworkVolumesUsageDescription</key>
+	<string>ok</string>
+	<key>NSMotionUsageDescription</key>
+	<string>ok</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>ok</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>ok</string>
+	<key>NSFallDetectionUsageDescription</key>
+	<string>ok</string>
+	<key>NSRemovableVolumesUsageDescription</key>
+	<string>ok</string>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>ok</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>ok</string>
+	<key>NSFileProviderDomainUsageDescription</key>
+	<string>ok</string>
+	<key>UIRequiresFullScreen</key>
+	<true/>
+</dict>
+</plist>
